@@ -15,6 +15,7 @@ class PlanTrke extends Model
         'planirani_km'
 
     ];
+
     public function komentari()
     {
         return $this->hasMany(Komentar::class);

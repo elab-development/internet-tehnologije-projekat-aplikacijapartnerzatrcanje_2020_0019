@@ -7,13 +7,17 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class KomentarResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
+    public static $wrap = 'komentar';
+
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'ID' => $this->resource->id,
+            'Tekst' => $this->resource->tekst,
+            'Trkac' => $this->resource->trkac_id,
+            'Plan trke' => $this->resource->plan_trke_id,
+            //'Trkac' => new TrkacResource($this->resource->trkac_id),
+            //'Plan trke' => new PlanTrkeResource($this->plan_trke_id),
+        ];
     }
 }

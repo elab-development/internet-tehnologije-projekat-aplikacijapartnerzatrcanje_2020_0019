@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrkacController;
 use App\Http\Controllers\PlanTrkeController;
+use App\Http\Controllers\KomentarController;
+use App\Http\Controllers\StatistikaTrkeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,19 +18,38 @@ use App\Http\Controllers\PlanTrkeController;
 |
 */
 Route::prefix('planovi-trka')->group(function () {
-    // Prikaz svih planova trka
+    // Prikazuje sve planove trka
     Route::get('/', [PlanTrkeController::class, 'index']);
-
-    // Prikaz plana trke na osnovu identifikatora
+    // Prikazuje planove trka na osnovu id
     Route::get('/{id}', [PlanTrkeController::class, 'show']);
-
-    // Kreiranje novog plana trke
+    // Dodaje novi plan trke
     Route::post('/', [PlanTrkeController::class, 'store']);
-
-    // Ažuriranje plana trke
+    // Ažurira plan trke
     Route::put('/{id}', [PlanTrkeController::class, 'update']);
-
 });
+Route::prefix('trkaci')->group(function () {
+    //Prikazuje listu svih trkaca
+    Route::get('/', [TrkacController::class, 'index']);
+    //Prikazuje profil odredjenog trkača na osnovu id
+    Route::get('/{id}', [TrkacController::class, 'show']);
+    //Dodaje novog trkaca
+    Route::post('/', [TrkacController::class, 'store']);
+    //Azurira informacije na profilu trkaca
+    Route::put('/{id}', [TrkacController::class, 'update']);
+    //Brise odredjenog trkaca iz baze
+    Route::delete('/{id}', [TrkacController::class, 'destroy']);
+});
+
+Route::prefix('komentari')->group(function () {
+    // Prikazuje sve komentare
+    Route::get('/', [KomentarController::class, 'index']);
+    // Dodaje novi komentar
+    Route::post('/', [KomentarController::class, 'store']);
+    // Brise odredjeni komentar
+    Route::delete('/{id}', [KomentarController::class, 'destroy']);
+});
+
+Route::post('/statistika-trke', [StatistikaTrkeController::class, 'store']);
 
 /*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

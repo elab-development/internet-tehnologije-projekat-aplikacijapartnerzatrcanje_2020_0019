@@ -2,63 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\KomentarResource;
+use App\Models\Komentar;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class KomentarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $komentari = Komentar::all();
+
+        return KomentarResource::collection($komentari);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'tekst' => 'required|string',
+            'trkac_id' => 'required|integer',
+            'plan_trke_id' => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['Greska pri validaciji!', $validator->errors()]);
+        }
+
+        $komentar = Komentar::create([
+            'tekst' => $request->tekst,
+            'trkac_id' => $request->trkac_id,
+            'plan_trke_id' => $request->plan_trke_id,
+        ]);
+
+        return response()->json(['Komentar je dodat!', new KomentarResource($komentar)]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+
+    public function destroy($id)
     {
-        //
+        $komentar = Komentar::find($id);
+
+        if ($komentar) {
+            $komentar->delete();
+            return response()->json(['Uspesno ste obrisali komentar iz baze podataka!', new KomentarResource($komentar)]);
+        } else {
+            return response()->json('Komentar koji zelite da obrisete ne postoji u bazi podataka!');
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

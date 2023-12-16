@@ -7,9 +7,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PlanTrkeResource extends JsonResource
 {
+    public static $wrap = 'plan trke';
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'vreme' => $this->vreme,
             'mesto' => $this->mesto,
             'datum' => $this->datum,

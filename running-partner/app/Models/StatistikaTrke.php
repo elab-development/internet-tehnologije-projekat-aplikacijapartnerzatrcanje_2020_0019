@@ -11,6 +11,8 @@ class StatistikaTrke extends Model
     protected $fillable = [
         'ukupno_vreme',
         'predjeni_km',
+        'trkac_id',
+        'plan_trke_id'
     ];
     public function planTrka()
     {

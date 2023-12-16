@@ -7,13 +7,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class StatistikaTrkeResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(Request $request): array
+    public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'ukupno_vreme' => $this->ukupno_vreme,
+            'predjeni_km' => $this->predjeni_km,
+            'trkac_id' => $this->trkac_id,
+            'plan_trke_id' => $this->plan_trke_id,
+        ];
     }
 }
