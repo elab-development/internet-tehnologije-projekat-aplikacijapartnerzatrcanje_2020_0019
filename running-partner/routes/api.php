@@ -2,10 +2,16 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\TrkacController;
 use App\Http\Controllers\PlanTrkeController;
 use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\StatistikaTrkeController;
+
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +23,12 @@ use App\Http\Controllers\StatistikaTrkeController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+
+
 Route::prefix('planovi-trka')->group(function () {
     // Prikazuje sve planove trka
     Route::get('/', [PlanTrkeController::class, 'index']);
@@ -55,3 +67,21 @@ Route::post('/statistika-trke', [StatistikaTrkeController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });*/
+
+
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+
+Route::group(['middleware' => ['auth:sanctum']], function() {
+
+    Route::resource('/komentar', KomentarController::class)->only(['store','destroy']);
+    Route::resource('/statistika_trke', StatistikaTrkeController::class)->only(['update', 'destroy']);
+    Route::resource('/trkac', TrkacController::class)->only(['store','update','destroy']);
+    Route::resource('/plan_trke', PlanTrkeController::class)->only(['store','update','destroy']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
+

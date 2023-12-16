@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class StatistikaTrkeResource extends JsonResource
 {
+    public static $wrap = 'statistika_trke';
     public function toArray($request)
     {
         return [

@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TrkacResource extends JsonResource
 {
+    public static $wrap = 'trkac';
     public function toArray($request)
     {
         return [
