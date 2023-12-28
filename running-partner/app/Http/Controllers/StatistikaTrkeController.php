@@ -9,6 +9,34 @@ use Illuminate\Support\Facades\Validator;
 
 class StatistikaTrkeController extends Controller
 {
+
+
+    public function index(Request $request)
+    {
+
+        $query = StatistikaTrke::query();
+
+        
+    if ($request->has('trkac_id')) {
+        $query->where('trkac_id', $request->trkac_id);
+    }
+
+    // Filtriranje po plan_trke_id
+    if ($request->has('plan_trke_id')) {
+        $query->where('plan_trke_id', $request->plan_trke_id);
+    }
+
+    if ($request->has('ukupno_vreme')) {
+        $query->where('ukupno_vreme', '>', $request->ukupno_vreme);
+    }
+
+    // Paginacija
+    $statistikeTrke = $query->paginate(10);
+
+    return StatistikaTrkeResource::collection($statistikeTrke);
+    }
+
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

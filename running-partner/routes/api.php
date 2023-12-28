@@ -13,6 +13,7 @@ use App\Http\Controllers\StatistikaTrkeController;
 
 
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +27,7 @@ use App\Http\Controllers\StatistikaTrkeController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
 
 
 
@@ -62,6 +64,7 @@ Route::prefix('komentari')->group(function () {
 });
 
 Route::post('/statistika-trke', [StatistikaTrkeController::class, 'store']);
+Route::get('/statistika-trke', [StatistikaTrkeController::class, 'index']);
 
 /*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

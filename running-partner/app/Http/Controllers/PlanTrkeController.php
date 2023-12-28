@@ -9,8 +9,22 @@ use Illuminate\Support\Facades\Validator;
 
 class PlanTrkeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $query = PlanTrke::query();
+
+        // Filtriranje po mestu
+        if ($request->has('mesto')) {
+            $query->where('mesto', $request->mesto);
+        }
+
+        // Paginacija
+        $planovi_trka = $query->paginate(10);
+
+        return PlanTrkeResource::collection($planovi_trka);
+
+
+
         $planovi_trka = PlanTrke::all();
 
         //return $koreografi;

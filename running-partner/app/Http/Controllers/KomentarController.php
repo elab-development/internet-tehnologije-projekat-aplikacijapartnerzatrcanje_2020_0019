@@ -9,8 +9,21 @@ use Illuminate\Http\Request;
 
 class KomentarController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
+        $query = Komentar::query();
+
+        // Filtriranje po trkac_id
+        if ($request->has('trkac_id')) {
+            $query->where('trkac_id', $request->trkac_id);
+        }
+
+        // Paginacija
+        $komentari = $query->paginate(10);
+
+        return KomentarResource::collection($komentari);
+
         $komentari = Komentar::all();
 
         return KomentarResource::collection($komentari);

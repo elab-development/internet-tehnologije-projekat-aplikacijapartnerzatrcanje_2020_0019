@@ -9,8 +9,29 @@ use Illuminate\Http\Request;
 
 class TrkacController extends Controller
 {
-    public function index()
+
+
+   
+
+    public function index(Request $request)
     {
+
+        $query = Trkac::query();
+
+        // Filtriranje po polju
+        if ($request->has('pol')) {
+            $query->where('pol', $request->pol);
+        }
+
+        // Paginacija
+        $trkaci = $query->paginate(10);
+
+        return TrkacResource::collection($trkaci);
+
+
+
+
+
         $trkaci = Trkac::all();
         return TrkacResource::collection($trkaci);
     }
