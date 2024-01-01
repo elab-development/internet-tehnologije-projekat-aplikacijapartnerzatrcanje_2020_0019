@@ -14,10 +14,10 @@ class KomentarResource extends JsonResource
         return [
             'ID' => $this->resource->id,
             'Tekst' => $this->resource->tekst,
-            'Trkac' => $this->resource->trkac_id,
-            'Plan trke' => $this->resource->plan_trke_id,
-            //'Trkac' => new TrkacResource($this->resource->trkac_id),
-            //'Plan trke' => new PlanTrkeResource($this->plan_trke_id),
+            //'Trkac' => $this->resource->trkac_id,
+            //'Plan trke' => $this->resource->plan_trke_id,
+            'Trkac' => new TrkacResource($this->trkac),
+            'Plan trke' => new PlanTrkeResource($this->planTrke),
         ];
     }
 }

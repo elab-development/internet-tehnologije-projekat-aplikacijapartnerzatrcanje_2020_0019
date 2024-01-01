@@ -13,8 +13,8 @@ class StatistikaTrkeResource extends JsonResource
         return [
             'ukupno_vreme' => $this->ukupno_vreme,
             'predjeni_km' => $this->predjeni_km,
-            'trkac_id' => $this->trkac_id,
-            'plan_trke_id' => $this->plan_trke_id,
+            'Trkac' => new TrkacResource($this->trkac),
+            'Plan trke' => new PlanTrkeResource($this->planTrka),
         ];
     }
 }

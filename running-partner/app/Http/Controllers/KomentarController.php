@@ -20,13 +20,13 @@ class KomentarController extends Controller
         }
 
         // Paginacija
-        $komentari = $query->paginate(10);
+        $komentari = $query->with(['trkac', 'planTrke'])->paginate(10);
 
         return KomentarResource::collection($komentari);
 
-        $komentari = Komentar::all();
+        //$komentari = Komentar::all();
 
-        return KomentarResource::collection($komentari);
+        //return KomentarResource::collection($komentari);
     }
 
 

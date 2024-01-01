@@ -31,7 +31,7 @@ class StatistikaTrkeController extends Controller
     }
 
     // Paginacija
-    $statistikeTrke = $query->paginate(10);
+    $statistikeTrke = $query->with(['trkac', 'planTrka'])->paginate(10);
 
     return StatistikaTrkeResource::collection($statistikeTrke);
     }
