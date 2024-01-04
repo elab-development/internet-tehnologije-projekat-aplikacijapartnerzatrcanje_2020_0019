@@ -28,11 +28,11 @@ class Trkac extends Model
     {
         return $this->belongsToMany(PlanTrke::class, 'statistike_trke')->withTimestamps();
     }*/
-    
+    /*
     public function prijatelj()
     {
         return $this->belongsTo(Trkac::class, 'prijatelj_id');
-    }
+    }*/
     public function planoviTrka()
     {
         return $this->belongsToMany(PlanTrke::class, 'statistika_trkes')

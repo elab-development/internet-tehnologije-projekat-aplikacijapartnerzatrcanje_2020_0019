@@ -24,7 +24,8 @@ class TrkacController extends Controller
         }
 
         // Paginacija
-        $trkaci = $query->with(['prijatelj'])->paginate(10);
+        $trkaci = $query->paginate(10);
+        
 
         return TrkacResource::collection($trkaci);
 
@@ -32,6 +33,8 @@ class TrkacController extends Controller
 
 
 
+       // $trkaci = Trkac::all();
+        //return TrkacResource::collection($trkaci);
     }
 
     public function store(Request $request)

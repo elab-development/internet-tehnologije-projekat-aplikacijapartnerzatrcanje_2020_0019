@@ -18,7 +18,7 @@ class TrkacResource extends JsonResource
             'pol' => $this->pol,
             // 'broj_telefona' => $this->broj_telefona,
             'email' => $this->email,
-            'prijatelj' => new TrkacResource($this->prijatelj),
+            'prijatelj_id' => $this->prijatelj_id,
         ];
     }
 }

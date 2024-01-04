@@ -7,7 +7,8 @@ use App\Http\Controllers\TrkacController;
 use App\Http\Controllers\PlanTrkeController;
 use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\StatistikaTrkeController;
-
+use App\Http\Controllers\Auth\PasswordResetLinkController; // Dodato
+use App\Http\Controllers\Auth\NewPasswordController;
 
 
 
@@ -66,16 +67,17 @@ Route::prefix('komentari')->group(function () {
 Route::post('/statistika-trke', [StatistikaTrkeController::class, 'store']);
 Route::get('/statistika-trke', [StatistikaTrkeController::class, 'index']);
 
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 /*
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+*/
 
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
@@ -86,7 +88,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::resource('/plan_trke', PlanTrkeController::class)->only(['store','update','destroy']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
-*/
+
 
 // ...
 
@@ -94,7 +96,7 @@ Route::prefix('planovi-trka')->group(function () {
     // Dodajte middleware za autorizaciju na sve rute unutar ovog prefixa
     Route::middleware(['auth:sanctum'])->group(function () {
         // Prikazuje sve planove trka
-        Route::get('/', [PlanTrkeController::class, 'index']);
+       Route::get('/', [PlanTrkeController::class, 'index']);
         // Prikazuje planove trka na osnovu id
         Route::get('/{id}', [PlanTrkeController::class, 'show']);
         // Dodaje novi plan trke
@@ -142,4 +144,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
-// ...
+
+
