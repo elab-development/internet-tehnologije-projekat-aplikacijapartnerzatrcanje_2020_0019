@@ -30,6 +30,7 @@ class PlanTrkeController extends Controller
         //return $koreografi;
         return PlanTrkeResource::collection($planovi_trka);
     }
+    
 
     public function store(Request $request)
     {
@@ -65,6 +66,7 @@ class PlanTrkeController extends Controller
             return response()->json('Plan trke koji zelite da nadjete ne postoji u bazi podataka!');
         }
     }
+    
 
 
     public function update(Request $request, $id)

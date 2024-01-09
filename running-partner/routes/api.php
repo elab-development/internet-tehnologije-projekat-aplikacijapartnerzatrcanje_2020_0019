@@ -12,7 +12,12 @@ use App\Http\Controllers\Auth\NewPasswordController;
 
 
 
+/*
 
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+*/
 
 
 /*
@@ -30,7 +35,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 
-
+/*
 
 Route::prefix('planovi-trka')->group(function () {
     // Prikazuje sve planove trka
@@ -72,12 +77,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/*
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-*/
 
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
@@ -138,9 +138,50 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/statistika-trke', [StatistikaTrkeController::class, 'store']);
     Route::get('/statistika-trke', [StatistikaTrkeController::class, 'index']);
     Route::resource('/komentar', KomentarController::class)->only(['store','destroy']);
+    Route::get('komentari/{id}', [KomentarController::class, 'show']);
     Route::resource('/statistika_trke', StatistikaTrkeController::class)->only(['update', 'destroy']);
     Route::resource('/trkac', TrkacController::class)->only(['store','update','destroy']);
     Route::resource('/plan_trke', PlanTrkeController::class)->only(['store','update','destroy']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+*/
+
+// Rute koje ne zahtevaju autentifikaciju
+Route::prefix('planovi-trka')->group(function () {
+    Route::get('/', [PlanTrkeController::class, 'index']);
+    Route::get('/{id}', [PlanTrkeController::class, 'show']);
+});
+
+Route::prefix('trkaci')->group(function () {
+    Route::get('/', [TrkacController::class, 'index']);
+    Route::get('/{id}', [TrkacController::class, 'show']);
+});
+
+Route::prefix('komentari')->group(function () {
+    Route::get('/', [KomentarController::class, 'index']);
+    Route::get('/{id}', [KomentarController::class, 'show']);
+});
+
+// Rute koje zahtevaju autentifikaciju
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::prefix('planovi-trka')->group(function () {
+        Route::post('/', [PlanTrkeController::class, 'store']);
+        Route::put('/{id}', [PlanTrkeController::class, 'update']);
+        Route::delete('/{id}', [PlanTrkeController::class, 'destroy']);
+    });
+
+    Route::prefix('trkaci')->group(function () {
+        Route::post('/', [TrkacController::class, 'store']);
+        Route::put('/{id}', [TrkacController::class, 'update']);
+        Route::delete('/{id}', [TrkacController::class, 'destroy']);
+    });
+
+    Route::prefix('komentari')->group(function () {
+        Route::post('/', [KomentarController::class, 'store']);
+        Route::delete('/{id}', [KomentarController::class, 'destroy']);
+    });
+
+    
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 

@@ -51,6 +51,16 @@ class KomentarController extends Controller
         return response()->json(['Komentar je dodat!', new KomentarResource($komentar)]);
     }
 
+    public function show($id)
+    {
+        $komentar = Komentar::with(['trkac', 'planTrke'])->find($id);
+
+        if ($komentar) {
+            return new KomentarResource($komentar);
+        } else {
+            return response()->json('Komentar koji želite da nađete ne postoji u bazi podataka!');
+        }
+    }
 
 
     public function destroy($id)

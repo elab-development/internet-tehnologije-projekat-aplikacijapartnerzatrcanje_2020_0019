@@ -22,9 +22,11 @@ class TrkacController extends Controller
         if ($request->has('pol')) {
             $query->where('pol', $request->pol);
         }
+       
 
         // Paginacija
         $trkaci = $query->paginate(10);
+        $trkaci->load('prijatelji');
         
 
         return TrkacResource::collection($trkaci);
@@ -70,8 +72,7 @@ class TrkacController extends Controller
 
     public function show($id)
     {
-        $trkac = Trkac::find($id);
-
+        $trkac = Trkac::with('prijatelji')->find($id);
         if ($trkac) {
             return new TrkacResource($trkac);
         } else {

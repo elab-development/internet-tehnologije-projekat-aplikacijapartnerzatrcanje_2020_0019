@@ -33,6 +33,22 @@ class Trkac extends Model
     {
         return $this->belongsTo(Trkac::class, 'prijatelj_id');
     }*/
+
+
+   
+    public function prijatelji(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Trkac::class, 'prijatelj_id', 'id');
+    }
+
+    public function prijatelj(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Trkac::class, 'prijatelj_id', 'id');
+    }
+
+
+
+
     public function planoviTrka()
     {
         return $this->belongsToMany(PlanTrke::class, 'statistika_trkes')
