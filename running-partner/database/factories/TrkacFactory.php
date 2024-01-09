@@ -21,11 +21,9 @@ class TrkacFactory extends Factory
             'ime' => $this->faker->firstName,
             'prezime' => $this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail,
-            'lozinka' => bcrypt('password'), // Možete koristiti bcrypt() za enkripciju lozinke
+            'lozinka' => bcrypt('password'),
             'pol' => $this->faker->randomElement(['musko', 'zensko']),
             'datum_rodjenja' => $this->faker->date(),
-            //'broj_telefona' => $this->faker->phoneNumber,
-            //'prijatelj_id' => Trkac::factory(),
             'prijatelj_id' => Trkac::inRandomOrder()->first()?->id ?? null,
         ];
     }

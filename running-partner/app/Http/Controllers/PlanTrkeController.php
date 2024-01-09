@@ -13,39 +13,34 @@ class PlanTrkeController extends Controller
     {
         $query = PlanTrke::query();
 
-        // Filtriranje po mestu
+
         if ($request->has('mesto')) {
             $query->where('mesto', $request->mesto);
         }
 
-        // Paginacija
         $planovi_trka = $query->paginate(10);
 
         return PlanTrkeResource::collection($planovi_trka);
 
-
-
         $planovi_trka = PlanTrke::all();
 
-        //return $koreografi;
         return PlanTrkeResource::collection($planovi_trka);
     }
-    
+
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'vreme' => 'required|date_format:H:i:s', // Datum u formatu sata:minute:sekunde
+            'vreme' => 'required|date_format:H:i:s',
             'mesto' => 'required|string',
-            'datum' => 'required|date_format:Y-m-d', // Datum u formatu godina-mesec-dan
-            'planirani_km' => 'required|numeric|between:0,9999.99', // Broj sa decimalama od 0 do 9999.99
+            'datum' => 'required|date_format:Y-m-d',
+            'planirani_km' => 'required|numeric|between:0,9999.99',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['Greska pri validaciji!', $validator->errors()]);
         }
 
-        // Kreiranje plana trke
         $planTrke = PlanTrke::create([
             'vreme' => $request->vreme,
             'mesto' => $request->mesto,
@@ -66,7 +61,7 @@ class PlanTrkeController extends Controller
             return response()->json('Plan trke koji zelite da nadjete ne postoji u bazi podataka!');
         }
     }
-    
+
 
 
     public function update(Request $request, $id)
@@ -78,10 +73,10 @@ class PlanTrkeController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'vreme' => 'required|date_format:H:i:s', // Datum u formatu sata:minute:sekunde
+            'vreme' => 'required|date_format:H:i:s',
             'mesto' => 'required|string',
-            'datum' => 'required|date_format:Y-m-d', // Datum u formatu godina-mesec-dan
-            'planirani_km' => 'required|numeric|between:0,9999.99', // Broj sa decimalama od 0 do 9999.99
+            'datum' => 'required|date_format:Y-m-d',
+            'planirani_km' => 'required|numeric|between:0,9999.99',
         ]);
 
         if ($validator->fails()) {

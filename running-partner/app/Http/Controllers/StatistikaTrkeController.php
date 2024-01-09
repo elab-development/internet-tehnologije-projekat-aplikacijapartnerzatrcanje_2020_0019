@@ -21,7 +21,7 @@ class StatistikaTrkeController extends Controller
             $query->where('trkac_id', $request->trkac_id);
         }
 
-        // Filtriranje po plan_trke_id
+
         if ($request->has('plan_trke_id')) {
             $query->where('plan_trke_id', $request->plan_trke_id);
         }
@@ -30,7 +30,7 @@ class StatistikaTrkeController extends Controller
             $query->where('ukupno_vreme', '>', $request->ukupno_vreme);
         }
 
-        // Paginacija
+
         $statistikeTrke = $query->with(['trkac', 'planTrka'])->paginate(10);
 
         return StatistikaTrkeResource::collection($statistikeTrke);

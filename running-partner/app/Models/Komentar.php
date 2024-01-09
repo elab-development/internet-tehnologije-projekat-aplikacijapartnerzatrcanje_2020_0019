@@ -18,7 +18,6 @@ class Komentar extends Model
         return $this->belongsTo(Trkac::class);
     }
 
-    // Veza sa PlanovimaTrka (Komentar pripada jednom planu trke)
     public function planTrke()
     {
         return $this->belongsTo(PlanTrke::class);

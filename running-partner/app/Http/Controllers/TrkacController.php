@@ -11,32 +11,23 @@ class TrkacController extends Controller
 {
 
 
-   
+
 
     public function index(Request $request)
     {
 
         $query = Trkac::query();
 
-        // Filtriranje po polju
+
         if ($request->has('pol')) {
             $query->where('pol', $request->pol);
         }
-       
 
-        // Paginacija
         $trkaci = $query->paginate(10);
         $trkaci->load('prijatelji');
-        
 
         return TrkacResource::collection($trkaci);
 
-
-
-
-
-       // $trkaci = Trkac::all();
-        //return TrkacResource::collection($trkaci);
     }
 
     public function store(Request $request)
@@ -48,7 +39,6 @@ class TrkacController extends Controller
             'lozinka' => 'required|string|min:6',
             'pol' => 'required|in:musko,zensko',
             'datum_rodjenja' => 'required|date',
-            //'broj_telefona' => 'required|string|unique:trkacs',
             'prijatelj_id' => 'nullable|exists:trkacs,id'
         ]);
 
@@ -63,7 +53,6 @@ class TrkacController extends Controller
             'lozinka' => bcrypt($request->lozinka),
             'pol' => $request->pol,
             'datum_rodjenja' => $request->datum_rodjenja,
-            // 'broj_telefona' => $request->broj_telefona,
             'prijatelj_id' => $request->prijatelj_id
         ]);
 
@@ -93,7 +82,6 @@ class TrkacController extends Controller
             'prezime' => 'required|string|max:255',
             'datum_rodjenja' => 'required|date',
             'pol' => 'required|in:musko,zensko',
-            // 'broj_telefona' => 'required|string|unique:trkacs,broj_telefona,' . $id,
             'email' => 'required|email',
             'lozinka' => 'required|string',
             'prijatelj_id' => 'nullable|exists:trkacs,id',
@@ -109,7 +97,6 @@ class TrkacController extends Controller
         $trkac->pol = $request->pol;
         $trkac->email = $request->email;
         $trkac->lozinka = bcrypt($request->lozinka);
-        // $trkac->broj_telefona = $request->broj_telefona;
         $trkac->prijatelj_id = $request->prijatelj_id;
 
         $trkac->save();

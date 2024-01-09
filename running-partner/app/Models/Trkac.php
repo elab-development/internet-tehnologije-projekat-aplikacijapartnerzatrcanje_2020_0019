@@ -23,19 +23,7 @@ class Trkac extends Model
         return $this->hasMany(Komentar::class);
     }
 
-    // Veza sa PlanovimaTrka putem StatistikeTrke
-    /*public function planoviTrka()
-    {
-        return $this->belongsToMany(PlanTrke::class, 'statistike_trke')->withTimestamps();
-    }*/
-    /*
-    public function prijatelj()
-    {
-        return $this->belongsTo(Trkac::class, 'prijatelj_id');
-    }*/
 
-
-   
     public function prijatelji(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Trkac::class, 'prijatelj_id', 'id');
@@ -45,8 +33,6 @@ class Trkac extends Model
     {
         return $this->belongsTo(Trkac::class, 'prijatelj_id', 'id');
     }
-
-
 
 
     public function planoviTrka()

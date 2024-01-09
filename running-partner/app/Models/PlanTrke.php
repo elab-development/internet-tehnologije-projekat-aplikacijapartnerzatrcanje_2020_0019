@@ -21,11 +21,6 @@ class PlanTrke extends Model
         return $this->hasMany(Komentar::class);
     }
 
-    // Veza sa Trkacima putem StatistikeTrke
-    /*public function trkaci()
-    {
-        return $this->belongsToMany(Trkac::class, 'statistike_trke')->withTimestamps();
-    }*/
 
     public function trkaci()
     {
