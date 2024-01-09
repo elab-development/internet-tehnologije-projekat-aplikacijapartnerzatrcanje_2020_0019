@@ -10,8 +10,6 @@ use App\Http\Controllers\StatistikaTrkeController;
 use App\Http\Controllers\Auth\PasswordResetLinkController; // Dodato
 use App\Http\Controllers\Auth\NewPasswordController;
 
-
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,7 +23,6 @@ use App\Http\Controllers\Auth\NewPasswordController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
 
 // Rute koje ne zahtevaju autentifikaciju
 Route::prefix('planovi-trka')->group(function () {
@@ -42,6 +39,8 @@ Route::prefix('komentari')->group(function () {
     Route::get('/', [KomentarController::class, 'index']);
     Route::get('/{id}', [KomentarController::class, 'show']);
 });
+
+Route::get('/', [StatistikaTrkeController::class, 'index']);
 
 // Rute koje zahtevaju autentifikaciju
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -62,9 +61,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('/{id}', [KomentarController::class, 'destroy']);
     });
 
+    Route::prefix('statistike-trke')->group(function () {
+        Route::post('/', [StatistikaTrkeController::class, 'store']);
+        Route::get('/export/{trkac_id}', [StatistikaTrkeController::class, 'exportToCSV']);
+    });
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
-
-
-

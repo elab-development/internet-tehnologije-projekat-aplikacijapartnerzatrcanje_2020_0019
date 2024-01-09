@@ -90,7 +90,7 @@ class PlanTrkeController extends Controller
 
         $planTrke->save();
 
-        return response()->json(['Plesac je azuriran!', new PlanTrkeResource($planTrke)]);
+        return response()->json(['Plan trke je azuriran!', new PlanTrkeResource($planTrke)]);
 
     }
 

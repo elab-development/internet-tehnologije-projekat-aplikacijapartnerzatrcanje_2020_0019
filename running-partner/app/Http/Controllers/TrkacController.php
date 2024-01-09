@@ -55,8 +55,8 @@ class TrkacController extends Controller
             'datum_rodjenja' => $request->datum_rodjenja,
             'prijatelj_id' => $request->prijatelj_id
         ]);
-
-        return response()->json(['Trkac je dodat!', new TrkacResource($trkac)]);
+        $noviTrkac = Trkac::with('prijatelj')->find($trkac->id);
+        return response()->json(['Trkac je dodat!', new TrkacResource($noviTrkac)]);
     }
 
     public function show($id)
