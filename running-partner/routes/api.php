@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 
 
 
+
 /*
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -181,7 +182,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('/{id}', [KomentarController::class, 'destroy']);
     });
 
-    
+
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 

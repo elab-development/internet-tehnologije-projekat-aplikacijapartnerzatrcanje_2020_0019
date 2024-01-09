@@ -16,24 +16,24 @@ class StatistikaTrkeController extends Controller
 
         $query = StatistikaTrke::query();
 
-        
-    if ($request->has('trkac_id')) {
-        $query->where('trkac_id', $request->trkac_id);
-    }
 
-    // Filtriranje po plan_trke_id
-    if ($request->has('plan_trke_id')) {
-        $query->where('plan_trke_id', $request->plan_trke_id);
-    }
+        if ($request->has('trkac_id')) {
+            $query->where('trkac_id', $request->trkac_id);
+        }
 
-    if ($request->has('ukupno_vreme')) {
-        $query->where('ukupno_vreme', '>', $request->ukupno_vreme);
-    }
+        // Filtriranje po plan_trke_id
+        if ($request->has('plan_trke_id')) {
+            $query->where('plan_trke_id', $request->plan_trke_id);
+        }
 
-    // Paginacija
-    $statistikeTrke = $query->with(['trkac', 'planTrka'])->paginate(10);
+        if ($request->has('ukupno_vreme')) {
+            $query->where('ukupno_vreme', '>', $request->ukupno_vreme);
+        }
 
-    return StatistikaTrkeResource::collection($statistikeTrke);
+        // Paginacija
+        $statistikeTrke = $query->with(['trkac', 'planTrka'])->paginate(10);
+
+        return StatistikaTrkeResource::collection($statistikeTrke);
     }
 
 
@@ -61,5 +61,68 @@ class StatistikaTrkeController extends Controller
 
         return response()->json(['Statistika trke je dodata!', new StatistikaTrkeResource($statistikaTrke)]);
     }
+
+    public function exportToCSV($trkac_id)
+    {
+
+        $statistikeTrka = StatistikaTrke::where('trkac_id', $trkac_id)->get();
+
+
+        if ($statistikeTrka->isEmpty()) {
+            return response()->json(['message' => 'Nema dostupne statistike za trkača sa ID ' . $trkac_id], 404);
+        }
+
+        $csvFileName = 'statistika_trke_export_trkac_' . $trkac_id . '.csv';
+
+        $headers = array(
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$csvFileName",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        );
+
+
+        $handle = fopen('php://output', 'w');
+
+        if ($handle === false) {
+            return response()->json(['message' => 'Greška prilikom otvaranja CSV resursa.'], 500);
+        }
+
+
+        fputcsv($handle, array('ID', 'Ukupno vreme', 'Pređeni kilometri', 'Trkač ID', 'Plan trke ID'));
+
+
+        foreach ($statistikeTrka as $statistika) {
+            fputcsv(
+                $handle,
+                array(
+                    $statistika->id,
+                    $statistika->ukupno_vreme,
+                    $statistika->predjeni_km,
+                    $statistika->trkac_id,
+                    $statistika->plan_trke_id
+                )
+            );
+        }
+
+
+        if (is_resource($handle)) {
+            fclose($handle);
+        }
+
+        return response()->stream(
+            function () use ($handle) {
+                if (is_resource($handle)) {
+                    fclose($handle);
+                }
+            },
+            200,
+            $headers
+        );
+    }
+
+
+
 
 }
