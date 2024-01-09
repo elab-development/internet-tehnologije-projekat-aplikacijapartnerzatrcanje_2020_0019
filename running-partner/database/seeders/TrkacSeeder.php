@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Trkac;
 
 class TrkacSeeder extends Seeder
 {
@@ -12,6 +13,7 @@ class TrkacSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        //Trkac::factory(10)->create();
+        Trkac::factory()->count(10)->create();
     }
 }

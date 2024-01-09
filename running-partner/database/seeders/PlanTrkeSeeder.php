@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\PlanTrke;
 
 class PlanTrkeSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class PlanTrkeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        PlanTrke::factory()->count(10)->create();
     }
 }

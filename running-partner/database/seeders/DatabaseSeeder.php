@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Trkac::factory(5)->create();
+        /*Trkac::factory(5)->create();
 
         // Nakon što su svi Trkac modeli kreirani, postavljamo prijatelj_id
         $trkaci = Trkac::all();
@@ -35,7 +35,13 @@ class DatabaseSeeder extends Seeder
         PlanTrke::factory(5)->create();
         Komentar::factory(5)->create();
         StatistikaTrke::factory(5)->create();
-
+*/
+$this->call([
+    TrkacSeeder::class,
+    PlanTrkeSeeder::class,
+    KomentarSeeder::class,
+    StatistikaTrkeSeeder::class,
+]);
 
 
     }
