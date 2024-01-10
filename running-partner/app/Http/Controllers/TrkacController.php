@@ -15,19 +15,15 @@ class TrkacController extends Controller
 
     public function index(Request $request)
     {
-
-        $query = Trkac::query();
-
+        $query = Trkac::with('prijatelji');
 
         if ($request->has('pol')) {
             $query->where('pol', $request->pol);
         }
 
         $trkaci = $query->paginate(10);
-        $trkaci->load('prijatelji');
 
         return TrkacResource::collection($trkaci);
-
     }
 
     public function store(Request $request)

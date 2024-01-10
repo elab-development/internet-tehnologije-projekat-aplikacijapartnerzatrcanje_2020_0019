@@ -1,14 +1,13 @@
 <?php
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\TrkacController;
 use App\Http\Controllers\PlanTrkeController;
 use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\StatistikaTrkeController;
-use App\Http\Controllers\Auth\PasswordResetLinkController; // Dodato
-use App\Http\Controllers\Auth\NewPasswordController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +38,10 @@ Route::prefix('komentari')->group(function () {
     Route::get('/', [KomentarController::class, 'index']);
     Route::get('/{id}', [KomentarController::class, 'show']);
 });
+Route::prefix('statistike-trke')->group(function () {
+    Route::get('/', [StatistikaTrkeController::class, 'index']);
+});
 
-Route::get('/', [StatistikaTrkeController::class, 'index']);
 
 // Rute koje zahtevaju autentifikaciju
 Route::middleware(['auth:sanctum'])->group(function () {

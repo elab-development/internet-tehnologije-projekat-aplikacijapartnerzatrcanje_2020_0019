@@ -18,13 +18,11 @@ class PlanTrkeController extends Controller
             $query->where('mesto', $request->mesto);
         }
 
+        $planovi_trka = PlanTrke::all();
         $planovi_trka = $query->paginate(10);
 
         return PlanTrkeResource::collection($planovi_trka);
 
-        $planovi_trka = PlanTrke::all();
-
-        return PlanTrkeResource::collection($planovi_trka);
     }
 
 
