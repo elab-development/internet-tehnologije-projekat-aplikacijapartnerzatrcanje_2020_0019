@@ -76,8 +76,6 @@ class TrkacController extends Controller
         $validator = Validator::make($request->all(), [
             'ime' => 'required|string|max:255',
             'prezime' => 'required|string|max:255',
-            'datum_rodjenja' => 'required|date',
-            'pol' => 'required|in:musko,zensko',
             'email' => 'required|email',
             'lozinka' => 'required|string',
             'prijatelj_id' => 'nullable|exists:trkacs,id',
@@ -89,8 +87,6 @@ class TrkacController extends Controller
 
         $trkac->ime = $request->ime;
         $trkac->prezime = $request->prezime;
-        $trkac->datum_rodjenja = $request->datum_rodjenja;
-        $trkac->pol = $request->pol;
         $trkac->email = $request->email;
         $trkac->lozinka = bcrypt($request->lozinka);
         $trkac->prijatelj_id = $request->prijatelj_id;

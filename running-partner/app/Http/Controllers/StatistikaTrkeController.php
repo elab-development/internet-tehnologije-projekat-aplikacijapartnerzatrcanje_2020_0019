@@ -13,14 +13,11 @@ class StatistikaTrkeController extends Controller
 
     public function index(Request $request)
     {
-
         $query = StatistikaTrke::query();
-
 
         if ($request->has('trkac_id')) {
             $query->where('trkac_id', $request->trkac_id);
         }
-
 
         if ($request->has('plan_trke_id')) {
             $query->where('plan_trke_id', $request->plan_trke_id);
@@ -29,7 +26,6 @@ class StatistikaTrkeController extends Controller
         if ($request->has('ukupno_vreme')) {
             $query->where('ukupno_vreme', '>', $request->ukupno_vreme);
         }
-
 
         $statistikeTrke = $query->with(['trkac', 'planTrka'])->paginate(10);
 
