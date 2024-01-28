@@ -1,0 +1,33 @@
+
+.running-plans-container {
+    position: relative;
+    min-height: calc(100vh - 60px); 
+  }
+  
+  .map-container {
+    width: calc(100% - 60px);
+    height: calc(50vh - 100px); 
+    margin: 20px; 
+    border: 2px solid #ccc;
+    border-radius: 30px; 
+  }
+  
+  
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f0f0f0; 
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .cards {
+    padding: 3rem;
+    background: #afa2a2;
+    margin-bottom: -20px;
+  }
+  
+
+  
+  

@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./components/pages/Home";
 import RunningPlans from "./components/pages/RunningPlans";
+import RunningTracking from './components/pages/RunningTracking';
 
 
 function App() {
@@ -196,6 +197,7 @@ function App() {
             />
           }
         />
+        <Route path="/moji-planovi" element={<RunningTracking />} />
       </Routes>
       <Footer></Footer>
     </BrowserRouter>

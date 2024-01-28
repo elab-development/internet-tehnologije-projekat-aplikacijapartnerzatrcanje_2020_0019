@@ -28,7 +28,7 @@
 
 .run-form-container button {
   padding: 0.5rem 2rem;
-  background-color: #007bff;
+  background-color: #ffd500;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -37,5 +37,5 @@
 }
 
 .run-form-container button:hover {
-  background-color: #0056b3;
+  background-color: #ffaa00;
 }
