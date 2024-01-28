@@ -1,0 +1,41 @@
+/* src/components/RunForm.css */
+.run-form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.run-form-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.run-form-container input[type="date"],
+.run-form-container input[type="time"],
+.run-form-container input[type="text"],
+.run-form-container input[type="number"] {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.run-form-container button {
+  padding: 0.5rem 2rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.run-form-container button:hover {
+  background-color: #0056b3;
+}

@@ -7,17 +7,19 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src={logo} alt="Logo" />
+        <Link to="/">
+          <img src={logo} alt="Logo" />
+        </Link>
       </div>
       <ul className="navbar-nav">
         <li className="navbar-item">
           <Link to="/" className="navbar-link">Početna</Link>
         </li>
         <li className="navbar-item">
-          <Link to="/kreiraj-plan" className="navbar-link">Kreiraj plan</Link>
+          <Link to="/pronadji-prijatelja" className="navbar-link">Pronađi prijatelja</Link>
         </li>
         <li className="navbar-item">
-          <Link to="/planovi-trka" className="navbar-link">Planovi trka</Link>
+          <Link to="/moji-planovi" className="navbar-link">Moji planovi</Link>
         </li>
       </ul>
     </nav>
@@ -25,4 +27,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 

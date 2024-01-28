@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import "./MainSection.css";
+import { Button } from "./Button";
 
 
 function MainSection() {
@@ -11,6 +12,15 @@ function MainSection() {
       <div className="main-container">
         <image src="https://cdn-fhgnd.nitrocdn.com/gdRlBjBJEsIflRZaDbcgjDdgJxndYJwu/assets/static/optimized/rev-6bb43f7/wp-content/uploads/2022/11/waltz.jpg" />
         <h1>Pronađi i ti svog idealnog partnera za trčanje</h1>
+        <Button
+            buttonStyle="btn--outline"
+            buttonSize="btn--large"
+            onClick={() => {
+              window.location.href = "/moji-planovi";
+            }}>
+            KREIRAJ SVOJ PLAN!
+          </Button>
+
         <div className="main-btns">
         </div>
       </div>
