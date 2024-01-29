@@ -1,33 +1,75 @@
-
 .running-plans-container {
     position: relative;
     min-height: calc(100vh - 60px); 
-  }
-  
-  .map-container {
+}
+
+.map-container {
     width: calc(100% - 60px);
     height: calc(50vh - 100px); 
     margin: 20px; 
     border: 2px solid #ccc;
     border-radius: 30px; 
-  }
-  
-  
-  footer {
+}
+
+footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     background-color: #f0f0f0; 
     padding: 10px;
     text-align: center;
-  }
-  
-  .cards {
+}
+
+.cards {
     padding: 3rem;
     background: #afa2a2;
     margin-bottom: -20px;
-  }
-  
+}
+
+:root {
+    --primary: rgba(199, 198, 198, 0.445);
+}
+
+.btn {
+    padding: 8px 20px;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn--primary {
+    background-color: var(--primary);
+    color: #242424;
+    border: 1px solid var(--primary);
+    font-weight: bold;
+}
+
+.btn--outline {
+    background-color: transparent;
+    color: #fff;
+    padding: 8px 15px; /* Prilagodite veličinu padding-a prema potrebi */
+    border: 1px solid var(--primary);
+    transition: all 0.3s ease-out;
+}
+
+.btn--medium {
+    padding: 8px 15px; /* Prilagodite veličinu padding-a prema potrebi */
+    font-size: 16px;
+}
+
+.btn--large {
+    padding: 12px 26px;
+    font-size: 25px;
+}
+
+.btn--large:hover,
+.btn--medium:hover {
+    transition: all 0.3s ease-out;
+    background: #fff;
+    color: #242424;
+    transition: 250ms;
+}
 
   
   

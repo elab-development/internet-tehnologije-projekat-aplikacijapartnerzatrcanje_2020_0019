@@ -19,6 +19,7 @@ function Cards({ data1, data2, title, type, makeAPlan, star1, star2 }) {
                   src={item.src}
                   checked={item.checked}
                   star={item.star}
+                  gender={item.gender}
                   type={type}
                   makeAPlan={makeAPlan}
                   star1={star1}
@@ -38,6 +39,7 @@ function Cards({ data1, data2, title, type, makeAPlan, star1, star2 }) {
                     src={item.src}
                     checked={item.checked}
                     star={item.star}
+                    gender={item.gender}
                     type={type}
                     makeAPlan={makeAPlan}
                     star1={star1}
