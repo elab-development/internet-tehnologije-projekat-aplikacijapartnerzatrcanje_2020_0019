@@ -2,10 +2,31 @@ import React from "react";
 import "../App.css";
 import "./MainSection.css";
 import { Button } from "./Button";
-
+import Cards from "./Cards";
+import Image1 from "../assets/image1.jpg";
+import Image2 from "../assets/image2.jpeg";
+import Image3 from "../assets/image3.jpeg";
+import Counter from './Counter'; 
 
 function MainSection() {
-  
+  const clients = [
+    {
+      name: "Nikola",
+      text: "Running Partner aplikacija mi je promenila život! Osim što sam pronašao fantastične trkače u mom kraju, osećam se kao deo globalne trkačke zajednice. Ovde sam otkrio neverovatne staze, stekao prijatelje iz drugih zemalja i podigao svoje trčanje na potpuno novi nivo!",
+      src: Image1,
+    },
+    {
+      name: "Jasna",
+      text: "Za mene, Running Partner nije samo aplikacija - to je avantura. Zahvaljujući njoj, trčim s ljudima iz cele Srbije. Osetio sam snagu zajedništva dok smo delili utiske, planirali trke i jednostavno uživali u svakom kilometru zajedno.",
+      src: Image2,
+    },
+    {
+      name: "Milica",
+      text: "Koristim Running Partner već neko vreme i mogu reći da je ovo mnogo više od obične fitness aplikacije. Ovde sam pronašao ne samo partnere za trčanje već i inspiraciju, motivaciju i pravu trkačku porodicu. Aplikacija koja stvara prijateljstva na putu ka ciljevima.",
+      src: Image3,
+    },
+  ];
+
 
   return (
     <>
@@ -27,16 +48,17 @@ function MainSection() {
       <div className="main-text">
         <h1>Čemu je namenjena aplikacija?</h1>
         <h3>Running-Partner aplikacija je tvoj idealan saputnik u trcanju!</h3>
-        <p>
-        Planiraj svoje trčanje sa preciznim detaljima - vreme, mesto i kilometraža.
-        Poveži se sa trkačima širom sveta, deli svoje trčanje i ostavi podršku kroz komentare. 
-        Prati svoj napredak na profilu, sa detaljnim informacijama o pređenoj kilometraži i drugim parametrima.
-        Uživaj u interaktivnoj mapi koja ti omogućava da vidiš trkače u blizini. 
-        </p>
+        <Counter />
        
         <p>
         Sa Running-Partner, trčanje postaje još uzbudljivije - pridruži se zajednici koja te podržava i motiviše! 🏃‍♂️🌍✨
         </p>
+      </div>
+      <div className="main-instructors">
+        <Cards
+          title="O nama su rekli"
+          data1={clients}
+          type="clients"></Cards>
       </div>
       
     </>
