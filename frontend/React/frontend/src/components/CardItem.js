@@ -7,7 +7,7 @@ function CardItem({
   star,
   checked,
   type,
-  makeAnAppointment,
+  makeAPlan,
   star1,
   star2,
   id,
@@ -57,9 +57,9 @@ function CardItem({
                       className="btns"
                       buttonStyle="btn--primary"
                       buttonSize="btn--medium"
-                      link={"/danceservices"}
+                      link={"/moji-planovi"}
                       id={id}
-                      onClick={makeAnAppointment}>
+                      onClick={makeAPlan}>
                       ZAKAŽI TRKU
                     </Button>
                   </li>

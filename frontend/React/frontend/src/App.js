@@ -6,13 +6,13 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./components/pages/Home";
 import RunningPlans from "./components/pages/RunningPlans";
-import RunningTracking from './components/pages/RunningTracking';
+import MyPlans from "./components/pages/MyPlans";
 
 
 function App() {
-  const [appNum, setAppNum] = useState(0);
+  const [plnNum, setPlnNum] = useState(0);
 
-  const s1 = [
+  const p1 = [
     {
       id: 1,
       times: 0,
@@ -48,7 +48,7 @@ function App() {
     },
   ];
 
-  const s2 = [
+  const p2 = [
     {
       id: 4,
       times: 0,
@@ -84,16 +84,16 @@ function App() {
     },
   ];
 
-  const [appts, setAppts] = useState([]);
+  const [plns, setPlns] = useState([]);
 
-  const [services1, setSer1] = useState(s1);
+  const [plans1, setPlan1] = useState(p1);
 
-  const [services2, setSer2] = useState(s2);
+  const [plans2, setPlan2] = useState(p2);
 
-  const star1 = (serviceId) => {
+  const star1 = (planId) => {
     let arr1 = [];
-    services1.forEach((element) => {
-      if (element.id === serviceId) {
+    plans1.forEach((element) => {
+      if (element.id === planId) {
         if (!element.checked) {
           console.log(element);
           element.star = element.star + 1;
@@ -105,12 +105,12 @@ function App() {
         arr1.push(element);
       }
     });
-    setSer1(arr1);
-    console.log(services1);
+    setPlan1(arr1);
+    console.log(plans1);
 
     let arr2 = [];
-    services2.forEach((element) => {
-      if (element.id === serviceId) {
+    plans2.forEach((element) => {
+      if (element.id === planId) {
         if (!element.checked) {
           element.star = element.star + 1;
           element.checked = true;
@@ -120,14 +120,14 @@ function App() {
         arr2.push(element);
       }
     });
-    setSer2(arr2);
-    console.log(services2);
+    setPlan2(arr2);
+    console.log(plans2);
   };
 
-  const star2 = (serviceId) => {
+  const star2 = (planId) => {
     let arr1 = [];
-    services1.forEach((element) => {
-      if (element.id === serviceId) {
+    plans1.forEach((element) => {
+      if (element.id === planId) {
         if (element.checked) {
           element.star = element.star - 1;
           element.checked = false;
@@ -138,11 +138,11 @@ function App() {
         arr1.push(element);
       }
     });
-    setSer1(arr1);
+    setPlan1(arr1);
 
     let arr2 = [];
-    services2.forEach((element) => {
-      if (element.id === serviceId) {
+    plans2.forEach((element) => {
+      if (element.id === planId) {
         if (element.checked) {
           element.star = element.star - 1;
           element.checked = false;
@@ -152,52 +152,71 @@ function App() {
         arr2.push(element);
       }
     });
-    setSer2(arr2);
+    setPlan2(arr2);
   };
 
-  const makeApnt = (serviceId) => {
-    services1.forEach((element) => {
-      if (element.id === serviceId) {
+  const makePln = (planId) => {
+    plans1.forEach((element) => {
+      if (element.id === planId) {
         if (element.added === false) {
-          setAppNum(appNum + 1);
+          setPlnNum(plnNum + 1);
           element.added = true;
         }
       }
     });
-    services2.forEach((element) => {
-      if (element.id === serviceId) {
+    plans2.forEach((element) => {
+      if (element.id === planId) {
         if (element.added === false) {
-          setAppNum(appNum + 1);
+          setPlnNum(plnNum + 1);
           element.added = true;
         }
       }
     });
-    let addedServices1 = services1.filter((item) => item.added === true);
-    let addedServices2 = services2.filter((item) => item.added === true);
-    let addedServices = [...addedServices1, ...addedServices2];
-    setAppts(addedServices);
+    let addedPlans1 = plans1.filter((item) => item.added === true);
+    let addedPlans2 = plans2.filter((item) => item.added === true);
+    let addedPlans = [...addedPlans1, ...addedPlans2];
+    setPlns(addedPlans);
+  };
+  const deletePln = (planId) => {
+
+    plns.forEach((element) => {
+      if (element.id === planId) {
+        if (element.added === true) {
+          setPlnNum(plnNum - 1);
+          element.added = false;
+        }
+      }
+    });
+
+    let newApp = plns.filter((item) => item.added === true);
+    setPlns(newApp);
   };
 
  
 
   return (
     <BrowserRouter className="App">
-      <Navbar num={appNum}></Navbar>
+      <Navbar num={plnNum}></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="/pronadji-prijatelja"
           element={
             <RunningPlans
-              services1={services1}
-              services2={services2}
-              makeAnAppointment={makeApnt}
+              plans1={plans1}
+              plans2={plans2}
+              makeAPlan={makePln}
               star1={star1}
               star2={star2}
             />
           }
         />
-        <Route path="/moji-planovi" element={<RunningTracking />} />
+         <Route
+          path="/moji-planovi"
+          element={
+            <MyPlans data={plns} deleteAPlan={deletePln} />
+          }
+        />
       </Routes>
       <Footer></Footer>
     </BrowserRouter>

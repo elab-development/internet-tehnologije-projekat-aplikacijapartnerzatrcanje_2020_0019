@@ -10,11 +10,11 @@ class RunningPlans extends Component {
       <div className="running-plans-container">
         
         <Cards
-          data1={this.props.services1}
-          data2={this.props.services2}
+          data1={this.props.plans1}
+          data2={this.props.plans2}
           title="PRIDRUŽI SE DRUGIM TRKAČIMA!"
           type="runningplans"
-          makeAnAppointment={this.props.makeAnAppointment}
+          makeAPlan={this.props.makeAPlan}
           star1={this.props.star1}
           star2={this.props.star2}
         />

@@ -2,7 +2,7 @@ import React from "react";
 import "./Cards.css";
 import CardItem from "./CardItem";
 
-function Cards({ data1, data2, title, type, makeAnAppointment, star1, star2 }) {
+function Cards({ data1, data2, title, type, makeAPlan, star1, star2 }) {
   return (
     <div className="cards">
       <h1>{title}</h1>
@@ -20,7 +20,7 @@ function Cards({ data1, data2, title, type, makeAnAppointment, star1, star2 }) {
                   checked={item.checked}
                   star={item.star}
                   type={type}
-                  makeAnAppointment={makeAnAppointment}
+                  makeAPlan={makeAPlan}
                   star1={star1}
                   star2={star2}
                 />
@@ -39,7 +39,7 @@ function Cards({ data1, data2, title, type, makeAnAppointment, star1, star2 }) {
                     checked={item.checked}
                     star={item.star}
                     type={type}
-                    makeAnAppointment={makeAnAppointment}
+                    makeAPlan={makeAPlan}
                     star1={star1}
                     star2={star2}
                   />
