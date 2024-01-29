@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Cards from "../Cards";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Button } from "../Button";
 import "./RunningPlans.css";
+import SpotifySong from "../SpotifySong"
 
 class RunningPlans extends Component {
   constructor(props) {
@@ -91,18 +91,10 @@ class RunningPlans extends Component {
               </li>
             ))}
           </ul>
-        </div>
+          </div>
 
-        <MapContainer center={[51.505, -0.09]} zoom={14} className="map-container">
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-          <Marker position={[51.5, -0.09]}>
-            <Popup>Hello World!</Popup>
-          </Marker>
-        </MapContainer>
-      </div>
+<SpotifySong accessToken={this.props.accessToken} />
+</div>
     );
   }
 }
