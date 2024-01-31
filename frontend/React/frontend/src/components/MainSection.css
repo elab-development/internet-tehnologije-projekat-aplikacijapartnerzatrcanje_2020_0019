@@ -1,3 +1,5 @@
+
+
 .main-container {
   background: linear-gradient(transparent, black), url("../assets/naslovnaTrkac.png") center top/cover no-repeat;
   background-size: cover;
@@ -119,4 +121,3 @@
     font-size: 20px;
   }
 }
-  

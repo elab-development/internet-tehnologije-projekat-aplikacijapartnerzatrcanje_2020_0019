@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../assets/logo.png'; 
 import ViewMode from '../components/ViewMode'; // Dodato
+import moonIcon from '../assets/svetla.png';
+import sunIcon from '../assets/tamna.png';
 
 
 const Navbar = ({isDarkMode, toggleDarkMode }) => {
@@ -26,10 +28,14 @@ const Navbar = ({isDarkMode, toggleDarkMode }) => {
         <li className="navbar-item">
           <Link to="/moji-planovi" className="navbar-link">Moji planovi</Link>
         </li>
-        <li className="navbar-item">
-  <button className="navbar-link" onClick={toggleDarkMode}>
-    {isDarkMode ? 'Svetli mod' : 'Tamni mod'}
-  </button>
+        <li className="navbar-item" style={{ marginLeft: '13px' }}>
+        <img
+            className="theme-toggle"
+            src={isDarkMode ? moonIcon : sunIcon}
+            alt={isDarkMode ? 'Svetli mod' : 'Tamni mod'}
+            onClick={toggleDarkMode}
+            style={{ width: '40px', height: '40px' }} // Postavite veličinu slike ovde
+          />
 </li>
       </ul>
     </nav>

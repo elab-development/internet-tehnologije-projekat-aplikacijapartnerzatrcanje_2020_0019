@@ -75,6 +75,7 @@ class RunningPlans extends Component {
             makeAPlan={this.props.makeAPlan}
             star1={this.props.star1}
             star2={this.props.star2}
+            className={this.props.isDarkMode ? 'dark-mode' : 'light-mode'}
           />
 
           <ul className="pagination">

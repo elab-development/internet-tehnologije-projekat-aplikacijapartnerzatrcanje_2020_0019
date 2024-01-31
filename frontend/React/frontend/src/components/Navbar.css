@@ -23,6 +23,21 @@
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
+.theme-toggle {
+  cursor: pointer;
+  margin-left: auto; /* Pomerite na desnu stranu koristeći auto margin */
+}
+
+.theme-toggle img {
+  width: 20px; /* Podesite veličinu prema potrebi */
+  height: 20px; /* Podesite veličinu prema potrebi */
+  margin-left: 1rem; /* Dodajte dodatni razmak sa leve strane ikonice */
+}
+
+.theme-toggle:hover img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out; /* Dodajte transition svojstvo za glatki efekat hovera */
+}
 
 .navbar-nav {
   display: flex;

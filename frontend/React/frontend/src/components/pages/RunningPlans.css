@@ -51,6 +51,26 @@
     background: #302e2d;
     margin-bottom: -20px;
 }
+.dark-mode {
+    background-color: #302e2d;
+    color: #fff;
+  }
+  
+  .dark-mode .cards {
+    background: #302e2d;
+    color: #fff;
+  }
+  
+  /* Stilovi za light mode */
+  .light-mode {
+    background-color: #aaaaaa;
+    color: #000;
+  }
+  
+  .light-mode .cards {
+    background: #f0eaea;
+    color: #000;
+  }
 .pagination {
     display: flex;
     list-style: none;
@@ -80,11 +100,11 @@
 }
 
 .running-plans-container.dark-mode {
-    background-color: #333;
+    background-color: #302e2d;
   }
   
   .running-plans-container.light-mode {
-    background-color: #aaaaaa;
+    background: #f0eaea;
   }
 
   

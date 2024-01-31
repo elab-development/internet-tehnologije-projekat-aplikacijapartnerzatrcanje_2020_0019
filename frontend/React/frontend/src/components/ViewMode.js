@@ -2,9 +2,7 @@
 import { useState, useEffect } from 'react';
 
 const ViewMode = () => {
-  const [isDarkMode, setIsDarkMode] = useState(
-    window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-  );
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
