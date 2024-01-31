@@ -6,9 +6,13 @@ import Footer from "./components/Footer";
 import Home from "./components/pages/Home";
 import RunningPlans from "./components/pages/RunningPlans";
 import MyPlans from "./components/pages/MyPlans";
+import ViewMode from './components/ViewMode';
 
 
 function App() {
+
+  const { isDarkMode, toggleDarkMode } = ViewMode();
+
   const [plnNum, setPlnNum] = React.useState(0);
 
   const p1 = [
@@ -198,30 +202,35 @@ function App() {
     setPlns(newApp);
   };
 
- 
-
+  
   return (
-    <BrowserRouter className="App">
-      <Navbar num={plnNum}></Navbar>
+    <BrowserRouter className={`App ${isDarkMode ? 'dark-mode' : ''}`}>
+      <Navbar num={plnNum} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/pronadji-prijatelja"
-          element={
-            <RunningPlans
-              plans1={plans1}
-              plans2={plans2}
-              makeAPlan={makePln}
-              star1={star1}
-              star2={star2}
-            />
-          }
-        />
-        <Route path="/moji-planovi" element={<MyPlans data={plns} deleteAPlan={deletePln} />} />
-      </Routes>
-      <Footer></Footer>
+  <Route
+    path="/"
+    element={<Home isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />}
+  />
+  <Route
+    path="/pronadji-prijatelja"
+    element={
+      <RunningPlans
+        plans1={plans1}
+        plans2={plans2}
+        makeAPlan={makePln}
+        star1={star1}
+        star2={star2}
+        isDarkMode={isDarkMode} 
+      />
+    }
+  />
+  <Route
+    path="/moji-planovi"
+    element={<MyPlans data={plns} deleteAPlan={deletePln} isDarkMode={isDarkMode} />}
+  />
+</Routes>
+      <Footer isDarkMode={isDarkMode} />
     </BrowserRouter>
   );
-}
-
+        }
 export default App;

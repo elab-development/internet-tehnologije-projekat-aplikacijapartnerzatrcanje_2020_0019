@@ -6,7 +6,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 
-function Footer() {
+function Footer({ isDarkMode }) {
   const [buttonClick, setButtonClick] = useState("");
 
   const onClick = () => {
@@ -29,7 +29,7 @@ function Footer() {
   };
 
   return (
-    <div className="footer-container">
+    <div className={`footer-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <section className="footer-subscription">
         <p className="footer-subscription-heading">
           Prijavi se na naš newsletter i saznaj najnovije informacije pre svih!

@@ -167,3 +167,10 @@
   @media screen and (max-width: 768px) {
   }
   
+  .footer-container.dark-mode {
+    background-color: #242424;
+  }
+  
+  .footer-container.light-mode {
+    background-color: #aaaaaa;
+  }

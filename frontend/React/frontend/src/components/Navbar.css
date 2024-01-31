@@ -88,5 +88,16 @@ body {
   .navbar-link {
     margin: 0;
   }
+  
+
+
+
 }
 
+.navbar.dark-mode {
+  background-color: #333;
+}
+
+.navbar.light-mode {
+  background-color: #aaaaaa;
+}

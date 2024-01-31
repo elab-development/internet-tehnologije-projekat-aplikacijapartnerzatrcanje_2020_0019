@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Cards from "../Cards";
 import { Button } from "../Button";
 import "./RunningPlans.css";
-import SpotifySong from "../SpotifySong";
+import WeatherApi from "../WeatherApi";
 
 class RunningPlans extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class RunningPlans extends Component {
       filteredPlans: [],
       genderFilter: "Svi",
       currentPage: 1,
-      dataPerPage: 3, // Broj trkača po stranici
+      dataPerPage: 3, 
     };
   }
 
@@ -44,7 +44,7 @@ class RunningPlans extends Component {
     }
 
     return (
-      <div className="running-plans-container">
+      <div className={`running-plans-container ${this.props.isDarkMode ? 'dark-mode' : 'light-mode'}`}>
 
         <div className="cards-and-filters">
           <div className="filter-buttons">
@@ -77,7 +77,6 @@ class RunningPlans extends Component {
             star2={this.props.star2}
           />
 
-          {/* Paginacija */}
           <ul className="pagination">
             {pageNumbers.map((number) => (
               <li key={number} className="page-item">
@@ -93,7 +92,7 @@ class RunningPlans extends Component {
           </ul>
         </div>
 
-        <SpotifySong accessToken={this.props.accessToken} />
+        <WeatherApi/>
       </div>
     );
   }
