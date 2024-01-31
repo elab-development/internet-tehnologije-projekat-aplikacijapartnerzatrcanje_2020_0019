@@ -46,7 +46,7 @@ function MainSection() {
         </div>
       </div>
       <div className="main-text">
-        <h1>Čemu je namenjena aplikacija?</h1>
+       
         <h3>Running-Partner aplikacija je tvoj idealan saputnik u trcanju!</h3>
         <Counter />
        
@@ -56,7 +56,7 @@ function MainSection() {
       </div>
       <div className="main-instructors">
         <Cards
-          title="O nama su rekli"
+          title="Šta su korisnici rekli o nama?"
           data1={clients}
           type="clients"></Cards>
       </div>

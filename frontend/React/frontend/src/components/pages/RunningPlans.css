@@ -1,46 +1,34 @@
 .running-plans-container {
     position: relative;
-    min-height: calc(100vh - 60px); 
+    min-height: calc(100vh - 60px);
+    background-color: #302e2d;
+    padding: 20px;
 }
 
 .map-container {
-    width: calc(100% - 60px);
-    height: calc(50vh - 100px); 
-    margin: 20px; 
-    border: 2px solid #ccc;
-    border-radius: 30px; 
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
-    background-color: #f0f0f0; 
-    padding: 10px;
-    text-align: center;
+    height: calc(50vh - 100px);
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    margin-bottom: 20px;
 }
 
-.cards {
-    padding: 3rem;
-    background: #afa2a2;
-    margin-bottom: -20px;
+.cards-and-filters {
+    display: flex;
+    flex-direction: column;
+    
 }
 
-:root {
-    --primary: rgba(199, 198, 198, 0.445);
-}
-
-.btn {
-    padding: 8px 20px;
-    border-radius: 2px;
-    outline: none;
-    border: none;
-    cursor: pointer;
+.filter-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px; /* Adjust margin to create space */
 }
 
 .btn--primary {
     background-color: var(--primary);
-    color: #242424;
+    color: #302e2d;
     border: 1px solid var(--primary);
     font-weight: bold;
 }
@@ -48,14 +36,9 @@ footer {
 .btn--outline {
     background-color: transparent;
     color: #fff;
-    padding: 8px 15px; /* Prilagodite veličinu padding-a prema potrebi */
+    padding: 8px 15px;
     border: 1px solid var(--primary);
     transition: all 0.3s ease-out;
-}
-
-.btn--medium {
-    padding: 8px 15px; /* Prilagodite veličinu padding-a prema potrebi */
-    font-size: 16px;
 }
 
 .btn--large {
@@ -67,9 +50,39 @@ footer {
 .btn--medium:hover {
     transition: all 0.3s ease-out;
     background: #fff;
-    color: #242424;
+    color: #302e2d;
     transition: 250ms;
 }
 
-  
-  
+.cards {
+    padding: 3rem;
+    background: #302e2d;
+    margin-bottom: -20px;
+}
+.pagination {
+    display: flex;
+    list-style: none;
+    gap: 10px; /* Adjust the gap between pagination buttons */
+    justify-content: center; /* Center the pagination buttons */
+    margin: 0;
+    padding: 0;
+}
+
+.page-item {
+    display: inline-block;
+}
+
+.page-link {
+    color: #fff;
+    background-color: #302e2d;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.page-link:hover {
+    background-color: #fff;
+    color: #302e2d;
+}

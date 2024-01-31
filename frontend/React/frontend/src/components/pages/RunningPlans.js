@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Cards from "../Cards";
-import "leaflet/dist/leaflet.css";
 import { Button } from "../Button";
 import "./RunningPlans.css";
-import SpotifySong from "../SpotifySong"
+import SpotifySong from "../SpotifySong";
 
 class RunningPlans extends Component {
   constructor(props) {
@@ -46,16 +45,8 @@ class RunningPlans extends Component {
 
     return (
       <div className="running-plans-container">
-        <Cards
-          data1={currentData}
-          title="PRIDRUŽI SE DRUGIM TRKAČIMA!"
-          type="runningplans"
-          makeAPlan={this.props.makeAPlan}
-          star1={this.props.star1}
-          star2={this.props.star2}
-        />
 
-        <div className="filter-button-container">
+        <div className="cards-and-filters">
           <div className="filter-buttons">
             <Button
               buttonStyle={`btn btn--primary btn--large ${this.state.genderFilter === "Svi" ? "btn--selected" : ""}`}
@@ -77,6 +68,15 @@ class RunningPlans extends Component {
             </Button>
           </div>
 
+          <Cards
+            data1={currentData}
+            title="PRIDRUŽI SE DRUGIM TRKAČIMA!"
+            type="runningplans"
+            makeAPlan={this.props.makeAPlan}
+            star1={this.props.star1}
+            star2={this.props.star2}
+          />
+
           {/* Paginacija */}
           <ul className="pagination">
             {pageNumbers.map((number) => (
@@ -91,10 +91,10 @@ class RunningPlans extends Component {
               </li>
             ))}
           </ul>
-          </div>
+        </div>
 
-<SpotifySong accessToken={this.props.accessToken} />
-</div>
+        <SpotifySong accessToken={this.props.accessToken} />
+      </div>
     );
   }
 }
