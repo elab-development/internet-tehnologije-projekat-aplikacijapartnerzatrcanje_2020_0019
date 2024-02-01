@@ -7,7 +7,7 @@
   h1 {
     text-align: center;
     color: #ffffff;
-    font-size: 70px;
+    font-size: 50px;
     font-family: 'Novi Font', work-sans;
   }
   
@@ -166,6 +166,6 @@
 
 
   .cards.dark-mode {
-    background: #302e2d; /* Tamna pozadina za dark mode */
-    color: #fff; /* Promeni boju teksta prema potrebi */
+    background: #302e2d; 
+    color: #fff;
   }

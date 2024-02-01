@@ -3,15 +3,15 @@ import "../App.css";
 import "./MainSection.css";
 import { Button } from "./Button";
 import Cards from "./Cards";
-import Image1 from "../assets/image1.jpg";
-import Image2 from "../assets/image2.jpeg";
-import Image3 from "../assets/image3.jpeg";
+import Image1 from "../assets/marko.jpg";
+import Image2 from "../assets/jasna.jpeg";
+import Image3 from "../assets/milica.jpeg";
 import Counter from './Counter'; 
 
 function MainSection() {
   const clients = [
     {
-      name: "Nikola",
+      name: "Marko",
       text: "Running Partner aplikacija mi je promenila život! Osim što sam pronašao fantastične trkače u mom kraju, osećam se kao deo globalne trkačke zajednice. Ovde sam otkrio neverovatne staze, stekao prijatelje iz drugih zemalja i podigao svoje trčanje na potpuno novi nivo!",
       src: Image1,
     },
@@ -54,7 +54,7 @@ function MainSection() {
         Sa Running-Partner, trčanje postaje još uzbudljivije - pridruži se zajednici koja te podržava i motiviše! 🏃‍♂️🌍✨
         </p>
       </div>
-      <div className="main-instructors">
+      <div className="main-clients">
         <Cards
           title="Šta su korisnici rekli o nama?"
           data1={clients}

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../assets/logo.png'; 
-import ViewMode from '../components/ViewMode'; // Dodato
 import moonIcon from '../assets/svetla.png';
 import sunIcon from '../assets/tamna.png';
 
@@ -34,7 +33,7 @@ const Navbar = ({isDarkMode, toggleDarkMode }) => {
             src={isDarkMode ? moonIcon : sunIcon}
             alt={isDarkMode ? 'Svetli mod' : 'Tamni mod'}
             onClick={toggleDarkMode}
-            style={{ width: '40px', height: '40px' }} // Postavite veličinu slike ovde
+            style={{ width: '40px', height: '40px' }} 
           />
 </li>
       </ul>

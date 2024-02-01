@@ -1,23 +1,26 @@
 .cards__item__pic-wrap1 {
   position: relative;
-  width: 100%;
-  padding-top: 67%;
+  width: 130%;
+  padding-top: 140%; 
   overflow: hidden;
-  height: 250px;
+  height: 0;
+  margin: 0 auto 30px; 
+ 
 }
 
 .cards__item__pic-wrap1::after {
   content: attr(data-category);
   position: absolute;
   bottom: 0;
-  margin-left: 10px;
-  padding: 6px 8px;
+  margin-left: 25px;
+  padding: 6px 16px;
   max-width: calc((100%) - 60px);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
   color: #fff;
-  background-color: rgb(14, 118, 238);
+  background-color: rgb(84, 81, 255);
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 .fade-img {
@@ -34,7 +37,7 @@ ul {
 }
 
 .cards__item__title1 {
-  color: rgb(14, 118, 238);
+  color: rgb(255, 255, 255);
   font-size: 18px;
   line-height: 24px;
   text-align: center;
@@ -44,7 +47,7 @@ ul {
 .app-text {
   margin: 20px 100px;
   color: #fff;
-  font-size: 22px;
+  font-size: 16px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   text-align: center;
@@ -71,9 +74,9 @@ ul {
   object-fit: contain;
 }
 
-.cards2 {
+.cards2.light-mode {
   margin-top: 20px;
-  background: white;
+  background: #f0eaea;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -82,6 +85,18 @@ ul {
   align-items: center;
   object-fit: contain;
   margin-bottom: -60px;
+}
+.cards2.dark-mode {
+  margin-top: 20px;
+  background-color: #302e2d;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  margin-bottom: -10px;
 }
 
 .cards2 > h1 {
@@ -100,6 +115,7 @@ p {
   align-items: center;
   justify-content: flex-end;
   height: auto;
+  font-size: 14px;
 }
 
 .star-container {
@@ -119,3 +135,11 @@ p {
     font-size: 50px;
   }
 }
+h2 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 40px;
+  font-family: 'Novi Font', work-sans;
+  margin-top: 110px; 
+}
+

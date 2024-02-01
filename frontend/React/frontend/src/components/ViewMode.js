@@ -1,4 +1,4 @@
-// useDarkMode.js
+
 import { useState, useEffect } from 'react';
 
 const ViewMode = () => {

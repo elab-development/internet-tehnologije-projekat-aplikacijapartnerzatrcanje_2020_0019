@@ -1,4 +1,4 @@
-// src/components/RunForm.js
+
 import React, { useState } from 'react';
 import './RunForm.css';
 
@@ -11,7 +11,6 @@ const RunForm = ({ onSubmit }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmit({ time, location, distance, date });
-    // Resetujte polja nakon slanja forme
     setTime('');
     setLocation('');
     setDistance('');

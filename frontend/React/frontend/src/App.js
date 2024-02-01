@@ -7,6 +7,12 @@ import Home from "./components/pages/Home";
 import RunningPlans from "./components/pages/RunningPlans";
 import MyPlans from "./components/pages/MyPlans";
 import ViewMode from './components/ViewMode';
+import slika1 from "./assets/jovana.jpg"
+import slika2 from "./assets/marina.jpg"
+import slika3 from "./assets/stefan.jpg"
+import slika4 from "./assets/nemanja.jpg"
+import slika5 from "./assets/marko.jpg"
+import slika6 from "./assets/milica.jpeg"
 
 
 function App() {
@@ -23,10 +29,13 @@ function App() {
       checked: false,
       name: "Jovana (27)",
       added: false,
-      date: "4. septembar 2023. 19:00h",
-      text: "Ja sam Jovana, strastvena trkačica koja obožava jutarnje trčanje kroz park. Planiram trku od 10 km sa tempom od 6 minuta i 30 sekundi po kilometru. Pridruži mi se 5. septembra 2023. u 7:00 ujutru na ovoj energičnoj trci.",
-      src: "https://lh3.googleusercontent.com/7ho6VaN-QkThBYOX2bA6ka9nh3gvp94_o4bCYByNRXeMzqQOdDYRPObmxP5L0p3Tb9h7C-dGXXEdBBU4iA0GZELodn5FoUY3w6FHc0ASdETsC_EI=s1200",
+      text: "Ja sam Jovana, strastvena trkačica koja obožava jutarnje trčanje kroz park. Planiram trku od 10 km sa tempom od 6 minuta i 30 sekundi po kilometru. Pridruži mi se 5. februara u 7:00 ujutru na ovoj energičnoj trci.",
+      src: slika1,
       gender: "female",
+      date: "5. februar 2024.",
+      time: "7:00h",
+      location: "Belgrade",
+      plannedKm: 10,
     },
     {
       id: 2,
@@ -35,22 +44,28 @@ function App() {
       checked: false,
       name: "Marina (25)",
       added: false,
-      date: "5. septembar 2023. 19:00h",
-      text: "Ja sam Marina, zaljubljenica u prirodu koja organizuje trku kroz staze blizu reke. Moj plan trčanja zakazan je za 15. septembar 2023. sa tempom od 6 minuta po kilometru na udaljenosti od 12 km. Pridruži mi se na ovoj trci punoj svežeg zraka i prijateljske atmosfere.",
-      src: "http://www.marathondynamics.com/uploads/Roz%20at%20Goodlife%20Marathon.jpg",
+      text: "Ja sam Marina, zaljubljenica u prirodu koja organizuje trku kroz staze blizu reke. Moj plan trčanja zakazan je za 8. februar sa tempom od 6 minuta po kilometru na udaljenosti od 12 km. Pridruži mi se na ovoj trci punoj svežeg zraka i prijateljske atmosfere.",
+      src: slika2,
       gender: "female",
+      date: "8. februar 2024.",
+      time: "20:00h",
+      location: "Novi Sad",
+      plannedKm: 9,
     },
     {
       id: 3,
       times: 0,
       star: 178,
       checked: false,
-      name: "Stefan (58)",
+      name: "Stefan (33)",
       added: false,
-      date: "6. septembar 2023. 19:00h",
-      text: "Ja sam Stefan, iskusan trkač koji planira gradsku trku 20. septembra 2023. Sa tempom od 5 minuta i 15 sekundi po kilometru, pozivam sve trkače da se pridruže ovoj uzbudljivoj avanturi.",
-      src: "https://1.bp.blogspot.com/-NUIr4r-OQ5w/XikecLk6qlI/AAAAAAAAXVo/G5Jdb0T7T8Yt9RzSwSED2X4Z2F70BtjQQCLcBGAsYHQ/s1600/Paul%2BNY%2BMar%2B09%2BFetscher.jpg",
+      text: "Ja sam Stefan, iskusan trkač koji planira gradsku trku 16. februara. Sa tempom od 5 minuta i 15 sekundi po kilometru, pozivam sve trkače da se pridruže ovoj uzbudljivoj avanturi.",
+      src: slika3,
       gender: "male",
+      date: "16. februar 2024.",
+      time: "19:30h",
+      location: "Zagreb",
+      plannedKm: 8,
     },
   ];
 
@@ -60,12 +75,15 @@ function App() {
       times: 0,
       star: 165,
       checked: false,
-      name: "Marko (30)",
+      name: "Nemanja (26)",
       added: false,
-      date: "7. septembar 2023. 19:00h",
-      text: "Ja sam Marko, entuzijastičan trkač koji želi motivisati zajednicu kroz trčanje. Organizujem trku 12. septembra 2023. sa ciljem od 8 km i tempom od 5 minuta i 45 sekundi po kilometru. Pozivam da mi se pridružiš i da zajedno postignemo svoje trkačke ciljeve. Biće to dinamično iskustvo koje ne želiš propustiti!",
-      src: "https://sportsmatik.com/uploads/world-events/players/kenenisa-bekele_1564492297.jpg",
+      text: "Ja sam Nemanja, entuzijastičan trkač koji želi motivisati zajednicu kroz trčanje. Organizujem trku 18. februara sa ciljem od 8 km i tempom od 5 minuta i 45 sekundi po kilometru. Pozivam da mi se pridružiš i da zajedno postignemo svoje trkačke ciljeve. Biće to dinamično iskustvo koje ne želiš propustiti!",
+      src: slika4,
       gender: "male",
+      date: "18. februar 2024.",
+      time: "20:20h",
+      location: "Sarajevo",
+      plannedKm: 6,
     },
     {
       id: 5,
@@ -73,23 +91,29 @@ function App() {
       star: 189,
       checked: false,
       added: false,
-      date: "8. septembar 2023. 19:00h",
-      name: "Ognjen (29)",
-      text: "Ja sam Nenad, strastveni trkač koji obožava brze ritmove. Pozivam vas na svoj plan trčanja 30. septembra 2023. Sa tempom od 5 minuta i 30 sekundi po kilometru, planiram trku od 15 km. Ako volite izazove i dugotrajne staze, pridružite mi se na ovoj trci i zajedno doživimo snagu trčanja.",
-      src: "https://www.runnersgoal.com/wp-content/uploads/2022/06/Depositphotos_22312531_S.jpg",
+      name: "Marko (29)",
+      text: "Ja sam Marko, strastveni trkač koji obožava brze ritmove. Pozivam vas na svoj plan trčanja 22. februara. Sa tempom od 5 minuta i 30 sekundi po kilometru, planiram trku od 15 km. Ako volite izazove i dugotrajne staze, pridružite mi se na ovoj trci i zajedno doživimo snagu trčanja.",
+      src: slika5,
       gender: "male",
+      date: "22. februar 2024.",
+      time: "18:20h",
+      location: "Budapest",
+      plannedKm: 11,
     },
     {
       id: 6,
       times: 0,
       star: 178,
       checked: false,
-      name: "Anja (21)",
+      name: "Milica (21)",
       added: false,
-      date: "9. septembar 2023. 19:00h",
-      text: "Ja sam Anja, zaljubljena u trčanje i obožavateljka jutarnjih trka. Planiram organizovati opuštenu trku kroz gradsku šetališnu zonu 15. oktobra 2023. s tempom od 6 minuta po kilometru na stazi od 8 km. Ova trka je savršena za sve devojke koje žele uživati u trčanju i druženju.",
-      src: "https://images.pexels.com/photos/1199590/pexels-photo-1199590.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      text: "Ja sam Milica, zaljubljena u trčanje i obožavateljka jutarnjih trka. Planiram organizovati opuštenu trku kroz gradsku šetališnu zonu 26. februara, s tempom od 6 minuta po kilometru na stazi od 8 km. Ova trka je savršena za sve devojke koje žele uživati u trčanju i druženju.",
+      src: slika6,
       gender: "female",
+      date: "26. februara 2024.",
+      time: "17:00h",
+      location: "Skoplje",
+      plannedKm: 12,
     },
   ];
 
@@ -204,7 +228,7 @@ function App() {
 
   
   return (
-    <BrowserRouter className={`App ${isDarkMode ? 'dark-mode' : ''}`}>
+    <BrowserRouter className={`App ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <Navbar num={plnNum} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <Routes>
   <Route

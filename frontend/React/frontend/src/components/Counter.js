@@ -22,7 +22,7 @@ const styles = {
     background: '#302e2d',
     borderRadius: '8px',
     margin: '5px',
-    color: 'white', // Make text white
+    color: 'white', 
   },
   iconContainer: {
     display: 'flex',

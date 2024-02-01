@@ -1,0 +1,50 @@
+
+
+.calendar-container {
+  text-align: center;
+  background-color: #302e2d;
+}
+
+.calendar {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.weekdays {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  background-color: #302e2d;
+  padding: 5px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day {
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.day.scheduled {
+  background-color: #4caf50; 
+  color: white;
+  font-weight: bold;
+}
+
+.day.selected {
+  background-color: #ff0000; 
+  color: white;
+  font-weight: bold;
+}
+
+.day.current-date {
+  background-color: #ba714c; 
+  color: white;
+  font-weight: bold;
+}
+
