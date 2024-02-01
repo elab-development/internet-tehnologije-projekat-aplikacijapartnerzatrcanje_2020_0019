@@ -70,7 +70,7 @@ function MyPlans({ data, deleteAPlan, isDarkMode }) {
         </div>
       )}
 
-      <div className="calendar-container">
+<div className={`calendar-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
         <h2>Zakazane trke</h2>
         <Calendar calendarPlans={calendarPlans} onDateClick={addToCalendar} />
       </div>

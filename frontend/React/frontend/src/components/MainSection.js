@@ -37,9 +37,9 @@ function MainSection() {
             buttonStyle="btn--outline"
             buttonSize="btn--large"
             onClick={() => {
-              window.location.href = "/moji-planovi";
+              window.location.href = "/pronadji-prijatelja";
             }}>
-            KREIRAJ SVOJ PLAN!
+            PRIDRUŽI SE TRKAČIMA!
           </Button>
 
         <div className="main-btns">
