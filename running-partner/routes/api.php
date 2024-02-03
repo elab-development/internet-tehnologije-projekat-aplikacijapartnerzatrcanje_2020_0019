@@ -41,30 +41,46 @@ Route::prefix('komentari')->group(function () {
 Route::prefix('statistike-trke')->group(function () {
     Route::get('/', [StatistikaTrkeController::class, 'index']);
 });
-
-
-// Rute koje zahtevaju autentifikaciju
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::prefix('planovi-trka')->group(function () {
-        Route::post('/', [PlanTrkeController::class, 'store']);
-        Route::put('/{id}', [PlanTrkeController::class, 'update']);
-        Route::delete('/{id}', [PlanTrkeController::class, 'destroy']);
-    });
-
+/*
+Route::middleware(['auth:sanctum', 'App\Http\Middleware\CheckUserRole:trkac'])->group(function () {
+    // Rute koje su dostupne samo ulozi 'trkac'
     Route::prefix('trkaci')->group(function () {
         Route::post('/', [TrkacController::class, 'store']);
         Route::put('/{id}', [TrkacController::class, 'update']);
         Route::delete('/{id}', [TrkacController::class, 'destroy']);
+        
+    });
+   
+});*/
+
+// Rute koje zahtevaju autentifikaciju
+Route::middleware(['auth:sanctum'])->group(function () {
+    // Rute koje su dostupne samo ulozi 'trkac'
+    Route::middleware(['App\Http\Middleware\CheckUserRole:trkac'])->group(function () {
+        Route::prefix('trkaci')->group(function () {
+            Route::post('/', [TrkacController::class, 'store']);
+            Route::put('/{id}', [TrkacController::class, 'update']);
+            Route::delete('/{id}', [TrkacController::class, 'destroy']);
+        });
+
+        Route::prefix('statistike-trke')->group(function () {
+            Route::post('/', [StatistikaTrkeController::class, 'store']);
+            Route::get('/export/{trkac_id}', [StatistikaTrkeController::class, 'exportToCSV']);
+        });
     });
 
-    Route::prefix('komentari')->group(function () {
-        Route::post('/', [KomentarController::class, 'store']);
-        Route::delete('/{id}', [KomentarController::class, 'destroy']);
-    });
+    // Rute koje su dostupne samo ulozi 'user'
+    Route::middleware(['App\Http\Middleware\CheckUserRole:user'])->group(function () {
+        Route::prefix('planovi-trka')->group(function () {
+            Route::post('/', [PlanTrkeController::class, 'store']);
+            Route::put('/{id}', [PlanTrkeController::class, 'update']);
+            Route::delete('/{id}', [PlanTrkeController::class, 'destroy']);
+        });
 
-    Route::prefix('statistike-trke')->group(function () {
-        Route::post('/', [StatistikaTrkeController::class, 'store']);
-        Route::get('/export/{trkac_id}', [StatistikaTrkeController::class, 'exportToCSV']);
+        Route::prefix('komentari')->group(function () {
+            Route::post('/', [KomentarController::class, 'store']);
+            Route::delete('/{id}', [KomentarController::class, 'destroy']);
+        });
     });
 
     Route::post('/logout', [AuthController::class, 'logout']);

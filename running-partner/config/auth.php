@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'trkac-api' => [
+            'driver' => 'token',
+            'provider' => 'trkacs', // Ovde koristite ime vašeg provajdera za trkače
+        ],
     ],
 
     /*
@@ -63,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'trkacs' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Trkac::class,
         ],
 
         // 'users' => [
