@@ -1,65 +1,73 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import './Login.css';
+import { useNavigate } from 'react-router-dom';
+import { apiService } from './ApiService'; 
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [token, setToken] = useState("");
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const navigate = useNavigate();
+
+  const setTokenInfo = (token) => {
+    setToken(token);
   };
 
-  const handleLogin = async () => {
+  const setLoginInfo = (role, email,id) => {
+    apiService.setLoginInfo(role, email,id);
+    console.log('ID korisnika postavljen:', id);
+    
+  };
+
+  const login = async (event) => {
+    setError("");
+    event.preventDefault();
+  
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
+      const response = await apiService.login(email, password);
+      console.log('Odgovor servera nakon logina:', response);
   
+      setTokenInfo(response.data.access_token);
+      setLoginInfo(response.data.role, email, response.data.user.id);
+      console.log('Uloga korisnika:', response.data.role);
+      console.log('Id korisnika:', response.data.user.id);
       
-      if (response.status === 201) {
-        
-        localStorage.setItem('authToken', response.data.access_token);
-  
-       
-        console.log('Korisnik uspešno logovan.');
-        
-        
-  
-      } else {
-       
-        console.log('Neuspešno logovanje.');
-  
-        
-      }
-  
+      navigate("/");
     } catch (error) {
-      console.error(error);
+      setError(error.response.data.message);
     }
   };
   
 
   return (
     <div className="login-container">
+      <h1>Login</h1>
       <input
         type="email"
         name="email"
         placeholder="Email"
         className="login-input"
-        onChange={handleInputChange}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
         name="password"
         placeholder="Password"
         className="login-input"
-        onChange={handleInputChange}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <button className="login-button" onClick={handleLogin}>
+      <button className="login-button" onClick={login}>
         Login
       </button>
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };
 
 export default Login;
+
+
+

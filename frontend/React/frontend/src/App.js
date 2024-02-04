@@ -1,6 +1,6 @@
 
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Registration from "./components/Registration";
 import Login from "./components/Login";
 import "./App.css";
@@ -16,7 +16,9 @@ import slika3 from "./assets/stefan.jpg"
 import slika4 from "./assets/nemanja.jpg"
 import slika5 from "./assets/marko.jpg"
 import slika6 from "./assets/milica.jpeg"
- // Dodajte ovu liniju iznad ostalih import-ova
+import { apiService } from './components/ApiService';
+import Profile from './components/Profile'
+
 
 
 
@@ -233,8 +235,8 @@ function App() {
 
   
   return (
-    <BrowserRouter className={`App ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-      <Navbar num={plnNum} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+    <Router className={`App ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+      <Navbar num={plnNum} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} apiService={apiService} />
       <Routes>
   <Route
     path="/"
@@ -259,9 +261,14 @@ function App() {
   />
   <Route path="/registracija" element={<Registration />} />
   <Route path="/login" element={<Login />} />
+  <Route path="/logout" element={<Navigate to="/" />}></Route>
+  <Route path="/moj-nalog" element={<Profile />} />
+
+
+
 </Routes>
       <Footer isDarkMode={isDarkMode} />
-    </BrowserRouter>
+    </Router>
   );
         }
 export default App;

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import './Registration.css'; 
+import { apiService } from './ApiService';  
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -18,17 +17,14 @@ const Registration = () => {
 
   const handleRegistration = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/register', formData);
-      const responseData = response.data;
-  
-      // Provera uspešnosti registracije
-      if (responseData && responseData.data) {
-        console.log('Registracija uspešna:', responseData.data);
-        // Dodatne akcije koje želite preduzeti nakon uspešne registracije
-      } else {
-        console.log('Neuspešna registracija. Server vraća:', responseData);
-      }
+      const response = await apiService.register(formData);
+      
+      apiService.setToken(response.data.access_token);
+      console.log(response.data);
+
+      apiService.setLoginInfo(response.data.role, formData.email);
     } catch (error) {
+
       console.error('Greška prilikom registracije:', error);
     }
   };

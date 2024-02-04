@@ -1,0 +1,32 @@
+/* Profile.css */
+
+.profile-container {
+  max-width: 600px;
+  margin: 60px auto; /* Povećajte margin na 60px */
+  padding: 120px; /* Povećajte padding na 120px */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.profile-name {
+  font-size: 48px; /* Smanji font-size na 48px */
+  font-weight: bold;
+  margin-bottom: 20px; /* Smanji margin-bottom na 20px */
+}
+
+.profile-email,
+.profile-gender,
+.profile-dob {
+  font-size: 36px; /* Smanji font-size na 36px */
+  margin-bottom: 16px; /* Smanji margin-bottom na 16px */
+}
+
+.profile-image {
+  max-width: 200px; /* Smanji max-width na 200px */
+  height: auto;
+  border-radius: 50%;
+  margin-top: 80px; /* Smanji margin-top na 80px */
+}
+
