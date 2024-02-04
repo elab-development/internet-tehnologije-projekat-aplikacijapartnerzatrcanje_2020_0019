@@ -15,7 +15,7 @@ class Trkac extends Model
         'ime',
         'prezime',
         'email',
-        'lozinka',
+        'password',
         'pol',
         'datum_rodjenja',
         'broj_telefona',

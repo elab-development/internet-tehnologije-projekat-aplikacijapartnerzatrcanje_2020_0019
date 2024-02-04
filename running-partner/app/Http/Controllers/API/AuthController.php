@@ -30,7 +30,7 @@ class AuthController extends Controller
                 'datum_rodjenja' => 'required|date',
                 'pol' => 'required|in:musko,zensko',
                 'email' => 'required|string|email|max:255|unique:trkacs',
-                $credentials['lozinka'] = Hash::make($request->lozinka),
+                $credentials['password'] = Hash::make($request->password),
                 'prijatelj_id' => 'exists:trkacs,id',
                 'role' => 'required|in:trkac',
             ]);
@@ -58,7 +58,7 @@ class AuthController extends Controller
             $credentials['prezime'] = $request->prezime;
             $credentials['datum_rodjenja'] = $request->datum_rodjenja;
             $credentials['pol'] = $request->pol;
-            $credentials['lozinka'] = Hash::make($request->lozinka);
+            $credentials['password'] = Hash::make($request->password);
 
             if ($request->has('prijatelj_id')) {
                 $credentials['prijatelj_id'] = $request->prijatelj_id;
@@ -90,41 +90,63 @@ class AuthController extends Controller
 
 
 
+
+    
+
+
+
     public function login(Request $request)
 {
-    $userType = $request->input('role');
-
-if ($userType === 'user') {
     $credentials = $request->only('email', 'password');
+    
     $user = User::where('email', $credentials['email'])->first();
-} elseif ($userType === 'trkac') {
-    $credentials = $request->only('email', 'lozinka'); // Ovde ispravljeno, koristi 'lozinka' umesto 'password'
-    $user = Trkac::where('email', $credentials['email'])->first();
-    if (!$user || !Hash::check($credentials['lozinka'], $user->lozinka)) { // Ispravljeno, koristi 'lozinka' umesto 'password'
-        return response()->json(['message' => 'Pogrešna email adresa ili šifra.'], 404);
+
+    if ($user) {
+        
+        if (Hash::check($credentials['password'], $user->password)) {
+            
+            $userType = 'user';
+        } else {
+            return response()->json(['message' => 'Pogrešna lozinka.'], 404);
+        }
+    } else {
+        
+        $trkac = Trkac::where('email', $credentials['email'])->first();
+        if ($trkac && Hash::check($credentials['password'], $trkac->password)) {
+            
+            $userType = 'trkac';
+            $user = $trkac; 
+        } else {
+            return response()->json(['message' => 'Pogrešna email adresa ili lozinka.'], 404);
+        }
     }
-} else {
-    return response()->json(['message' => 'Nepoznata uloga.']);
+
+    
+    $role = $user->role;
+    if (!$role) {
+        return response()->json(['message' => 'Korisnik nema definisanu ulogu.'], 404);
+    }
+
+    
+
+    $token = $user->createToken('auth_token')->plainTextToken;
+
+    $response = [
+        'user' => $user,
+        'access_token' => $token,
+        'token_type' => 'Bearer',
+        'role' => $role, 
+    ];
+
+    return response()->json($response, 201);
 }
 
 
 
-$token = $user->createToken('auth_token')->plainTextToken;
 
-$response = [
-    'user' => $user,
-    'access_token' => $token,
-    'token_type' => 'Bearer'
-];
 
-// Dodatna logika za trkače
-if ($userType === 'trkac') {
-    // Dodajte ovde dodatne radnje ili logiku koja je specifična za trkače
-}
 
-return response()->json($response, 201);
 
-}
 
 
 public function logout(Request $request)

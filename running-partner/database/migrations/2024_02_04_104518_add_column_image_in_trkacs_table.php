@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('trkacs', function (Blueprint $table) {
-            $table->string('slika')->nullable()->after('lozinka');
+            $table->string('slika')->nullable()->after('password');
         });
     }
 

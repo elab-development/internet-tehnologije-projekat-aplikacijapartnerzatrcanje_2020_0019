@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('pol', ['musko', 'zensko']);
             $table->string('broj_telefona')->unique();
             $table->string('email');
-            $table->string('lozinka');
+            $table->string('password');
             $table->unsignedBigInteger('prijatelj_id')->nullable();
             $table->foreign('prijatelj_id')->references('id')->on('trkacs');
             $table->timestamps();

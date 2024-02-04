@@ -32,7 +32,7 @@ class TrkacController extends Controller
             'ime' => 'required|string|max:255',
             'prezime' => 'required|string|max:255',
             'email' => 'required|email|unique:trkacs',
-            'lozinka' => 'required|string|min:6',
+            'password' => 'required|string|min:6',
             'pol' => 'required|in:musko,zensko',
             'datum_rodjenja' => 'required|date',
             'prijatelj_id' => 'nullable|exists:trkacs,id'
@@ -46,7 +46,7 @@ class TrkacController extends Controller
             'ime' => $request->ime,
             'prezime' => $request->prezime,
             'email' => $request->email,
-            'lozinka' => bcrypt($request->lozinka),
+            'password' => bcrypt($request->password),
             'pol' => $request->pol,
             'datum_rodjenja' => $request->datum_rodjenja,
             'prijatelj_id' => $request->prijatelj_id
@@ -77,7 +77,7 @@ class TrkacController extends Controller
             'ime' => 'required|string|max:255',
             'prezime' => 'required|string|max:255',
             'email' => 'required|email',
-            'lozinka' => 'required|string',
+            'password' => 'required|string',
             'prijatelj_id' => 'nullable|exists:trkacs,id',
         ]);
 
@@ -88,7 +88,7 @@ class TrkacController extends Controller
         $trkac->ime = $request->ime;
         $trkac->prezime = $request->prezime;
         $trkac->email = $request->email;
-        $trkac->lozinka = bcrypt($request->lozinka);
+        $trkac->password = bcrypt($request->password);
         $trkac->prijatelj_id = $request->prijatelj_id;
 
         $trkac->save();
