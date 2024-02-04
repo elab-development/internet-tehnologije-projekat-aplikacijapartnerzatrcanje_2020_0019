@@ -13,75 +13,41 @@ use App\Models\Trkac;
 class AuthController extends Controller
 {
     public function register(Request $request)
-    {
-        $validator = null;
+{
+    $validator = Validator::make($request->all(), [
+        'ime' => 'required|string|max:255',
+        'prezime' => 'required|string|max:255',
+        'datum_rodjenja' => 'required|date',
+        'pol' => 'required|in:musko,zensko',
+        'email' => 'required|string|email|max:255|unique:trkacs',
+        'password' => 'required|string|min:8',
+        'prijatelj_id' => 'exists:trkacs,id',
+    ]);
 
-        if ($request->role === 'user') {
-            $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:8',
-                'role' => 'required|in:user',
-            ]);
-        } elseif ($request->role === 'trkac') {
-            $validator = Validator::make($request->all(), [
-                'ime' => 'required|string|max:255',
-                'prezime' => 'required|string|max:255',
-                'datum_rodjenja' => 'required|date',
-                'pol' => 'required|in:musko,zensko',
-                'email' => 'required|string|email|max:255|unique:trkacs',
-                $credentials['password'] = Hash::make($request->password),
-                'prijatelj_id' => 'exists:trkacs,id',
-                'role' => 'required|in:trkac',
-            ]);
-
-            if ($request->has('prijatelj_id')) {
-                $validator->sometimes('prijatelj_id', 'exists:trkacs,id', function ($input) {
-                    return $input->prijatelj_id !== null;
-                });
-            }
-        } else {
-            return response()->json(['Greska pri registraciji!', 'Nepoznata uloga.']);
-        }
-
-        if ($validator->fails()) {
-            return response()->json(['Greska pri registraciji!', $validator->errors()]);
-        }
-
-        $credentials = [
-            'email' => $request->email,
-            'role' => $request->role,
-        ];
-
-        if ($request->role === 'trkac') {
-            $credentials['ime'] = $request->ime;
-            $credentials['prezime'] = $request->prezime;
-            $credentials['datum_rodjenja'] = $request->datum_rodjenja;
-            $credentials['pol'] = $request->pol;
-            $credentials['password'] = Hash::make($request->password);
-
-            if ($request->has('prijatelj_id')) {
-                $credentials['prijatelj_id'] = $request->prijatelj_id;
-            }
-        } else {
-            $credentials['name'] = $request->name;
-            $credentials['password'] = Hash::make($request->password);
-        }
-
-        if ($request->role === 'user') {
-            $user = User::create($credentials);
-            $token = $user->createToken('auth_token')->plainTextToken;
-
-            return response()->json(['data' => $user, 'access_token' => $token, 'token_type' => 'Bearer']);
-        } elseif ($request->role === 'trkac') {
-            $trkac = Trkac::create($credentials);
-            $token = $trkac->createToken('auth_token')->plainTextToken;
-
-            return response()->json(['data' => $trkac, 'access_token' => $token, 'token_type' => 'Bearer']);
-        } else {
-            return response()->json(['Greska pri registraciji!', 'Nepoznata uloga.']);
-        }
+    if ($validator->fails()) {
+        return response()->json(['Greska pri registraciji!', $validator->errors()]);
     }
+
+    $credentials = [
+        'email' => $request->email,
+        'role' => 'trkac', 
+        'ime' => $request->ime,
+        'prezime' => $request->prezime,
+        'datum_rodjenja' => $request->datum_rodjenja,
+        'pol' => $request->pol,
+        'password' => Hash::make($request->password),
+    ];
+
+    if ($request->has('prijatelj_id')) {
+        $credentials['prijatelj_id'] = $request->prijatelj_id;
+    }
+
+    $trkac = Trkac::create($credentials);
+    $token = $trkac->createToken('auth_token')->plainTextToken;
+
+    return response()->json(['data' => $trkac, 'access_token' => $token, 'token_type' => 'Bearer']);
+}
+
     
 
     
