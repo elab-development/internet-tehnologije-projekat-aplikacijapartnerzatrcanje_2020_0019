@@ -33,4 +33,5 @@ class SlikaController extends Controller
             return response()->json(['poruka' => 'Došlo je do greške prilikom čuvanja slike.'], 500);
         }
     }
+
 }

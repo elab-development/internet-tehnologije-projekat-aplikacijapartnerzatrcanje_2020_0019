@@ -24,7 +24,7 @@ use App\Http\Controllers\SlikaController;
 
 
 
-Route::post('/trkaci/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
+
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -35,10 +35,7 @@ Route::prefix('planovi-trka')->group(function () {
     Route::get('/{id}', [PlanTrkeController::class, 'show']);
 });
 
-Route::prefix('trkaci')->group(function () {
-    Route::get('/', [TrkacController::class, 'index']);
-    Route::get('/{id}', [TrkacController::class, 'show']);
-});
+
 
 Route::prefix('komentari')->group(function () {
     Route::get('/', [KomentarController::class, 'index']);
@@ -63,10 +60,21 @@ Route::middleware(['auth:sanctum', 'App\Http\Middleware\CheckUserRole:trkac'])->
 Route::middleware(['auth:sanctum'])->group(function () {
     // Rute koje su dostupne samo ulozi 'trkac'
     Route::middleware(['App\Http\Middleware\CheckUserRole:trkac'])->group(function () {
+
         Route::prefix('trkaci')->group(function () {
             Route::post('/', [TrkacController::class, 'store']);
             Route::put('/{id}', [TrkacController::class, 'update']);
             Route::delete('/{id}', [TrkacController::class, 'destroy']);
+            Route::post('/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
+
+
+            Route::get('/', [TrkacController::class, 'index']);
+            Route::get('/{id}', [TrkacController::class, 'show']);
+        });
+        Route::prefix('planovi-trka')->group(function () {
+            Route::post('/', [PlanTrkeController::class, 'store']);
+            Route::put('/{id}', [PlanTrkeController::class, 'update']);
+            Route::delete('/{id}', [PlanTrkeController::class, 'destroy']);
         });
 
         Route::prefix('statistike-trke')->group(function () {
@@ -77,11 +85,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Rute koje su dostupne samo ulozi 'user'
     Route::middleware(['App\Http\Middleware\CheckUserRole:user'])->group(function () {
-        Route::prefix('planovi-trka')->group(function () {
-            Route::post('/', [PlanTrkeController::class, 'store']);
-            Route::put('/{id}', [PlanTrkeController::class, 'update']);
-            Route::delete('/{id}', [PlanTrkeController::class, 'destroy']);
-        });
+
 
         Route::prefix('komentari')->group(function () {
             Route::post('/', [KomentarController::class, 'store']);
