@@ -7,6 +7,7 @@ use App\Http\Controllers\TrkacController;
 use App\Http\Controllers\PlanTrkeController;
 use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\StatistikaTrkeController;
+use App\Http\Controllers\SlikaController;
 
 
 /*
@@ -19,6 +20,11 @@ use App\Http\Controllers\StatistikaTrkeController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+// routes/web.php ili routes/api.php
+
+
+
+Route::post('/trkaci/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Trkac extends Model 
+class Trkac extends Model
 {
     use HasFactory;
     use HasApiTokens;
@@ -19,7 +19,8 @@ class Trkac extends Model
         'pol',
         'datum_rodjenja',
         'broj_telefona',
-        'prijatelj_id'
+        'prijatelj_id',
+        'slika'
     ];
     public function komentari()
     {
