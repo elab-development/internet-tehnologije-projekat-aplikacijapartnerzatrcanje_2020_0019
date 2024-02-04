@@ -1,5 +1,8 @@
+
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Registration from "./components/Registration";
+import Login from "./components/Login";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -13,6 +16,8 @@ import slika3 from "./assets/stefan.jpg"
 import slika4 from "./assets/nemanja.jpg"
 import slika5 from "./assets/marko.jpg"
 import slika6 from "./assets/milica.jpeg"
+ // Dodajte ovu liniju iznad ostalih import-ova
+
 
 
 function App() {
@@ -252,6 +257,8 @@ function App() {
     path="/moji-planovi"
     element={<MyPlans data={plns} deleteAPlan={deletePln} isDarkMode={isDarkMode} />}
   />
+  <Route path="/registracija" element={<Registration />} />
+  <Route path="/login" element={<Login />} />
 </Routes>
       <Footer isDarkMode={isDarkMode} />
     </BrowserRouter>

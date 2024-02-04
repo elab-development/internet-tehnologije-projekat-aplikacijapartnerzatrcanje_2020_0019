@@ -1,0 +1,25 @@
+.registration-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 500px;
+    margin: auto;
+
+  }
+  
+  input {
+    margin-bottom: 10px;
+    padding: 8px;
+    margin-top:50px;
+  
+    
+  }
+
+  
+  .registration-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
