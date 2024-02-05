@@ -45,39 +45,30 @@ class ApiService {
 
 
   
-  async getTrkacById(id) {
-    try {
-      const response = await axios.get(`http://localhost:8000/api/trkaci/${id}`, {
-        headers: {
-          Authorization: `Bearer ${this.getToken()}`,
-        },
+
+  
+  getLoggedInTrkac() {
+    const token = this.getToken();
+    const { id } = this.getLoginInfo(); // Fetch the id from sessionStorage
+  
+    if (!token || !id) {
+      // Handle the case when there is no token or id (user is not logged in)
+      return Promise.reject("User is not logged in");
+    }
+  
+    return axios.get(`http://localhost:8000/api/trkaci/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.data)
+      .catch((error) => {
+        // Handle any errors that occur during the API request
+        console.error("Error fetching logged-in trkac:", error);
+        throw error;
       });
-  
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching trkac by ID:', error);
-      throw error;
-    }
   }
   
-  async getLoggedInTrkac() {
-    const { id } = this.getLoginInfo();
-    
-    if (!id) {
-      console.error('Trkac ID not found in session storage');
-      return null;
-    }
-  
-    try {
-      const trkacData = await this.getTrkacById(id);
-  
-      console.log('Fetched data for logged-in trkac:', trkacData);
-      return trkacData;
-    } catch (error) {
-      console.error('Error fetching logged-in trkac:', error);
-      throw error;
-    }
-  }
 
   async uploadProfileImage(file) {
     try {
@@ -128,11 +119,15 @@ class ApiService {
 
 
 
-
-
-
+  getTrkaci() {
+    return axios.get("http://localhost:8000/api/trkaci");
+  }
   
 
+  getPlanoviTrka() {
+    return axios.get("http://localhost:8000/api/planovi-trka");
+  }
+  
 
 
 

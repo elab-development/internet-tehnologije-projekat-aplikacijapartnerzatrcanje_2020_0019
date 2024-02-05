@@ -1,8 +1,9 @@
 
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { useState } from "react";
 import Registration from "./components/Registration";
-import Login from "./components/Login";
+import {Login} from "./components/Login";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -19,12 +20,14 @@ import slika6 from "./assets/milica.jpeg"
 import { apiService } from './components/ApiService';
 import Profile from './components/Profile'
 import KreirajPlan from './components/KreirajPlan';
-
+import Runners from "./components/Runners";
+import PlanRun from "./components/PlanRun";
 
 
 
 function App() {
 
+  const [token, setToken] = useState(apiService.getToken());
   const { isDarkMode, toggleDarkMode } = ViewMode();
 
   const [plnNum, setPlnNum] = React.useState(0);
@@ -261,11 +264,15 @@ function App() {
     element={<MyPlans data={plns} deleteAPlan={deletePln} isDarkMode={isDarkMode} />}
   />
   <Route path="/registracija" element={<Registration />} />
-  <Route path="/login" element={<Login />} />
+  <Route
+            path="/login"
+            element={<Login updateToken={(token) => setToken(token)} />}
+          ></Route>
   <Route path="/logout" element={<Navigate to="/" />}></Route>
   <Route path="/moj-nalog" element={<Profile />} />
   <Route path="/kreiraj-plan" element={<KreirajPlan />} />
-
+  <Route path="/trkaci" element={<Runners />} />
+  <Route path="/planovi-trka" element={<PlanRun />} />
 
 
 

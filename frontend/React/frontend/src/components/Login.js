@@ -2,42 +2,56 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiService } from './ApiService'; 
 
-const Login = () => {
+export function Login(props) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [token, setToken] = useState("");
 
-  const navigate = useNavigate();
-
-  const setTokenInfo = (token) => {
-    setToken(token);
-  };
-
-  const setLoginInfo = (role, email,id) => {
-    apiService.setLoginInfo(role, email,id);
-    console.log('ID korisnika postavljen:', id);
-    
-  };
-
-  const login = async (event) => {
+  function login(e) {
     setError("");
-    event.preventDefault();
+    // prevent default blokira osvezavanje stranice
+    e.preventDefault();
+
+    apiService
+        .login(email, password)
+        .then((response) => {
+            setToken(response.data.access_token);
+            setLoginInfo(response.data.role, email, response.data.user.id);
+            props.updateToken(response.data.access_token);
+
+            console.log('Uloga korisnika:', response.data.role);
+            console.log('Id korisnika:', response.data.user.id);
+            console.log('Token korisnika:', response.data.access_token);
+            console.log(response.data);
+            navigate("/");
+        })
+        .catch((error) => {
+            setError(error.response.data.message);
+        });
+}
+
+function setToken(token) {
+  apiService.setToken(token);
+}
+
+function setLoginInfo(role,email, id) {
+  apiService.setLoginInfo(role,email,id);
+  console.log('ID korisnika postavljen:', id);
+}
+
+
+
+
+
+
+
+
+
+
+
+
   
-    try {
-      const response = await apiService.login(email, password);
-      console.log('Odgovor servera nakon logina:', response);
-  
-      setTokenInfo(response.data.access_token);
-      setLoginInfo(response.data.role, email, response.data.user.id);
-      console.log('Uloga korisnika:', response.data.role);
-      console.log('Id korisnika:', response.data.user.id);
-      
-      navigate("/");
-    } catch (error) {
-      setError(error.response.data.message);
-    }
-  };
   
 
   return (
@@ -67,7 +81,6 @@ const Login = () => {
   );
 };
 
-export default Login;
 
 
 

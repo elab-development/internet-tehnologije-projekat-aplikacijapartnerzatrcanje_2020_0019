@@ -11,18 +11,18 @@ const Profile = () => {
   const [profileImage, setProfileImage] = useState(null);
 
   useEffect(() => {
-    const fetchLoggedInTrkac = async () => {
-      try {
-        const trkacData = await apiService.getLoggedInTrkac();
-
-        if (trkacData && trkacData.trkac) {
-          setTrkac(trkacData.trkac);
-        } else {
-          console.error('Nemogućnost dobijanja podataka za ulogovanog trkača');
-        }
-      } catch (error) {
-        console.error('Greška pri dobijanju ulogovanog trkača:', error);
-      }
+    const fetchLoggedInTrkac = () => {
+      apiService.getLoggedInTrkac()
+        .then((trkacData) => {
+          if (trkacData && trkacData.trkac) {
+            setTrkac(trkacData.trkac);
+          } else {
+            console.error('Nemogućnost dobijanja podataka za ulogovanog trkača');
+          }
+        })
+        .catch((error) => {
+          console.error('Greška pri dobijanju ulogovanog trkača:', error);
+        });
     };
 
     fetchLoggedInTrkac();
