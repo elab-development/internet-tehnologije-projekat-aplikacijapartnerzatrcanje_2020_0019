@@ -18,6 +18,7 @@ import slika5 from "./assets/marko.jpg"
 import slika6 from "./assets/milica.jpeg"
 import { apiService } from './components/ApiService';
 import Profile from './components/Profile'
+import KreirajPlan from './components/KreirajPlan';
 
 
 
@@ -263,6 +264,8 @@ function App() {
   <Route path="/login" element={<Login />} />
   <Route path="/logout" element={<Navigate to="/" />}></Route>
   <Route path="/moj-nalog" element={<Profile />} />
+  <Route path="/kreiraj-plan" element={<KreirajPlan />} />
+
 
 
 

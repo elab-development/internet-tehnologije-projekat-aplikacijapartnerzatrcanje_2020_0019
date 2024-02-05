@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { apiService } from './ApiService';
 import './Profile.css';
+import { Link } from 'react-router-dom';
 import ImageUpload from './ImageUpload';
 
 
@@ -44,7 +45,12 @@ const Profile = () => {
       <h2>Korisnički profil</h2>
       {profileImage && <img src={profileImage} alt="Profil" style={{ width: '200px' }} />}
       {trkac && <ImageUpload trkacId={1} onImageUpload={handleImageUpload} />}
+
+      <Link to="/kreiraj-plan">
+        <button>Kreiraj plan</button>
+      </Link>
     </div>
+    
   );
 };
 

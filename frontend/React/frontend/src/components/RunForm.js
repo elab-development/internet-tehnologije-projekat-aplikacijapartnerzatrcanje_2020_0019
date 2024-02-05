@@ -10,12 +10,30 @@ const RunForm = ({ onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit({ time, location, distance, date });
+  
+    
+    if (!date || !time || !location || !distance) {
+      console.error('Svi podaci moraju biti popunjeni.');
+      return;
+    }
+  
+    // Formatiranje podataka
+    const formattedData = {
+      vreme: `${time}:00`, // Dodajte '00' za sekunde
+      mesto: location,
+      datum: date,
+      planirani_km: parseFloat(distance),
+    };
+  
+    console.log('Formatted Data:', formattedData);
+  
+    onSubmit(formattedData);
     setTime('');
     setLocation('');
     setDistance('');
     setDate('');
   };
+  
 
   return (
     <div className="run-form-container">

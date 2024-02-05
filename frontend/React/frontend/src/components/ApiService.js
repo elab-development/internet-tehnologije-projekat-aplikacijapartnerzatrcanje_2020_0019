@@ -99,7 +99,38 @@ class ApiService {
     }
   }
   
-  
+  async createRunningPlan(formData) {
+    try {
+      // Pravite HTTP POST zahtev ka odgovarajućoj ruti na serveru
+      const response = await axios.post(
+        "http://localhost:8000/api/planovi-trka", // Postavite pravilnu rutu za kreiranje plana trke
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${this.getToken()}`,
+          },
+        }
+      );
+
+      // Vraćate odgovor sa servera
+      return response.data;
+    } catch (error) {
+      console.error("Error creating running plan:", error);
+      throw error;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
   
 
 
