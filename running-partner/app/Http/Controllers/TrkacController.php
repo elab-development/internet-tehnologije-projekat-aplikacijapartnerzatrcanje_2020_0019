@@ -74,10 +74,6 @@ class TrkacController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'ime' => 'required|string|max:255',
-            'prezime' => 'required|string|max:255',
-            'email' => 'required|email',
-            'password' => 'required|string',
             'prijatelj_id' => 'nullable|exists:trkacs,id',
         ]);
 
@@ -85,10 +81,6 @@ class TrkacController extends Controller
             return response()->json(['Greška pri ažuriranju trkača!', $validator->errors()]);
         }
 
-        $trkac->ime = $request->ime;
-        $trkac->prezime = $request->prezime;
-        $trkac->email = $request->email;
-        $trkac->password = bcrypt($request->password);
         $trkac->prijatelj_id = $request->prijatelj_id;
 
         $trkac->save();

@@ -23,9 +23,12 @@ use App\Http\Controllers\SlikaController;
 // routes/web.php ili routes/api.php
 
 
+Route::get('/trkaci', [TrkacController::class, 'index']);
 
-
+Route::post('/planovi-trka', [PlanTrkeController::class, 'store']);
 Route::post('/trkaci/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
+
+
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -62,17 +65,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::middleware(['App\Http\Middleware\CheckUserRole:trkac'])->group(function () {
 
         Route::prefix('trkaci')->group(function () {
+            Route::get('/{id}', [TrkacController::class, 'show']);
             Route::post('/', [TrkacController::class, 'store']);
             Route::put('/{id}', [TrkacController::class, 'update']);
             Route::delete('/{id}', [TrkacController::class, 'destroy']);
             // Route::post('/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
 
 
-            Route::get('/', [TrkacController::class, 'index']);
-            Route::get('/{id}', [TrkacController::class, 'show']);
+
         });
         Route::prefix('planovi-trka')->group(function () {
-            Route::post('/', [PlanTrkeController::class, 'store']);
+
             Route::put('/{id}', [PlanTrkeController::class, 'update']);
             Route::delete('/{id}', [PlanTrkeController::class, 'destroy']);
         });
