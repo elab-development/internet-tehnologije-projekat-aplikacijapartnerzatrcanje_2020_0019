@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { apiService } from './ApiService';  
+import './Registration.css';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ const Registration = () => {
   };
 
   const handleRegistration = async () => {
+    console.log('Register button clicked');
     try {
       const response = await apiService.register(formData);
       

@@ -6,6 +6,7 @@ import Cards from "./Cards";
 import Image1 from "../assets/marko.jpg";
 import Image2 from "../assets/jasna.jpeg";
 import Image3 from "../assets/milica.jpeg";
+import Naslovna from "../assets/naslovnaTrkac.png";
 import Counter from './Counter'; 
 
 function MainSection() {
@@ -31,7 +32,7 @@ function MainSection() {
   return (
     <>
       <div className="main-container">
-        <image src="https://cdn-fhgnd.nitrocdn.com/gdRlBjBJEsIflRZaDbcgjDdgJxndYJwu/assets/static/optimized/rev-6bb43f7/wp-content/uploads/2022/11/waltz.jpg" />
+        <image src={Naslovna} />
         <h1>Pronađi i ti svog idealnog partnera za trčanje</h1>
         <Button
             buttonStyle="btn--outline"
