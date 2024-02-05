@@ -58,6 +58,15 @@ class StatistikaTrkeController extends Controller
         return response()->json(['Statistika trke je dodata!', new StatistikaTrkeResource($statistikaTrke)]);
     }
 
+    public function getStatistikeByTrkacId($trkac_id)
+    {
+        $statistikeTrke = StatistikaTrke::where('trkac_id', $trkac_id)
+            ->with(['trkac', 'planTrka'])
+            ->paginate(10);
+
+        return StatistikaTrkeResource::collection($statistikeTrke);
+    }
+
     public function exportToCSV($trkac_id)
     {
 

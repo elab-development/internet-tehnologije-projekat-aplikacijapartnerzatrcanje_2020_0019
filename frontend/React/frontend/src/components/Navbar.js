@@ -43,6 +43,11 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
               Planovi trka
             </Link>
           </li>
+          <li className="navbar-item">
+            <Link to="/statistike-trke" className="navbar-link">
+              statistike
+            </Link>
+          </li>
         </>
       );
     } else if (korisnik.role === 'user') {
@@ -70,8 +75,8 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
             </Link>
           </li>
           <li className="navbar-item">
-            <Link to="/statistika-trke" className="navbar-link">
-              Planovi trka
+            <Link to="/statistike-trke" className="navbar-link">
+              statistike
             </Link>
           </li>
         </>
@@ -97,6 +102,11 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
           <li className="navbar-item">
             <Link to="/planovi-trka" className="navbar-link">
               Planovi trka
+            </Link>
+          </li>
+          <li className="navbar-item">
+            <Link to="/statistike-trke" className="navbar-link">
+              statistike
             </Link>
           </li>
         </>

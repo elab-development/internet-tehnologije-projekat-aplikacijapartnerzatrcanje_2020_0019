@@ -46,7 +46,9 @@ Route::prefix('komentari')->group(function () {
 });
 Route::prefix('statistike-trke')->group(function () {
     Route::get('/', [StatistikaTrkeController::class, 'index']);
+    Route::get('/{trkac_id}', [StatistikaTrkeController::class, 'getStatistikeByTrkacId']);
 });
+
 /*
 Route::middleware(['auth:sanctum', 'App\Http\Middleware\CheckUserRole:trkac'])->group(function () {
     // Rute koje su dostupne samo ulozi 'trkac'

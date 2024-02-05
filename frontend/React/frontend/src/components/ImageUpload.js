@@ -22,8 +22,8 @@ const ImageUpload = ({ trkacId, onImageUpload }) => {
       const formData = new FormData();
       formData.append('slika', image);
 
-      // Poziv Laravel API endpoint-a za upload slike
-      const response = await axios.post(`http://localhost:8000/api/${trkacId}/upload-slike`, formData, {
+
+      const response = await axios.post(`http://localhost:8000/api/trkaci/${trkacId}/upload-slike`, formData, {
   headers: {
     'Content-Type': 'multipart/form-data',
   },
@@ -31,7 +31,7 @@ const ImageUpload = ({ trkacId, onImageUpload }) => {
 
       console.log('Server response after uploading image:', response.data);
 
-      // Pozovi roditeljsku funkciju kako bi osvežio prikaz slike
+ 
       if (onImageUpload) {
         onImageUpload(response.data.slika);
       }

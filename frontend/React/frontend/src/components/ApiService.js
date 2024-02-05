@@ -128,6 +128,43 @@ class ApiService {
     return axios.get("http://localhost:8000/api/planovi-trka");
   }
   
+  async getStatistikeByTrkacId(trkacId) {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/statistike-trke/${trkacId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Greška pri dohvatanju statistika trčanja:', error);
+      throw error;
+    }
+  }
+
+
+  async downloadStatistics(trkacId) {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/statistike-trke/export/${trkacId}`, {
+        responseType: 'blob', // Specify the response type as blob for binary data
+        headers: {
+          Authorization: `Bearer ${this.getToken()}`,
+        },
+      });
+
+      // Create a blob URL and trigger the download
+      const blob = new Blob([response.data], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `statistika_trke_export_trkac_${trkacId}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading statistics:', error);
+      throw error;
+    }
+  }
+
+
 
 
 

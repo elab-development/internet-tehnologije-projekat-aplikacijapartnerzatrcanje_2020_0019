@@ -22,7 +22,7 @@ import Profile from './components/Profile'
 import KreirajPlan from './components/KreirajPlan';
 import Runners from "./components/Runners";
 import PlanRun from "./components/PlanRun";
-
+import StatisticRun from "./components/StatisticRun";
 
 
 function App() {
@@ -273,6 +273,7 @@ function App() {
   <Route path="/kreiraj-plan" element={<KreirajPlan />} />
   <Route path="/trkaci" element={<Runners />} />
   <Route path="/planovi-trka" element={<PlanRun />} />
+  <Route path="/statistike-trke" element={<StatisticRun />} />
 
 
 

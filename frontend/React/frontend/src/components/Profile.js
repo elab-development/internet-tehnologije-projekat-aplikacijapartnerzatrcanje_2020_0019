@@ -16,6 +16,7 @@ const Profile = () => {
         .then((trkacData) => {
           if (trkacData && trkacData.trkac) {
             setTrkac(trkacData.trkac);
+            setProfileImage(trkacData.trkac.slika);
           } else {
             console.error('Nemogućnost dobijanja podataka za ulogovanog trkača');
           }
@@ -43,8 +44,8 @@ const Profile = () => {
         </>
       )}
       <h2>Korisnički profil</h2>
-      {profileImage && <img src={profileImage} alt="Profil" style={{ width: '200px' }} />}
-      {trkac && <ImageUpload trkacId={1} onImageUpload={handleImageUpload} />}
+      {profileImage && <img src={`/slike/${profileImage}`} alt="Profil" style={{ width: '200px' }} />}
+      {trkac && <ImageUpload trkacId={trkac.id} onImageUpload={handleImageUpload} />}
 
       <Link to="/kreiraj-plan">
         <button>Kreiraj plan</button>
