@@ -28,7 +28,8 @@ class SlikaController extends Controller
             $trkac->slika = $putanja;
             $trkac->save();
 
-            return response()->json(['poruka' => 'Slika profila je uspešno uploadovana'], 201);
+            return response()->json(['slika' => $trkac->slika], 201);
+
         } else {
             return response()->json(['poruka' => 'Došlo je do greške prilikom čuvanja slike.'], 500);
         }

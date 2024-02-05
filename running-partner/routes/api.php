@@ -25,7 +25,7 @@ use App\Http\Controllers\SlikaController;
 
 
 
-
+Route::post('/trkaci/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -65,7 +65,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/', [TrkacController::class, 'store']);
             Route::put('/{id}', [TrkacController::class, 'update']);
             Route::delete('/{id}', [TrkacController::class, 'destroy']);
-            Route::post('/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
+            // Route::post('/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
 
 
             Route::get('/', [TrkacController::class, 'index']);
