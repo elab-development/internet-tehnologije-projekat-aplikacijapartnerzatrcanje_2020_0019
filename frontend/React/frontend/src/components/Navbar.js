@@ -34,11 +34,6 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
             </Link>
           </li>
           <li className="navbar-item">
-            <Link to="/trkaci" className="navbar-link">
-              Trkaci
-            </Link>
-          </li>
-          <li className="navbar-item">
             <Link to="/planovi-trka" className="navbar-link">
               Planovi trka
             </Link>
@@ -65,11 +60,6 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
           <li className="navbar-item">
             <Link to="/login" className="navbar-link">
               Prijavi se
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <Link to="/trkaci" className="navbar-link">
-              Trkaci
             </Link>
           </li>
           <li className="navbar-item">
@@ -100,11 +90,6 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
                 Prijavi se
               </Link>
             </li>
-            <li className="navbar-item">
-            <Link to="/trkaci" className="navbar-link">
-              Trkaci
-            </Link>
-          </li>
           <li className="navbar-item">
             <Link to="/planovi-trka" className="navbar-link">
               Planovi trka

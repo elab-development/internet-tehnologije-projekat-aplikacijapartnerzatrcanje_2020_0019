@@ -61,7 +61,6 @@
     color: #fff;
   }
   
-  /* Stilovi za light mode */
   .light-mode {
     background-color: #aaaaaa;
     color: #000;
@@ -108,8 +107,8 @@
   }
 
   .map-container {
-    height: 400px; /* Prilagodite visinu prema potrebi */
-    width: 100%;   /* Prilagodite širinu prema potrebi */
+    height: 400px; 
+    width: 100%;   
   }
   
   

@@ -21,7 +21,7 @@ class TrkacController extends Controller
             $query->where('pol', $request->pol);
         }
 
-        $trkaci = $query->paginate(10);
+        $trkaci = $query->paginate(3);
 
         return TrkacResource::collection($trkaci);
     }
@@ -112,5 +112,48 @@ class TrkacController extends Controller
 
         return response()->json(['mesto' => $trkac->mesto]);
     }
+
+
+
+
+
+    public function addFriend(Request $request, $trkacId)
+    {
+        $loggedInTrkacId = auth()->user()->id;
+
+        $trkac = Trkac::find($trkacId);
+
+        if (is_null($trkac)) {
+            return response()->json('Trkač kome želite da dodate prijatelja ne postoji u bazi podataka!');
+        }
+
+        $trkac->prijatelj_id = $loggedInTrkacId;
+        $trkac->save();
+
+
+        $loggedInTrkac = Trkac::find($loggedInTrkacId);
+        $loggedInTrkac->prijatelj_id = $trkacId;
+        $loggedInTrkac->save();
+
+        return response()->json(['Prijatelj je uspešno dodat!', new TrkacResource($trkac)]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

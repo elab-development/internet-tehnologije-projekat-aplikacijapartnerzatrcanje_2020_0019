@@ -168,6 +168,37 @@ class ApiService {
     return axios.get(`http://localhost:8000/api/trkaci/${trkacId}/mesto`);
   }
 
+  getTrkaciFilter(params) {
+    return axios.get("http://localhost:8000/api/trkaci", { params });
+  }
+
+
+
+
+  async addFriend(trkacId, friendId) {
+    try {
+      const response = await axios.post(`http://localhost:8000/api/trkaci/${trkacId}/add-friend`, {
+        trkacId: friendId,
+      }, {
+        headers: {
+          Authorization: `Bearer ${this.getToken()}`,
+        },
+      });
+  
+      return response.data;
+    } catch (error) {
+      console.error('Error adding friend:', error);
+      throw error;
+    }
+  }
+
+
+
+
+
+
+
+
 
 
 

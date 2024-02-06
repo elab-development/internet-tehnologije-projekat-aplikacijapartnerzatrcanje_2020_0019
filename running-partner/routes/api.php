@@ -72,6 +72,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/', [TrkacController::class, 'store']);
             Route::put('/{id}', [TrkacController::class, 'update']);
             Route::delete('/{id}', [TrkacController::class, 'destroy']);
+
+            Route::post('/{id}/add-friend', [TrkacController::class, 'addFriend']);
+
             // Route::post('/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
 
 

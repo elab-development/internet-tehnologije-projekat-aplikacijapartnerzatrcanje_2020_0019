@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { apiService } from './ApiService';  
 import './Registration.css';
+import logo from '../assets/logo.png'; 
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -33,17 +34,79 @@ const Registration = () => {
   };
 
   return (
-    <div className="registration-container"> 
-      <input type="text" name="ime" placeholder="Ime" onChange={handleInputChange} />
-      <input type="text" name="prezime" placeholder="Prezime" onChange={handleInputChange} />
-      <input type="date" name="datum_rodjenja" placeholder="Datum rođenja" onChange={handleInputChange} />
-      <input type="text" name="pol" placeholder="Pol" onChange={handleInputChange} />
-      <input type="text" name="mesto" placeholder="Mesto" onChange={handleInputChange} />
-      <input type="email" name="email" placeholder="Email" onChange={handleInputChange} />
-      <input type="password" name="password" placeholder="Password" onChange={handleInputChange} />
-      <button className="registration-button" onClick={handleRegistration}>Register</button> 
+    <div className="registration-container">
+      <div className="form-container">
+        <div className="registration-logo">
+          <img src={logo} alt="Logo" />
+        </div>
+        
+        <div className="form-group">
+          <input
+            type="text"
+            name="ime"
+            placeholder="Ime"
+            onChange={handleInputChange}
+            className="registration-input"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="prezime"
+            placeholder="Prezime"
+            onChange={handleInputChange}
+            className="registration-input"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="date"
+            name="datum_rodjenja"
+            placeholder="Datum rođenja"
+            onChange={handleInputChange}
+            className="registration-input"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="pol"
+            placeholder="Pol"
+            onChange={handleInputChange}
+            className="registration-input"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="mesto"
+            placeholder="Mesto"
+            onChange={handleInputChange}
+            className="registration-input"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={handleInputChange}
+            className="registration-input"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleInputChange}
+            className="registration-input"
+          />
+        </div>
+        <button className="registration-button" onClick={handleRegistration}>Register</button> 
+      </div>
     </div>
   );
-};
+  }
 
 export default Registration;

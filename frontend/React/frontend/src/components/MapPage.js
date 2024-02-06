@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { apiService } from "./ApiService";
 import axios from "axios";
 import L from "leaflet";
 import mapaPin from "../assets/mapaPin.png";
+import WeatherApi from "./WeatherApi";
 
 const MapPage = () => {
 
@@ -91,6 +93,23 @@ const MapPage = () => {
           </Marker>
         ))}
       </MapContainer>
+
+      <div style={{ margin: "10px 0" }}>
+        <Link to="/trkaci">
+          <button
+            style={{ padding: "10px", borderRadius: "8px" }}
+            onClick={() => {
+
+              console.log("Klik na dugme");
+            }}
+          >
+            Prikaz svih trkaca
+          </button>
+        </Link>
+      </div>
+
+
+      <WeatherApi/>
     </div>
   );
 };
