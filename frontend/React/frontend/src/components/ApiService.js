@@ -49,10 +49,10 @@ class ApiService {
   
   getLoggedInTrkac() {
     const token = this.getToken();
-    const { id } = this.getLoginInfo(); // Fetch the id from sessionStorage
+    const { id } = this.getLoginInfo(); 
   
     if (!token || !id) {
-      // Handle the case when there is no token or id (user is not logged in)
+ 
       return Promise.reject("User is not logged in");
     }
   
@@ -63,7 +63,7 @@ class ApiService {
     })
       .then((response) => response.data)
       .catch((error) => {
-        // Handle any errors that occur during the API request
+
         console.error("Error fetching logged-in trkac:", error);
         throw error;
       });
@@ -92,9 +92,9 @@ class ApiService {
   
   async createRunningPlan(formData) {
     try {
-      // Pravite HTTP POST zahtev ka odgovarajućoj ruti na serveru
+  
       const response = await axios.post(
-        "http://localhost:8000/api/planovi-trka", // Postavite pravilnu rutu za kreiranje plana trke
+        "http://localhost:8000/api/planovi-trka", 
         formData,
         {
           headers: {
@@ -142,13 +142,12 @@ class ApiService {
   async downloadStatistics(trkacId) {
     try {
       const response = await axios.get(`http://localhost:8000/api/statistike-trke/export/${trkacId}`, {
-        responseType: 'blob', // Specify the response type as blob for binary data
+        responseType: 'blob', 
         headers: {
           Authorization: `Bearer ${this.getToken()}`,
         },
       });
 
-      // Create a blob URL and trigger the download
       const blob = new Blob([response.data], { type: 'text/csv' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -164,6 +163,10 @@ class ApiService {
     }
   }
 
+
+  async getMestoInfo(trkacId) {
+    return axios.get(`http://localhost:8000/api/trkaci/${trkacId}/mesto`);
+  }
 
 
 

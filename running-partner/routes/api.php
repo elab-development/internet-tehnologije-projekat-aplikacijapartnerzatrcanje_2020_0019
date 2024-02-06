@@ -24,6 +24,7 @@ use App\Http\Controllers\SlikaController;
 
 
 Route::get('/trkaci', [TrkacController::class, 'index']);
+Route::get('/trkaci/{id}/mesto', [TrkacController::class, 'getMestoInfo']);
 
 Route::post('/planovi-trka', [PlanTrkeController::class, 'store']);
 Route::post('/trkaci/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);

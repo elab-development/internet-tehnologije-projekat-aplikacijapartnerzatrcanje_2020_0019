@@ -23,7 +23,7 @@ import KreirajPlan from './components/KreirajPlan';
 import Runners from "./components/Runners";
 import PlanRun from "./components/PlanRun";
 import StatisticRun from "./components/StatisticRun";
-
+import MapPage from "./components/MapPage";
 
 function App() {
 
@@ -274,6 +274,7 @@ function App() {
   <Route path="/trkaci" element={<Runners />} />
   <Route path="/planovi-trka" element={<PlanRun />} />
   <Route path="/statistike-trke" element={<StatisticRun />} />
+  <Route path="/map" element={<MapPage />} />
 
 
 

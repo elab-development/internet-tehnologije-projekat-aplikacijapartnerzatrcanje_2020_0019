@@ -3,6 +3,8 @@ import Cards from "../Cards";
 import { Button } from "../Button";
 import "./RunningPlans.css";
 import WeatherApi from "../WeatherApi";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
 class RunningPlans extends Component {
   constructor(props) {
@@ -94,6 +96,22 @@ class RunningPlans extends Component {
         </div>
 
         <WeatherApi/>
+        <MapContainer
+          center={[51.505, -0.09]} 
+          zoom={14}
+          className="map-container"
+        >
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          />
+
+
+          <Marker position={[51.5, -0.09]}>
+            <Popup>Hello World!</Popup>
+          </Marker>
+        </MapContainer>
+     
       </div>
     );
   }

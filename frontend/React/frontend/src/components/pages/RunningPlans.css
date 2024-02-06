@@ -107,5 +107,9 @@
     background: #f0eaea;
   }
 
+  .map-container {
+    height: 400px; /* Prilagodite visinu prema potrebi */
+    width: 100%;   /* Prilagodite širinu prema potrebi */
+  }
   
   

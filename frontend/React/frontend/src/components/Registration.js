@@ -8,6 +8,7 @@ const Registration = () => {
     prezime: '',
     datum_rodjenja: '',
     pol: '',
+    mesto:'',
     email: '',
     password: '',
   });
@@ -37,6 +38,7 @@ const Registration = () => {
       <input type="text" name="prezime" placeholder="Prezime" onChange={handleInputChange} />
       <input type="date" name="datum_rodjenja" placeholder="Datum rođenja" onChange={handleInputChange} />
       <input type="text" name="pol" placeholder="Pol" onChange={handleInputChange} />
+      <input type="text" name="mesto" placeholder="Mesto" onChange={handleInputChange} />
       <input type="email" name="email" placeholder="Email" onChange={handleInputChange} />
       <input type="password" name="password" placeholder="Password" onChange={handleInputChange} />
       <button className="registration-button" onClick={handleRegistration}>Register</button> 

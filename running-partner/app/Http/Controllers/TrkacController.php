@@ -34,6 +34,7 @@ class TrkacController extends Controller
             'email' => 'required|email|unique:trkacs',
             'password' => 'required|string|min:6',
             'pol' => 'required|in:musko,zensko',
+            'mesto' => 'required|string|max:100',
             'datum_rodjenja' => 'required|date',
             'prijatelj_id' => 'nullable|exists:trkacs,id'
         ]);
@@ -48,6 +49,7 @@ class TrkacController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'pol' => $request->pol,
+            'mesto' => $request->mesto,
             'datum_rodjenja' => $request->datum_rodjenja,
             'prijatelj_id' => $request->prijatelj_id
         ]);
@@ -99,4 +101,16 @@ class TrkacController extends Controller
             return response()->json('Trkač kog želite da obrišete ne postoji u bazi podataka!');
         }
     }
+
+    public function getMestoInfo($id)
+    {
+        $trkac = Trkac::find($id);
+
+        if (!$trkac) {
+            return response()->json(['error' => 'Trkac nije pronadjen'], 404);
+        }
+
+        return response()->json(['mesto' => $trkac->mesto]);
+    }
+
 }

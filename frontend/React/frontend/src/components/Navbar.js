@@ -48,6 +48,9 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
               statistike
             </Link>
           </li>
+          <li>
+          <Link to="/map" className="navbar-link">Map</Link>
+        </li>
         </>
       );
     } else if (korisnik.role === 'user') {
@@ -79,6 +82,9 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
               statistike
             </Link>
           </li>
+          <li>
+          <Link to="/map" className="navbar-link">Map</Link>
+        </li>
         </>
       );
     }else{
@@ -109,6 +115,9 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
               statistike
             </Link>
           </li>
+          <li>
+          <Link to="/map" className="navbar-link">Map</Link>
+        </li>
         </>
       );
     }
