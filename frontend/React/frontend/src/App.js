@@ -24,6 +24,7 @@ import Runners from "./components/Runners";
 import PlanRun from "./components/PlanRun";
 import StatisticRun from "./components/StatisticRun";
 import MapPage from "./components/MapPage";
+import EndRun from './components/EndRun';
 
 function App() {
 
@@ -259,15 +260,9 @@ function App() {
       />
     }
   />
-  <Route
-    path="/moji-planovi"
-    element={<MyPlans data={plns} deleteAPlan={deletePln} isDarkMode={isDarkMode} />}
-  />
+  <Route path="/moji-planovi" element={<MyPlans data={plns} deleteAPlan={deletePln} isDarkMode={isDarkMode} />}/>
   <Route path="/registracija" element={<Registration />} />
-  <Route
-            path="/login"
-            element={<Login updateToken={(token) => setToken(token)} />}
-          ></Route>
+  <Route path="/login"  element={<Login updateToken={(token) => setToken(token)} />} ></Route>
   <Route path="/logout" element={<Navigate to="/" />}></Route>
   <Route path="/moj-nalog" element={<Profile />} />
   <Route path="/kreiraj-plan" element={<KreirajPlan />} />
@@ -275,7 +270,7 @@ function App() {
   <Route path="/planovi-trka" element={<PlanRun />} />
   <Route path="/statistike-trke" element={<StatisticRun />} />
   <Route path="/map" element={<MapPage />} />
-
+  <Route path="/zavrsi-trku/:planId" element={<EndRun />} />
 
 
 </Routes>

@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { apiService } from './ApiService';
 import Swal from 'sweetalert2';
 import './PlanRun.css';
+import { useNavigate } from "react-router-dom";
 
 const PlanRun = () => {
+  const navigate = useNavigate();
   const [planoviTrka, setPlanoviTrka] = useState([]);
   const [komentari, setKomentari] = useState({});
   const [noviKomentari, setNoviKomentari] = useState({});
   const [selectedPlanId, setSelectedPlanId] = useState(null);
-
   const [loadingComments, setLoadingComments] = useState(false);
+  const userRole = apiService.getLoginInfo().role;
 
   useEffect(() => {
     apiService.getPlanoviTrka().then((response) => {
@@ -25,17 +27,17 @@ const PlanRun = () => {
 
       if (komentariData.length > 0) {
         const htmlString = komentariData.map((komentar) => `<p>${komentar.Tekst}</p>`).join('');
-  
+
         console.log('Tekst komentara:', htmlString);
-        console.log('Komentari data:', komentariData); 
-  
+        console.log('Komentari data:', komentariData);
+
         Swal.fire({
           title: 'Komentari',
           html: htmlString,
           icon: 'info',
           showConfirmButton: false,
           customClass: {
-            content: 'left-align', 
+            content: 'left-align',
           },
         });
       } else {
@@ -51,7 +53,6 @@ const PlanRun = () => {
       setLoadingComments(false);
     }
   };
-  
 
   const handleKomentarSubmit = async (planTrkeId) => {
     try {
@@ -70,17 +71,24 @@ const PlanRun = () => {
     }
   };
 
-
   const handlePrikaziKomentare = async (planTrkeId) => {
     try {
       setLoadingComments(true);
       setSelectedPlanId(planTrkeId);
       await fetchKomentari(planTrkeId);
+
+      if (userRole === "user") {
+        navigate(`/komentari/${planTrkeId}`);
+      }
     } finally {
       setLoadingComments(false);
     }
   };
-  
+
+  const handleZavrsiTrku = (planId) => {
+    navigate(`/zavrsi-trku/${planId}`);
+  };
+
   return (
     <div>
       <h1>Svi planovi trka</h1>
@@ -104,10 +112,22 @@ const PlanRun = () => {
               <td>{plan.planirani_km}</td>
               <td>
                 <div>
-                  
-                  <button onClick={() => handleKomentarSubmit(plan.id)}>Dodaj komentar</button>
-
-                  <button onClick={() => handlePrikaziKomentare(plan.id)}>Prikaži komentare</button>
+                  {userRole === "user" && (
+                    <button onClick={() => handlePrikaziKomentare(plan.id)}>Prikaži komentare</button>
+                  )}
+                  {userRole === "trkac" && (
+                    <>
+                      <input
+                        type="text"
+                        placeholder="Unesite komentar"
+                        value={noviKomentari[plan.id] || ''}
+                        onChange={(e) => setNoviKomentari({ ...noviKomentari, [plan.id]: e.target.value })}
+                      />
+                      <button onClick={() => handleKomentarSubmit(plan.id)}>Dodaj komentar</button>
+                      <button onClick={() => handlePrikaziKomentare(plan.id)}>Prikaži komentare</button>
+                      <button onClick={() => handleZavrsiTrku(plan.id)}>Završi trku</button>
+                    </>
+                  )}
                 </div>
               </td>
             </tr>

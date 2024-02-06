@@ -43,10 +43,6 @@ class ApiService {
     return { role, email,id };
   }
 
-
-  
-
-  
   getLoggedInTrkac() {
     const token = this.getToken();
     const { id } = this.getLoginInfo(); 
@@ -69,7 +65,6 @@ class ApiService {
       });
   }
   
-
   async uploadProfileImage(file) {
     try {
       const formData = new FormData();
@@ -102,22 +97,12 @@ class ApiService {
           },
         }
       );
-
-      // Vraćate odgovor sa servera
       return response.data;
     } catch (error) {
       console.error("Error creating running plan:", error);
       throw error;
     }
   }
-
-
-
-
-
-
-
-
 
   getTrkaci() {
     return axios.get("http://localhost:8000/api/trkaci");
@@ -213,23 +198,27 @@ class ApiService {
       throw error;
     }
   }
-
-
-
-
-
-
-
-
-  async getTrkacInfo(trkacId) {
+  async createRunningPlan(formData) {
     try {
-      const response = await axios.get(`http://localhost:8000/api/trkaci/${trkacId}`);
+      const response = await axios.post(
+        "http://localhost:8000/api/statistike-trke", 
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${this.getToken()}`,
+          },
+        }
+      );
       return response.data;
     } catch (error) {
-      console.error('Greška pri dohvatanju informacija o trkaču:', error);
+      console.error("Error creating running plan:", error);
       throw error;
     }
+
   }
+
+
+
 
 
 };

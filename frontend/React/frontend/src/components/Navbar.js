@@ -24,9 +24,9 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
           </li>
           
           <li className="navbar-item">
-            <Link to="/logout" className="navbar-link">
+          <Link to="/logout" className="navbar-link"  onClick={() => { apiService.logout();  }}>
               Odjavi se
-            </Link>
+          </Link>
           </li>
           <li className="navbar-item">
             <Link to="/moj-nalog" className="navbar-link">
@@ -40,7 +40,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
           </li>
           <li className="navbar-item">
             <Link to="/statistike-trke" className="navbar-link">
-              statistike
+              Statistike
             </Link>
           </li>
           <li>
@@ -74,6 +74,11 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
           </li>
           <li>
           <Link to="/map" className="navbar-link">Map</Link>
+        </li>
+        <li>
+        <Link to="/logout" className="navbar-link" onClick={() => { apiService.logout();  }}>
+              Odjavi se
+          </Link>
         </li>
         </>
       );
