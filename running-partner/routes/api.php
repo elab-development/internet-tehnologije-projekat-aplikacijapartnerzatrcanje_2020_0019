@@ -21,8 +21,8 @@ use App\Http\Controllers\SlikaController;
 |
 */
 // routes/web.php ili routes/api.php
-
-
+Route::get('/trkaci/{id}', [TrkacController::class, 'show']);
+Route::get('/komentari/{planTrkeId}', [KomentarController::class, 'getKomentariOnPlanTrke']);
 Route::get('/trkaci', [TrkacController::class, 'index']);
 Route::get('/trkaci/{id}/mesto', [TrkacController::class, 'getMestoInfo']);
 
@@ -68,7 +68,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::middleware(['App\Http\Middleware\CheckUserRole:trkac'])->group(function () {
 
         Route::prefix('trkaci')->group(function () {
-            Route::get('/{id}', [TrkacController::class, 'show']);
+
             Route::post('/', [TrkacController::class, 'store']);
             Route::put('/{id}', [TrkacController::class, 'update']);
             Route::delete('/{id}', [TrkacController::class, 'destroy']);
@@ -90,6 +90,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/', [StatistikaTrkeController::class, 'store']);
             Route::get('/export/{trkac_id}', [StatistikaTrkeController::class, 'exportToCSV']);
         });
+
+        Route::prefix('komentari')->group(function () {
+            Route::post('/', [KomentarController::class, 'store']);
+
+        });
     });
 
     // Rute koje su dostupne samo ulozi 'user'
@@ -97,7 +102,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
         Route::prefix('komentari')->group(function () {
-            Route::post('/', [KomentarController::class, 'store']);
             Route::delete('/{id}', [KomentarController::class, 'destroy']);
         });
     });

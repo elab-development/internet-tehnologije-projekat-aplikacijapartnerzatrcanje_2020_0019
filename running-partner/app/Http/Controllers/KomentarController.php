@@ -70,4 +70,12 @@ class KomentarController extends Controller
         }
     }
 
+
+
+    public function getKomentariOnPlanTrke($planTrkeId)
+    {
+        $komentari = Komentar::where('plan_trke_id', $planTrkeId)->get();
+        return response()->json(['data' => KomentarResource::collection($komentari)]);
+    }
+
 }

@@ -193,6 +193,26 @@ class ApiService {
   }
 
 
+  getKomentari(planTrkeId){
+    return axios.get(`http://localhost:8000/api/komentari/${planTrkeId}`)
+      .then((response) => response.data.data || [])
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  async addKomentar(komentarData){
+    try {
+      const response = await axios.post(`http://localhost:8000/api/komentari`, komentarData, {
+        headers: {
+          Authorization: `Bearer ${apiService.getToken()}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 
 
 
@@ -201,9 +221,19 @@ class ApiService {
 
 
 
+  async getTrkacInfo(trkacId) {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/trkaci/${trkacId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Greška pri dohvatanju informacija o trkaču:', error);
+      throw error;
+    }
+  }
 
-  
-}
+
+};
+
 
 
 let apiService = new ApiService();
