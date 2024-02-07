@@ -1,58 +1,15 @@
 import React from "react";
 import "./Footer.css";
-import { Button } from "./Button";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import Swal from "sweetalert2";
+
 
 
 function Footer({ isDarkMode }) {
-  const [buttonClick, setButtonClick] = useState("");
-
-  const onClick = () => {
-    if (buttonClick !== "") {
-      setButtonClick("");
-      setTimeout(() => {
-        Swal.fire({
-          title: "Tvoja prijava na naš newsletter je uspešna.",
-          text: "Hvala na interesovanju!",
-          icon: "success",
-          confirmButtonText: "OK",
-          confirmButtonColor: "indianred",
-        });
-      }, 10);
-    }
-  };
-
-  const onChange = (e) => {
-    setButtonClick(e.target.value);
-  };
+ 
 
   return (
     <div className={`footer-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-      <section className="footer-subscription">
-        <p className="footer-subscription-heading">
-          Prijavi se na naš newsletter i saznaj najnovije informacije pre svih!
-        </p>
-        <p className="footer-subscription-text">
-          Možeš se odjaviti u bilo kom trenutku.
-        </p>
-        <div className="input-areas">
-          <form>
-            <input
-              className="footer-input"
-              name="email"
-              type="email"
-              placeholder="Unesi svoju email adresu."
-              value={buttonClick}
-              onChange={onChange}
-            />
-            <Button buttonStyle="btn--outline" onClick={onClick} link={"#"}>
-              Prijavi se!
-            </Button>
-          </form>
-        </div>
-      </section>
+      
       <section class="social-media">
         <div class="social-media-wrap">
           <div class="footer-logo">

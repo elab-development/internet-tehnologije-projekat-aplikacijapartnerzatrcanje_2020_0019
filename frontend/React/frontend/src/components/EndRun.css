@@ -1,50 +1,78 @@
+.outer-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 60%;
-    max-width: 500px;
-  }
-  
-  h1 {
-    margin-bottom: 2rem;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    max-width: 300px;
-  }
-  
-  label {
-    margin-bottom: 0.5rem;
-    text-align: left;
-    width: 100%;
-  }
-  
-  input {
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    margin-bottom: 1rem;
-    width: 100%;
-  }
-  
-  button {
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  button:disabled {
-    background-color: #c0c0c0;
-    cursor: not-allowed;
-  }
+  display: flex;
+  flex-direction: row; /* Postavljanje horizontalnog rasporeda elemenata */
+  align-items: center;
+  width: 60%;
+  max-width: 800px; /* Povećao širinu .container-a kako bi stanovao i .image-container */
+  height: 640px;
+  margin-top: 60px;
+}
+
+.image-container {
+  margin-right: 20px;
+  margin-top: 100px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  max-width: 400px;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  text-align: left;
+  width: 100%;
+}
+
+input {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+button {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+.background-behind-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #333; /* Promenite ovde boju */
+  z-index: -1; /* Postavite z-index na manje od z-indexa .container-kreiraj-plan */
+}

@@ -3,7 +3,7 @@ import { apiService } from './ApiService';
 import Swal from 'sweetalert2';
 import './PlanRun.css';
 import { useNavigate } from "react-router-dom";
-import { Button } from './Button';  
+import { Button } from './Button';
 
 const PlanRun = () => {
   const navigate = useNavigate();
@@ -93,38 +93,38 @@ const PlanRun = () => {
   return (
     <div className="comments-run-container" style={{ textAlign: 'center' }}>
       <h1>Svi planovi trka</h1>
-      <table className="comments-table" style={{ margin: 'auto', marginBottom:"100px" }}>
+      <table className="comments-table" style={{ margin: 'auto', marginBottom: "100px" }}>
         <thead>
           <tr>
-          <th style={{ color: 'white' }}>Vreme</th>
-          <th style={{ color: 'white' }}>Mesto</th>
-          <th style={{ color: 'white', width:"400px" }}>Datum</th>
-          <th style={{ color: 'white'}}>Planirani kilometri</th>
-          <th style={{ color: 'white', width:"400px" }}>Komentari</th>
-          <th style={{ color: 'white' }}>Akcije</th>
-            
+            <th style={{ color: 'white' }}>Vreme</th>
+            <th style={{ color: 'white' }}>Mesto</th>
+            <th style={{ color: 'white', width: "400px" }}>Datum</th>
+            <th style={{ color: 'white' }}>Planirani kilometri</th>
+            <th style={{ color: 'white', width: "400px" }}>Komentari</th>
+            <th style={{ color: 'white' }}>Akcije</th>
+
           </tr>
         </thead>
         <tbody>
           {planoviTrka.map((plan) => (
             <tr key={plan.id}>
               <td style={{ color: 'white' }}>{plan.vreme}</td>
-            <td style={{ color: 'white' }}>{plan.mesto}</td>
-            <td style={{ color: 'white' }}>{plan.datum}</td>
-            <td style={{ color: 'white' }}>{plan.planirani_km}</td>
-            
+              <td style={{ color: 'white' }}>{plan.mesto}</td>
+              <td style={{ color: 'white' }}>{plan.datum}</td>
+              <td style={{ color: 'white' }}>{plan.planirani_km}</td>
+
               <td>
                 <div>
                   {userRole === "user" && (
                     <Button
-                    type="button"
-                    onClick={() => handlePrikaziKomentare(plan.id)}
-                    buttonStyle="btn--outline"
-                    buttonSize="btn--medium"
+                      type="button"
+                      onClick={() => handlePrikaziKomentare(plan.id)}
+                      buttonStyle="btn--outline"
+                      buttonSize="btn--medium"
                     >
-                    Prikaži komentare
-                   </Button>
-                    
+                      Prikaži komentare
+                    </Button>
+
                   )}
                   {userRole === "trkac" && (
                     <>
@@ -133,46 +133,43 @@ const PlanRun = () => {
                         placeholder="Unesite komentar"
                         value={noviKomentari[plan.id] || ''}
                         onChange={(e) => setNoviKomentari({ ...noviKomentari, [plan.id]: e.target.value })}
-                        style={{ width: '130px' }} 
+                        style={{ width: '130px' }}
                       />
                       <Button
-                       type="button"
-                       onClick={() => handleKomentarSubmit(plan.id)}
-                       buttonStyle="btn--outline"
-                       buttonSize="btn--medium"
-                       >
-                       Dodaj komentar
+                        type="button"
+                        onClick={() => handleKomentarSubmit(plan.id)}
+                        buttonStyle="btn--outline"
+                        buttonSize="btn--medium"
+                      >
+                        Dodaj komentar
                       </Button>
                       <Button
-                       type="button"
-                       onClick={() => handlePrikaziKomentare(plan.id)}
-                       buttonStyle="btn--outline"
-                       buttonSize="btn--medium"
-                       style={{ marginTop: '20px' }}
-                       >
-                       Prikaži komentare
+                        type="button"
+                        onClick={() => handlePrikaziKomentare(plan.id)}
+                        buttonStyle="btn--outline"
+                        buttonSize="btn--medium"
+                        style={{ marginTop: '20px' }}
+                      >
+                        Prikaži komentare
                       </Button>
-
-                    
-              
                     </>
                   )}
                 </div>
               </td>
               <td>
-              <button onClick={() => handleZavrsiTrku(plan.id)}
-                      style={{
-                        backgroundColor: '#ba714c',
-                        color: '#ffffff',  // Dodajte belu boju za tekst kako bi bio vidljiv
-                        padding: '10px 15px',  // Prilagodite veličinu i prostor oko teksta prema potrebi
-                        border: 'none',
-                        borderRadius: '10px',
-                        width:"120px",
-                        cursor: 'pointer',
-                      }}
-                      onMouseOver={(e) => e.target.style.backgroundColor = '#302e2d'}
-                      onMouseOut={(e) => e.target.style.backgroundColor = '#ba714c'}
-                      >Završi trku</button>
+                <button onClick={() => handleZavrsiTrku(plan.id)}
+                  style={{
+                    backgroundColor: '#ba714c',
+                    color: '#ffffff',
+                    padding: '10px 15px',
+                    border: 'none',
+                    borderRadius: '10px',
+                    width: "120px",
+                    cursor: 'pointer',
+                  }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#302e2d'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#ba714c'}
+                >Završi trku</button>
               </td>
             </tr>
           ))}

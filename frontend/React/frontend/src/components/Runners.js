@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { apiService } from './ApiService';
 import './Runners.css';
+import './Comments.css';
 
 const Runners = () => {
   const [trkaci, setTrkaci] = useState([]);
@@ -9,13 +10,12 @@ const Runners = () => {
   const [selectedFriends, setSelectedFriends] = useState({});
   const [allRunnersForSelect, setAllRunnersForSelect] = useState([]);
 
+
   useEffect(() => {
     apiService.getTrkaci().then((response) => {
       setAllRunnersForSelect(response.data.data || []);
     });
   }, []);
-
-
 
   useEffect(() => {
     apiService.getTrkaciFilter({ pol: polFilter, page: currentPage }).then((response) => {
@@ -25,7 +25,7 @@ const Runners = () => {
 
   const handleFilter = (pol) => {
     setPolFilter(pol);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const handlePageChange = (newPage) => {
@@ -42,12 +42,9 @@ const Runners = () => {
       alert('Došlo je do greške pri dodavanju prijatelja.');
     }
   };
-  
-
-
 
   return (
-    <div className="runners-container">
+    <div className="comments-run-container">
       <h1>Svi trkači</h1>
 
       <div className="filter-buttons">
@@ -56,38 +53,56 @@ const Runners = () => {
         <button onClick={() => handleFilter("zensko")} className={polFilter === 'zensko' ? 'active' : ''}>Žensko</button>
       </div>
 
-      <table>
+      <table className="comments-table">
         <thead>
           <tr>
-            <th>Ime</th>
-            <th>Prezime</th>
-            <th>Email</th>
-            <th>Pol</th>
-            <th>Datum rođenja</th>
+            <th style={{ color: 'white' }}>Ime</th>
+            <th style={{ color: 'white' }}>Prezime</th>
+            <th style={{ color: 'white' }}>Email</th>
+            <th style={{ color: 'white' }}>Pol</th>
+            <th style={{ color: 'white' }}>Datum rođenja</th>
           </tr>
         </thead>
         <tbody>
-        {trkaci && trkaci.map((trkac) => (
-  <tr key={trkac.id}>
-    <td>{trkac.ime}</td>
-    <td>{trkac.prezime}</td>
-    <td>{trkac.email}</td>
-    <td>{trkac.pol}</td>
-    <td>{trkac.datum_rodjenja}</td>
+          {trkaci && trkaci.map((trkac) => (
+            <tr key={trkac.id}>
+              <td style={{ color: 'white' }}>{trkac.ime}</td>
+              <td style={{ color: 'white' }}>{trkac.prezime}</td>
+              <td style={{ color: 'white' }}>{trkac.email}</td>
+              <td style={{ color: 'white' }}>{trkac.pol}</td>
+              <td style={{ color: 'white' }}>{trkac.datum_rodjenja}</td>
 
-    <td>
-                <button onClick={() => addFriend(trkac.id)}>Dodaj prijatelja</button>
+              <td>
+
+                <button
+                  style={{
+                    padding: "10px",
+                    borderRadius: "8px",
+                    backgroundColor: "#ba714c",
+                    color: "#fff",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "background-color 0.3s ease",
+                  }}
+
+                  onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#302e2d')}
+                  onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#ba714c')}
+                  onClick={() => addFriend(trkac.id)}
+                >
+                  Dodaj prijatelja
+                </button>
               </td>
-  </tr>
-))}
+            </tr>
+          ))}
         </tbody>
       </table>
 
-   
+
       <div className="pagination-buttons">
         <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>Prethodna stranica</button>
         <button onClick={() => handlePageChange(currentPage + 1)}>Sledeća stranica</button>
       </div>
+      <div className="background-behind-container"></div>
     </div>
   );
 };

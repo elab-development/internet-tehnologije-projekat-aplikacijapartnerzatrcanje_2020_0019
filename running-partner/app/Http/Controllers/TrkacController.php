@@ -21,7 +21,7 @@ class TrkacController extends Controller
             $query->where('pol', $request->pol);
         }
 
-        $trkaci = $query->paginate(3);
+        $trkaci = $query->paginate(6);
 
         return TrkacResource::collection($trkaci);
     }

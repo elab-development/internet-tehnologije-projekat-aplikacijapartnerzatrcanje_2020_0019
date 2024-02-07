@@ -7,9 +7,11 @@ import Image1 from "../assets/marko.jpg";
 import Image2 from "../assets/jasna.jpeg";
 import Image3 from "../assets/milica.jpeg";
 import Naslovna from "../assets/naslovnaTrkac.png";
-import Counter from './Counter'; 
+import Counter from './Counter';
+import { apiService } from "./ApiService";
 
 function MainSection() {
+  const userRole = apiService.getLoginInfo().role;
   const clients = [
     {
       name: "Marko",
@@ -34,25 +36,39 @@ function MainSection() {
       <div className="main-container">
         <image src={Naslovna} />
         <h1>Pronađi i ti svog idealnog partnera za trčanje</h1>
-        <Button
+
+
+        {userRole === 'trkac' ? (
+          <Button
             buttonStyle="btn--outline"
             buttonSize="btn--large"
             onClick={() => {
-              window.location.href = "/pronadji-prijatelja";
-            }}>
+              window.location.href = "/kreiraj-plan";
+            }}
+          >
+            KREIRAJ PLAN TRKE!
+          </Button>
+        ) : userRole === 'user' ? null : (
+          <Button
+            buttonStyle="btn--outline"
+            buttonSize="btn--large"
+            onClick={() => {
+              window.location.href = "/login";
+            }}
+          >
             PRIDRUŽI SE TRKAČIMA!
           </Button>
-
+        )}
         <div className="main-btns">
         </div>
       </div>
       <div className="main-text">
-       
+
         <h3>Running-Partner aplikacija je tvoj idealan saputnik u trcanju!</h3>
         <Counter />
-       
+
         <p>
-        Sa Running-Partner, trčanje postaje još uzbudljivije - pridruži se zajednici koja te podržava i motiviše! 🏃‍♂️🌍✨
+          Sa Running-Partner, trčanje postaje još uzbudljivije - pridruži se zajednici koja te podržava i motiviše! 🏃‍♂️🌍✨
         </p>
       </div>
       <div className="main-clients">
@@ -61,7 +77,7 @@ function MainSection() {
           data1={clients}
           type="clients"></Cards>
       </div>
-      
+
     </>
   );
 }

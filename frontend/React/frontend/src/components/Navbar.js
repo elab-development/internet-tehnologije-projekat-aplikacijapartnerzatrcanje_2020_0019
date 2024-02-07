@@ -5,6 +5,7 @@ import logo from '../assets/logo.png';
 import moonIcon from '../assets/svetla.png';
 import sunIcon from '../assets/tamna.png';
 import { apiService } from './ApiService';
+import User from '../assets/user.png';
 
 
 const Navbar = ({ isDarkMode, toggleDarkMode }) => {
@@ -29,11 +30,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
               Odjavi se
           </Link>
           </li>
-          <li className="navbar-item">
-            <Link to="/moj-nalog" className="navbar-link">
-              Moj nalog
-            </Link>
-          </li>
+          
           <li className="navbar-item">
             <Link to="/planovi-trka" className="navbar-link">
               Planovi trka
@@ -47,6 +44,12 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
           <li>
           <Link to="/map" className="navbar-link">Map</Link>
         </li>
+        <li className="navbar-item">
+            <Link to="/moj-nalog" className="navbar-link">
+            <img src={User} alt="Moj nalog" 
+            style={{ width: '100px', height: '100px' }} />
+            </Link>
+          </li>
         </>
       );
     } else if (korisnik.role === 'user') {
@@ -115,15 +118,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
       </div>
       <ul className="navbar-nav">
         {renderAuthLinks()}
-        <li className="navbar-item" style={{ marginLeft: '13px' }}>
-          <img
-            className="theme-toggle"
-            src={isDarkMode ? moonIcon : sunIcon}
-            alt={isDarkMode ? 'Svetli mod' : 'Tamni mod'}
-            onClick={toggleDarkMode}
-            style={{ width: '40px', height: '40px' }}
-          />
-        </li>
+       
       </ul>
     </nav>
   );

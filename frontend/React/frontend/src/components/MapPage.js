@@ -12,9 +12,9 @@ const MapPage = () => {
 
   const myIcon = new L.Icon({
     iconUrl: mapaPin,
-    iconSize: [40, 40], 
-    iconAnchor: [12, 41], 
-    popupAnchor: [1, -34], 
+    iconSize: [60, 60],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
   });
 
   const [trkaci, setTrkaci] = useState([]);
@@ -28,13 +28,17 @@ const MapPage = () => {
 
   useEffect(() => {
     const fetchMarkers = async () => {
+      console.log("Fetching markers...");
+
       const markersArray = await Promise.all(
         trkaci.map(async (trkac) => {
+          console.log(`Fetching location for ${trkac.ime}...`);
           const locationResponse = await apiService.getMestoInfo(trkac.id);
 
           if (locationResponse && locationResponse.data) {
             const position = await geocodeAddress(locationResponse.data.mesto);
             if (position) {
+              console.log(`Location found for ${trkac.ime}: ${position}`);
               return {
                 id: trkac.id,
                 position: position,
@@ -42,12 +46,14 @@ const MapPage = () => {
               };
             }
           }
+          console.log(`Location not found for ${trkac.ime}`);
           return null;
         })
       );
-      setMarkers(markersArray.filter((marker) => marker !== null));
-    };
 
+      setMarkers(markersArray.filter((marker) => marker !== null));
+      console.log("Markers fetched:", markersArray);
+    };
     if (trkaci.length > 0) {
       fetchMarkers();
     }
@@ -94,22 +100,33 @@ const MapPage = () => {
         ))}
       </MapContainer>
 
-      <div style={{ margin: "10px 0" }}>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
         <Link to="/trkaci">
-          <button
-            style={{ padding: "10px", borderRadius: "8px" }}
-            onClick={() => {
 
+          <button
+            style={{
+              padding: "10px",
+              borderRadius: "8px",
+              backgroundColor: "#ba714c",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
+              transition: "background-color 0.3s ease",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#302e2d')}
+            onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#ba714c')}
+            onClick={() => {
               console.log("Klik na dugme");
             }}
           >
-            Prikaz svih trkaca
+            Prikaz svih trkača
           </button>
         </Link>
       </div>
 
 
-      <WeatherApi/>
+      <WeatherApi />
+      <div className="background-behind-container"></div>
     </div>
   );
 };

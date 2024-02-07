@@ -44,6 +44,7 @@ function WeatherApi() {
               fontSize: "18px",
               padding: "8px",
               marginRight: "5px", 
+              marginTop: "15px",
               width: "250px", 
               height: "40px", 
             }}
