@@ -17,7 +17,7 @@ const EndRun = () => {
 
   const handlePotvrdi = async () => {
     try {
-      await apiService.createRunningPlan({
+      await apiService.createRunningStatistics({
         ukupno_vreme: ukupnoVreme,
         predjeni_km: predjeniKm,
         plan_trke_id: planId,

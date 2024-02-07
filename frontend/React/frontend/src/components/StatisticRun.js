@@ -45,30 +45,34 @@ const StatisticRun = () => {
     <div className="statistic-run-container"> 
       <h1>Statistike trčanja</h1>
       <table className="statistic-table"> 
-        <thead>
-          <tr>
-            <th>Ukupno vreme</th>
-            <th>Predjeni kilometri</th>
-            <th>Prosecna brzina</th>
-          </tr>
-        </thead>
-        <tbody>
-          {statistike.map((statistika) => (
-            <tr key={statistika.id}>
-              <td>{statistika.ukupno_vreme}</td>
-              <td>{statistika.predjeni_km}</td>
-              <td>{statistika.prosecna_brzina}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <Button
-        type="button"
-   onClick={handleDownload}
-        buttonStyle="btn--outline"
-        buttonSize="btn--medium">
-        Preuzmi statistiku
-      </Button>
+  <thead>
+    <tr>
+      <th style={{ color: 'white' }}>Ukupno vreme</th>
+      <th style={{ color: 'white' }}>Predjeni kilometri</th>
+      <th style={{ color: 'white' }}>Prosecna brzina</th>
+    </tr>
+  </thead>
+  <tbody>
+    {statistike.map((statistika) => (
+      <tr key={statistika.id}>
+        <td style={{ color: 'white' }}>{statistika.ukupno_vreme}</td>
+        <td style={{ color: 'white' }}>{statistika.predjeni_km}</td>
+        <td style={{ color: 'white' }}>{statistika.prosecna_brzina}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+      <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+  <Button
+    type="button"
+    onClick={handleDownload}
+    buttonStyle="btn--outline"
+    buttonSize="btn--medium"
+  >
+    Preuzmi statistiku
+  </Button>
+</div>
+      <div className="background-behind-container"></div>
     </div>
   );
 };

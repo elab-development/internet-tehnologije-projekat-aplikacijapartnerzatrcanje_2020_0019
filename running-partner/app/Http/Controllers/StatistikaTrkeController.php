@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\StatistikaTrke;
 use App\Http\Resources\StatistikaTrkeResource;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+
 
 class StatistikaTrkeController extends Controller
 {
@@ -127,6 +129,25 @@ class StatistikaTrkeController extends Controller
         );
     }
 
+    public function prosecnaBrzina($statistikaId)
+    {
+        $prosecnaBrzina = DB::table('statistika_trkes')
+            ->where('id', $statistikaId)
+            ->select(DB::raw('AVG(predjeni_km / ukupno_vreme) as prosecna_brzina'))
+            ->first();
+
+        if (!$prosecnaBrzina) {
+            return response()->json(['error' => 'Podaci nisu pronađeni.'], 404);
+        }
+
+
+        DB::table('statistika_trkes')
+            ->where('id', $statistikaId)
+            ->update(['prosecna_brzina' => $prosecnaBrzina->prosecna_brzina]);
+
+
+        return response()->json(['prosecna_brzina' => $prosecnaBrzina->prosecna_brzina]);
+    }
 
 
 

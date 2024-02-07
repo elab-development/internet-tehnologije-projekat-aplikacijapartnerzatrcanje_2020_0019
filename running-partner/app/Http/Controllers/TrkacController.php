@@ -34,7 +34,7 @@ class TrkacController extends Controller
             'email' => 'required|email|unique:trkacs',
             'password' => 'required|string|min:6',
             'pol' => 'required|in:musko,zensko',
-            'mesto' => 'required|string|max:100',
+            'mesto' => 'required|string|max:255',
             'datum_rodjenja' => 'required|date',
             'prijatelj_id' => 'nullable|exists:trkacs,id'
         ]);

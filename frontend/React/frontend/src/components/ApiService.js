@@ -198,7 +198,7 @@ class ApiService {
       throw error;
     }
   }
-  async createRunningPlan(formData) {
+  async createRunningStatistics(formData) {
     try {
       const response = await axios.post(
         "http://localhost:8000/api/statistike-trke", 

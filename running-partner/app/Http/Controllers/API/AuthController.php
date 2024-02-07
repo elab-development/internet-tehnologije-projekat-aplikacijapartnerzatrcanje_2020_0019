@@ -19,6 +19,7 @@ class AuthController extends Controller
             'prezime' => 'required|string|max:255',
             'datum_rodjenja' => 'required|date',
             'pol' => 'required|in:musko,zensko',
+            'mesto' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:trkacs',
             'password' => 'required|string|min:8',
             'prijatelj_id' => 'exists:trkacs,id',
@@ -35,6 +36,7 @@ class AuthController extends Controller
             'prezime' => $request->prezime,
             'datum_rodjenja' => $request->datum_rodjenja,
             'pol' => $request->pol,
+            'mesto' => $request->mesto,
             'password' => Hash::make($request->password),
         ];
 
