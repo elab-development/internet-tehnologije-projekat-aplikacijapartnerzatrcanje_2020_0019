@@ -49,7 +49,6 @@ Route::prefix('komentari')->group(function () {
     Route::get('/{id}', [KomentarController::class, 'show']);
 });
 Route::prefix('statistike-trke')->group(function () {
-    Route::get('/', [StatistikaTrkeController::class, 'index']);
     Route::get('/{trkac_id}', [StatistikaTrkeController::class, 'getStatistikeByTrkacId']);
 });
 
@@ -102,7 +101,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Rute koje su dostupne samo ulozi 'user'
     Route::middleware(['App\Http\Middleware\CheckUserRole:user'])->group(function () {
-
+        Route::get('/statistike-trke', [StatistikaTrkeController::class, 'index']);
 
         Route::prefix('komentari')->group(function () {
             Route::delete('/{id}', [KomentarController::class, 'destroy']);

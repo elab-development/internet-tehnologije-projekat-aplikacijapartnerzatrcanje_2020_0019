@@ -16,7 +16,7 @@ class StatistikaTrkeResource extends JsonResource
             'predjeni_km' => $this->predjeni_km,
             'prosecna_brzina' => $this->prosecna_brzina,
             'Trkac' => new TrkacResource($this->trkac),
-            'Plan trke' => new PlanTrkeResource($this->planTrka),
+            'Plan_trke' => new PlanTrkeResource($this->planTrka),
         ];
     }
 }

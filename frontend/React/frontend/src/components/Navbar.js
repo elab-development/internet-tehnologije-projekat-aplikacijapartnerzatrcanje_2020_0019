@@ -6,6 +6,7 @@ import moonIcon from '../assets/svetla.png';
 import sunIcon from '../assets/tamna.png';
 import { apiService } from './ApiService';
 
+
 const Navbar = ({ isDarkMode, toggleDarkMode }) => {
   const korisnik = apiService.getLoginInfo();
 
@@ -58,22 +59,20 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
             </Link>
           </li>
           <li className="navbar-item">
-            <Link to="/login" className="navbar-link">
-              Prijavi se
-            </Link>
-          </li>
-          <li className="navbar-item">
             <Link to="/planovi-trka" className="navbar-link">
               Planovi trka
             </Link>
           </li>
           <li className="navbar-item">
-            <Link to="/statistike-trke" className="navbar-link">
-              statistike
+            <Link to="/sve-statistike" className="navbar-link">
+              Sve statistike
             </Link>
           </li>
           <li>
           <Link to="/map" className="navbar-link">Map</Link>
+        </li>
+        <li>
+          <Link to="/komentari" className="navbar-link">Komentari</Link>
         </li>
         <li>
         <Link to="/logout" className="navbar-link" onClick={() => { apiService.logout();  }}>
@@ -85,6 +84,11 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
     }else{
       return (
         <>
+        <li className="navbar-item">
+            <Link to="/" className="navbar-link">
+              Početna
+            </Link>
+          </li>
           <li className="navbar-item">
           <Link to="/registracija" className="navbar-link">
                 Registruj se
@@ -95,19 +99,6 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
                 Prijavi se
               </Link>
             </li>
-          <li className="navbar-item">
-            <Link to="/planovi-trka" className="navbar-link">
-              Planovi trka
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <Link to="/statistike-trke" className="navbar-link">
-              statistike
-            </Link>
-          </li>
-          <li>
-          <Link to="/map" className="navbar-link">Map</Link>
-        </li>
         </>
       );
     }

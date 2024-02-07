@@ -43,12 +43,35 @@ const ImageUpload = ({ trkacId, onImageUpload }) => {
   };
 
   return (
-    <div>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
-      <button onClick={handleImageUpload} disabled={uploading}>
-        {uploading ? 'Uploading...' : 'Upload Image'}
-      </button>
-    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <input
+      type="file"
+      accept="image/*"
+      onChange={handleImageChange}
+      style={{ marginRight: '10px' }} 
+    />
+    <button
+      onClick={handleImageUpload}
+      disabled={uploading}
+      style={{
+        padding: '0.5rem 2rem',
+        height:"45px",
+    backgroundColor: '#333',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+    display: 'block',
+    marginBottom: "20px", 
+    width: '250px',
+      }}
+      onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#242424')}
+  onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#333')}
+    >
+      {uploading ? 'Uploading...' : 'Upload Image'}
+    </button>
+  </div>
   );
 };
 

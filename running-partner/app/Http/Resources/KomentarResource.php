@@ -15,7 +15,7 @@ class KomentarResource extends JsonResource
             'ID' => $this->resource->id,
             'Tekst' => $this->resource->tekst,
             'Trkac' => new TrkacResource($this->trkac),
-            'Plan trke' => new PlanTrkeResource($this->planTrke),
+            'Plan_trke' => new PlanTrkeResource($this->planTrke),
         ];
     }
 }

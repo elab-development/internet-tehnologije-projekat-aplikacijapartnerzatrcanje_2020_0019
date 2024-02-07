@@ -25,6 +25,8 @@ import PlanRun from "./components/PlanRun";
 import StatisticRun from "./components/StatisticRun";
 import MapPage from "./components/MapPage";
 import EndRun from './components/EndRun';
+import Comments from './components/Comments';
+import AllStatistics from './components/AllStatistics';
 
 function App() {
 
@@ -271,7 +273,8 @@ function App() {
   <Route path="/statistike-trke" element={<StatisticRun />} />
   <Route path="/map" element={<MapPage />} />
   <Route path="/zavrsi-trku/:planId" element={<EndRun />} />
-
+  <Route path="/komentari" element={<Comments />} />
+  <Route path="/sve-statistike" element={<AllStatistics />} />
 
 </Routes>
       <Footer isDarkMode={isDarkMode} />

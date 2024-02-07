@@ -232,6 +232,47 @@ class ApiService {
 
 
 
+  async getComments(){
+    try {
+      const response = await axios.get('http://localhost:8000/api/komentari');
+      console.log("komentari", response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+  
+  async deleteComment(commentId) {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8000/api/komentari/${commentId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${apiService.getToken()}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+  
+  async getAllStatistics(){
+    try {
+      const response = await axios.get(`http://localhost:8000/api/statistike-trke`, {
+        headers: {
+          Authorization: `Bearer ${apiService.getToken()}`,
+        },
+      }
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
 
 
 };
