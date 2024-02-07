@@ -23,7 +23,7 @@ use App\Http\Controllers\SlikaController;
 // routes/web.php ili routes/api.php
 
 
-Route::get('/statistike-trke/{statistikaId}', [StatistikaTrkeController::class, 'prosecnaBrzina']);
+Route::get('/statistika-trke/{statistikaId}', [StatistikaTrkeController::class, 'prosecnaBrzina']);
 Route::get('/trkaci/{id}', [TrkacController::class, 'show']);
 Route::get('/komentari/{planTrkeId}', [KomentarController::class, 'getKomentariOnPlanTrke']);
 Route::get('/trkaci', [TrkacController::class, 'index']);

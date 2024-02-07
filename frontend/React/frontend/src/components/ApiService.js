@@ -219,6 +219,19 @@ class ApiService {
 
 
 
+  async calculateAverageSpeed(statistikaId){
+    try {
+      const response = await axios.get(`http://localhost:8000/api/statistika-trke/${statistikaId}`);
+      console.log('statistiika',response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error creating average speed:", error);
+      throw error;
+    }
+  }
+
+
+
 
 
 };

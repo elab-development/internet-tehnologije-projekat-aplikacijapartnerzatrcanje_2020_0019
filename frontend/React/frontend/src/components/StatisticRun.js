@@ -5,6 +5,7 @@ import { Button } from './Button';
 
 const StatisticRun = () => {
   const [statistike, setStatistike] = useState([]);
+  const [selectedStatistika, setSelectedStatistika] = useState(null);
 
   useEffect(() => {
     const fetchStatistike = async () => {
@@ -41,6 +42,26 @@ const StatisticRun = () => {
     }
   };
 
+
+const handleAverageSpeed = async (statistikaId) => {
+  try {
+    console.log('id', statistikaId);
+    const result = await apiService.calculateAverageSpeed(statistikaId);
+    console.log('Prosečna brzina izračunata:', result);
+
+    setStatistike((prevStatistike) =>
+      prevStatistike.map((statistika) =>
+        statistika.id === statistikaId
+          ? { ...statistika, prosecna_brzina: result.prosecna_brzina.toFixed(2) }
+          : statistika
+      )
+    );
+  } catch (error) {
+    console.error('Greška pri izračunavanju prosečne brzine:', error);
+  }
+};
+
+
   return (
     <div className="statistic-run-container"> 
       <h1>Statistike trčanja</h1>
@@ -53,14 +74,27 @@ const StatisticRun = () => {
     </tr>
   </thead>
   <tbody>
-    {statistike.map((statistika) => (
-      <tr key={statistika.id}>
-        <td style={{ color: 'white' }}>{statistika.ukupno_vreme}</td>
-        <td style={{ color: 'white' }}>{statistika.predjeni_km}</td>
-        <td style={{ color: 'white' }}>{statistika.prosecna_brzina}</td>
-      </tr>
-    ))}
-  </tbody>
+          {statistike.map((statistika) => (
+            <tr key={statistika.id}>
+              <td style={{ color: 'white' }}>{statistika.ukupno_vreme}</td>
+              <td style={{ color: 'white' }}>{statistika.predjeni_km}</td>
+              <td style={{ color: 'white' }}>{selectedStatistika && selectedStatistika.id === statistika.id
+                ? selectedStatistika.prosecna_brzina
+                : statistika.prosecna_brzina ?? 'N/A'}
+              </td>
+              <td>
+                <Button
+                  type="button"
+                  onClick={() => handleAverageSpeed(statistika.id)}
+                  buttonStyle="btn--outline"
+                  buttonSize="btn--small"
+                >
+                  Izračunaj prosečnu brzinu
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody> 
 </table>
       <div style={{ textAlign: 'center', marginBottom: '10px' }}>
   <Button

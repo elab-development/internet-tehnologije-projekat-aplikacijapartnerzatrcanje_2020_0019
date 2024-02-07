@@ -11,6 +11,7 @@ class StatistikaTrkeResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'ukupno_vreme' => $this->ukupno_vreme,
             'predjeni_km' => $this->predjeni_km,
             'prosecna_brzina' => $this->prosecna_brzina,
