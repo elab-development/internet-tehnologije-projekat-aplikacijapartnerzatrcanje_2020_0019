@@ -2,25 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { apiService } from './ApiService';
 import './Runners.css';
 import './Comments.css';
+import DodajPrijatelja from "../assets/dodajPrijatelja.png";
+import Swal from 'sweetalert2';
 
 const Runners = () => {
   const [trkaci, setTrkaci] = useState([]);
   const [polFilter, setPolFilter] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedFriends, setSelectedFriends] = useState({});
   const [allRunnersForSelect, setAllRunnersForSelect] = useState([]);
 
-
   useEffect(() => {
-    apiService.getTrkaci().then((response) => {
-      setAllRunnersForSelect(response.data.data || []);
-    });
-  }, []);
+    const fetchTrkaci = async () => {
+      try {
+        const loggedInTrkacId = Number(apiService.getLoginInfo().id);
+        const trkaciResponse = await apiService.getTrkaciFilter({ pol: polFilter, page: currentPage });
+        const filteredTrkaci = trkaciResponse.data.data.filter(trkac => trkac.id !== loggedInTrkacId);
+        setTrkaci(filteredTrkaci);
+        setAllRunnersForSelect(filteredTrkaci);
+      } catch (error) {
+        console.error('Error fetching trkaci:', error);
+      }
+    };
 
-  useEffect(() => {
-    apiService.getTrkaciFilter({ pol: polFilter, page: currentPage }).then((response) => {
-      setTrkaci(response.data.data || []);
-    });
+    fetchTrkaci();
   }, [polFilter, currentPage]);
 
   const handleFilter = (pol) => {
@@ -28,23 +32,44 @@ const Runners = () => {
     setCurrentPage(1);
   };
 
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
+  const handlePageChange = async (newPage) => {
+    try {
+      const loggedInTrkacId = Number(apiService.getLoginInfo().id);
+      const trkaciResponse = await apiService.getTrkaciFilter({ pol: polFilter, page: newPage });
+      const filteredTrkaci = trkaciResponse.data.data.filter(trkac => trkac.id !== loggedInTrkacId);
+
+      if (filteredTrkaci.length > 0) {
+        setTrkaci(filteredTrkaci);
+        setCurrentPage(newPage);
+      } else {
+        console.log('No more items on the next page.');
+      }
+    } catch (error) {
+      console.error('Error fetching trkaci:', error);
+    }
   };
 
 
   const addFriend = async (trkacId) => {
     try {
       await apiService.addFriend(trkacId);
-      alert('Prijatelj je uspešno dodat.');
+      Swal.fire({
+        icon: 'success',
+        title: 'Uspešno dodat prijatelj!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       console.error('Greška pri dodavanju prijatelja:', error);
-      alert('Došlo je do greške pri dodavanju prijatelja.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Došlo je do greške prilikom dodavanja prijatelja.',
+      });
     }
   };
 
   return (
-    <div className="comments-run-container">
+    <div className="runners-container">
       <h1>Svi trkači</h1>
 
       <div className="filter-buttons">
@@ -53,49 +78,33 @@ const Runners = () => {
         <button onClick={() => handleFilter("zensko")} className={polFilter === 'zensko' ? 'active' : ''}>Žensko</button>
       </div>
 
-      <table className="comments-table">
-        <thead>
-          <tr>
-            <th style={{ color: 'white' }}>Ime</th>
-            <th style={{ color: 'white' }}>Prezime</th>
-            <th style={{ color: 'white' }}>Email</th>
-            <th style={{ color: 'white' }}>Pol</th>
-            <th style={{ color: 'white' }}>Datum rođenja</th>
-          </tr>
-        </thead>
-        <tbody>
-          {trkaci && trkaci.map((trkac) => (
-            <tr key={trkac.id}>
-              <td style={{ color: 'white' }}>{trkac.ime}</td>
-              <td style={{ color: 'white' }}>{trkac.prezime}</td>
-              <td style={{ color: 'white' }}>{trkac.email}</td>
-              <td style={{ color: 'white' }}>{trkac.pol}</td>
-              <td style={{ color: 'white' }}>{trkac.datum_rodjenja}</td>
+      <div className="runners-cards">
+        {allRunnersForSelect &&
+          allRunnersForSelect.map((trkac) => (
+            <div key={trkac.id} className="runner-card">
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div>
+                  <p style={{ color: 'white' }}>Ime: {trkac.ime}</p>
+                  <p style={{ color: 'white' }}>Prezime: {trkac.prezime}</p>
+                  <p style={{ color: 'white' }}>Email: {trkac.email}</p>
+                  <p style={{ color: 'white' }}>Pol: {trkac.pol}</p>
+                  <p style={{ color: 'white' }}>Datum rođenja: {trkac.datum_rodjenja}</p>
+                </div>
 
-              <td>
-
-                <button
+                <img
+                  src={DodajPrijatelja}
+                  alt="Dodaj prijatelja"
                   style={{
-                    padding: "10px",
-                    borderRadius: "8px",
-                    backgroundColor: "#ba714c",
-                    color: "#fff",
-                    border: "none",
-                    cursor: "pointer",
-                    transition: "background-color 0.3s ease",
+                    width: '30px',
+                    height: '30px',
+                    cursor: 'pointer',
                   }}
-
-                  onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#302e2d')}
-                  onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#ba714c')}
                   onClick={() => addFriend(trkac.id)}
-                >
-                  Dodaj prijatelja
-                </button>
-              </td>
-            </tr>
+                />
+              </div>
+            </div>
           ))}
-        </tbody>
-      </table>
+      </div>
 
 
       <div className="pagination-buttons">

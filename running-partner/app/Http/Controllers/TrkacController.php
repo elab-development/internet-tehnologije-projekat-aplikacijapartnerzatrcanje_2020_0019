@@ -77,19 +77,19 @@ class TrkacController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'prijatelj_id' => 'nullable|exists:trkacs,id',
+            'mesto' => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['Greška pri ažuriranju trkača!', $validator->errors()]);
         }
 
-        $trkac->prijatelj_id = $request->prijatelj_id;
-
+        $trkac->mesto = $request->mesto;
         $trkac->save();
 
-        return response()->json(['Trkač je ažuriran!', new TrkacResource($trkac)]);
+        return response()->json(['Mesto trkača je ažurirano!', new TrkacResource($trkac)]);
     }
+
 
     public function destroy($id)
     {

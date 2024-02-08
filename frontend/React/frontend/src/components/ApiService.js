@@ -157,9 +157,6 @@ class ApiService {
     return axios.get("http://localhost:8000/api/trkaci", { params });
   }
 
-
-
-
   async addFriend(trkacId, friendId) {
     try {
       const response = await axios.post(`http://localhost:8000/api/trkaci/${trkacId}/add-friend`, {
@@ -198,6 +195,7 @@ class ApiService {
       throw error;
     }
   }
+
   async createRunningStatistics(formData) {
     try {
       const response = await axios.post(
@@ -217,8 +215,6 @@ class ApiService {
 
   }
 
-
-
   async calculateAverageSpeed(statistikaId) {
     try {
       const response = await axios.get(`http://localhost:8000/api/statistika-trke/${statistikaId}`);
@@ -229,8 +225,6 @@ class ApiService {
       throw error;
     }
   }
-
-
 
   async getComments() {
     try {
@@ -273,7 +267,6 @@ class ApiService {
     }
   }
 
-
   async getTrkacImage(trkacId) {
     try {
       const response = await axios.get(`http://localhost:8000/api/trkaci/${trkacId}/slika`, {
@@ -289,11 +282,28 @@ class ApiService {
       throw error;
     }
   }
+
+  async updateTrkacMesto(trkacId, newMesto) {
+    try {
+      const response = await axios.put(
+        `http://localhost:8000/api/trkaci/${trkacId}`,
+        { mesto: newMesto },
+        {
+          headers: {
+            Authorization: `Bearer ${this.getToken()}`,
+          },
+        }
+      );
+
+      console.log('Server response after updating mesto:', response);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating mesto:', error);
+      throw error;
+    }
+  }
 };
 
-
-
 let apiService = new ApiService();
-
 
 export { apiService };

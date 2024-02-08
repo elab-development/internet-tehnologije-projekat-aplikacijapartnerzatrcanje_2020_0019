@@ -1,4 +1,3 @@
-
 .container-kreiraj-plan {
   max-width: 400px;
   max-height: 550px;
@@ -9,7 +8,7 @@
   border-radius: 8px;
   margin-top: 150px;
   margin-bottom: 150px;
-  
+
 }
 
 .title-kreiraj-plan {
@@ -51,12 +50,13 @@
 .button-kreiraj-plan:hover {
   background-color: #0056b3;
 }
+
 .background-behind-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #333; /* Promenite ovde boju */
-  z-index: -1; /* Postavite z-index na manje od z-indexa .container-kreiraj-plan */
+  background-color: #333;
+  z-index: -1;
 }

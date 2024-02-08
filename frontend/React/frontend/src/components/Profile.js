@@ -8,6 +8,7 @@ import ImageUpload from './ImageUpload';
 const Profile = () => {
   const [trkac, setTrkac] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
+  const [newMesto, setNewMesto] = useState('');
 
   useEffect(() => {
     const fetchLoggedInTrkac = async () => {
@@ -31,6 +32,18 @@ const Profile = () => {
   const handleImageUpload = (imageUrl) => {
     setProfileImage(imageUrl);
   };
+  const handleMestoChange = (e) => {
+    setNewMesto(e.target.value);
+  };
+
+  const handleUpdateMesto = async () => {
+    try {
+      await apiService.updateTrkacMesto(trkac.id, newMesto);
+    } catch (error) {
+      console.error('Greška pri ažuriranju mesta:', error);
+    }
+  };
+
 
   return (
     <div className="profile-container">
@@ -43,6 +56,16 @@ const Profile = () => {
           <p className="profile-gender">Pol: {trkac.pol}</p>
           <p className="profile-dob">Datum rođenja: {trkac.datum_rodjenja}</p>
           <p className="profile-location">Mesto: {trkac.mesto}</p>
+          <div>
+            <label htmlFor="newMesto">Novo mesto: </label>
+            <input
+              type="text"
+              id="newMesto"
+              value={newMesto}
+              onChange={handleMestoChange}
+            />
+            <button onClick={handleUpdateMesto}>Ažuriraj mesto</button>
+          </div>
 
         </>
       )}
