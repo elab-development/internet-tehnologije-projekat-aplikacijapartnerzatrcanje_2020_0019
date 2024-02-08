@@ -49,14 +49,14 @@ const Profile = () => {
     <div className="profile-container">
       {trkac && (
         <>
-          <h1 style={{ marginTop: '-10px' }}>Korisnički profil</h1>
+          <h1 style={{ marginTop: '-10px', color: "black" }}>Korisnički profil</h1>
           {profileImage && <img src={profileImage} alt="Profilna slika" className="profile-image" />}
           <p className="profile-name">{trkac.ime} {trkac.prezime}</p>
           <p className="profile-email">Email: {trkac.email}</p>
           <p className="profile-gender">Pol: {trkac.pol}</p>
           <p className="profile-dob">Datum rođenja: {trkac.datum_rodjenja}</p>
           <p className="profile-location">Mesto: {trkac.mesto}</p>
-          <div>
+          <div className="location">
             <label htmlFor="newMesto">Novo mesto: </label>
             <input
               type="text"

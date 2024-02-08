@@ -1,26 +1,47 @@
 .profile-container {
   max-width: 500px;
-  max-height: 600px;
+  max-height: 900px;
   margin: 40px auto;
   padding: 80px;
   border-radius: 8px;
-  background-color: #ba714c;
+  background-color: #ccc;
   text-align: center;
   margin-bottom: 100px;
   margin-top: 150px;
+  display: grid;
+  grid-template-rows: max-content auto;
+  grid-template-areas:
+    "header"
+    "image"
+    "name"
+    "email"
+    "gender"
+    "location"
+    "dob"
+    "button";
+  border: 5px solid #f27d04;
+  overflow: hidden;
 }
 
+.profile-image {
+  grid-area: image;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 20px auto 20px;
+  border: 5px solid #333;
+}
 
 .profile-name {
+  grid-area: name;
   font-size: 25px;
   font-weight: bold;
   margin: 0;
   line-height: 1.5;
-  color: white;
-  font-family: 'Novi Font', work-sans
+  color: black;
+  font-family: 'Novi Font', 'Work Sans', sans-serif;
 }
-
-
 
 .profile-email,
 .profile-gender,
@@ -28,31 +49,49 @@
 .profile-dob {
   font-size: 20px;
   margin-bottom: 16px;
-  text-align: left;
-  color: white;
+  text-align: center;
+  color: black;
   line-height: 1.2;
-  font-family: 'Novi Font', work-sans
+  font-family: 'Work Sans', sans-serif;
 }
 
-.profile-image {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-top: 10px;
+.location {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.location label {
+  margin-bottom: 0.5rem;
+  color: black;
+  font-size: 20px;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.location input[type="text"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  color: #000;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .profile-container button {
   padding: 0.5rem 2rem;
-  background-color: #333;
+  background-color: #f27d04;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   display: block;
-  margin: 0 auto;
+  margin: 20px auto;
   width: 100%;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .profile-container button:hover {
@@ -66,7 +105,5 @@
   width: 100%;
   height: 100%;
   background-color: #333;
-  /* Promenite ovde boju */
   z-index: -1;
-  /* Postavite z-index na manje od z-indexa .container-kreiraj-plan */
 }

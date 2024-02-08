@@ -82,13 +82,13 @@ const Runners = () => {
         {allRunnersForSelect &&
           allRunnersForSelect.map((trkac) => (
             <div key={trkac.id} className="runner-card">
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div style={{ justifyContent: 'space-between', textAlign: 'left' }}>
                 <div>
-                  <p style={{ color: 'white' }}>Ime: {trkac.ime}</p>
-                  <p style={{ color: 'white' }}>Prezime: {trkac.prezime}</p>
-                  <p style={{ color: 'white' }}>Email: {trkac.email}</p>
-                  <p style={{ color: 'white' }}>Pol: {trkac.pol}</p>
-                  <p style={{ color: 'white' }}>Datum rođenja: {trkac.datum_rodjenja}</p>
+                  <p style={{ color: 'black' }}>Ime: {trkac.ime}</p>
+                  <p style={{ color: 'black' }}>Prezime: {trkac.prezime}</p>
+                  <p style={{ color: 'black' }}>Email: {trkac.email}</p>
+                  <p style={{ color: 'black' }}>Pol: {trkac.pol}</p>
+                  <p style={{ color: 'black' }}>Datum rođenja: {trkac.datum_rodjenja}</p>
                 </div>
 
                 <img
@@ -98,9 +98,11 @@ const Runners = () => {
                     width: '30px',
                     height: '30px',
                     cursor: 'pointer',
+                    marginLeft: '700px',
                   }}
                   onClick={() => addFriend(trkac.id)}
                 />
+
               </div>
             </div>
           ))}

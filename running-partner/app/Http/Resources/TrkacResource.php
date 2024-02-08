@@ -18,6 +18,7 @@ class TrkacResource extends JsonResource
             'pol' => $this->pol,
             'mesto' => $this->mesto,
             'email' => $this->email,
+            'slika' => $this->slika,
             'prijatelj' => new TrkacResource($this->whenLoaded('prijatelj')),
             'prijatelji' => TrkacResource::collection($this->whenLoaded('prijatelji'))
         ];
