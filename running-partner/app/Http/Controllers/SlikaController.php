@@ -12,7 +12,7 @@ class SlikaController extends Controller
     {
 
         $request->validate([
-            'slika' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'slika' => 'required|image|mimes:jpeg,png,jpg,gif|max:6000',
         ]);
 
 

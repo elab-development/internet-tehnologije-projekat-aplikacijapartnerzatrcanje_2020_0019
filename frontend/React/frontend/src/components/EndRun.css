@@ -6,10 +6,10 @@
 
 .container {
   display: flex;
-  flex-direction: row; /* Postavljanje horizontalnog rasporeda elemenata */
+  flex-direction: row;
   align-items: center;
   width: 60%;
-  max-width: 800px; /* Povećao širinu .container-a kako bi stanovao i .image-container */
+  max-width: 800px;
   height: 640px;
   margin-top: 60px;
 }
@@ -73,6 +73,6 @@ button:disabled {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #333; /* Promenite ovde boju */
-  z-index: -1; /* Postavite z-index na manje od z-indexa .container-kreiraj-plan */
+  background-color: #333;
+  z-index: -1;
 }

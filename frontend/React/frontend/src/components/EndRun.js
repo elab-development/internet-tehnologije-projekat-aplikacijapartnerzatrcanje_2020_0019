@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { apiService } from './ApiService';
 import './EndRun.css';
-import Trkac from "../assets/trkac.jpg";
+import Trkac from "../assets/pozadina2.png";
 import { Button } from './Button';
 import Swal from 'sweetalert2';
 
@@ -52,12 +52,12 @@ const EndRun = () => {
   };
 
   return (
-    <div className="outer-container" style={{ backgroundImage: `url(${Trkac})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div className="outer-container" style={{ backgroundImage: `url(${Trkac})`, backgroundSize: '100%', backgroundPosition: 'right' }}>
       <div className="container">
         <div className="content-container">
-          <h1 style={{ marginRight: '150px', color: 'white' }}>Završi trku</h1>
+          <h1 style={{ marginLeft: '-114px', color: 'white', fontFamily: 'Work Sans sans-serif' }}>Završi trku</h1>
           <form>
-            <label style={{ color: 'white' }}>
+            <label style={{ color: 'white', fontFamily: 'Work Sans sans-serif' }}>
               Ukupno vreme:
               <input
                 type="text"
@@ -66,7 +66,7 @@ const EndRun = () => {
               />
             </label>
             <br />
-            <label style={{ color: 'white' }}>
+            <label style={{ color: 'white', fontFamily: 'Work Sans sans-serif' }}>
               Predjeni kilometri:
               <input
                 type="text"

@@ -77,10 +77,6 @@ const PlanRun = () => {
       setLoadingComments(true);
       setSelectedPlanId(planTrkeId);
       await fetchKomentari(planTrkeId);
-
-      if (userRole === "user") {
-        navigate(`/komentari/${planTrkeId}`);
-      }
     } finally {
       setLoadingComments(false);
     }
@@ -98,10 +94,10 @@ const PlanRun = () => {
           <tr>
             <th style={{ color: 'white' }}>Vreme</th>
             <th style={{ color: 'white' }}>Mesto</th>
-            <th style={{ color: 'white', width: "400px" }}>Datum</th>
-            <th style={{ color: 'white' }}>Planirani kilometri</th>
-            <th style={{ color: 'white', width: "400px" }}>Komentari</th>
-            <th style={{ color: 'white' }}>Akcije</th>
+            <th style={{ color: 'white' }}>Datum trke</th>
+            <th style={{ color: 'white' }}>Planirani km</th>
+            <th style={{ color: 'white' }}>Komentari</th>
+            {userRole === "trkac" && (<th style={{ color: 'white' }}>Akcije</th>)}
 
           </tr>
         </thead>
@@ -116,14 +112,18 @@ const PlanRun = () => {
               <td>
                 <div>
                   {userRole === "user" && (
-                    <Button
-                      type="button"
-                      onClick={() => handlePrikaziKomentare(plan.id)}
-                      buttonStyle="btn--outline"
-                      buttonSize="btn--medium"
-                    >
-                      Prikaži komentare
-                    </Button>
+                    <button onClick={() => handlePrikaziKomentare(plan.id)}
+                      style={{
+                        backgroundColor: 'transparent',
+                        color: '#fff',
+                        padding: '8px 20px',
+                        border: '1px solid var(--primary)',
+                        transition: 'all 0.3s ease-out',
+                        borderRadius: '10px',
+                        cursor: 'pointer',
+                        width: "120px",
+                      }}
+                    >Prikaži komentare</button>
 
                   )}
                   {userRole === "trkac" && (
@@ -133,44 +133,60 @@ const PlanRun = () => {
                         placeholder="Unesite komentar"
                         value={noviKomentari[plan.id] || ''}
                         onChange={(e) => setNoviKomentari({ ...noviKomentari, [plan.id]: e.target.value })}
-                        style={{ width: '130px' }}
+                        style={{ width: '240px', height: "50px" }}
                       />
-                      <Button
-                        type="button"
-                        onClick={() => handleKomentarSubmit(plan.id)}
-                        buttonStyle="btn--outline"
-                        buttonSize="btn--medium"
-                      >
-                        Dodaj komentar
-                      </Button>
-                      <Button
-                        type="button"
-                        onClick={() => handlePrikaziKomentare(plan.id)}
-                        buttonStyle="btn--outline"
-                        buttonSize="btn--medium"
-                        style={{ marginTop: '20px' }}
-                      >
-                        Prikaži komentare
-                      </Button>
+                      <div style={{ display: 'flex', gap: '10px' }}>
+                        <button onClick={() => handleKomentarSubmit(plan.id)}
+                          style={{
+                            backgroundColor: 'transparent',
+                            color: '#fff',
+                            padding: '8px 20px',
+                            border: '1px solid var(--primary)',
+                            transition: 'all 0.3s ease-out',
+                            borderRadius: '10px',
+                            cursor: 'pointer',
+                            width: "120px",
+                          }}
+
+                        >Dodaj komentar</button>
+
+                        <button onClick={() => handlePrikaziKomentare(plan.id)}
+                          style={{
+                            backgroundColor: 'transparent',
+                            color: '#fff',
+                            padding: '8px 20px',
+                            border: '1px solid var(--primary)',
+                            transition: 'all 0.3s ease-out',
+                            borderRadius: '10px',
+                            cursor: 'pointer',
+                            width: "120px",
+                          }}
+                        >Prikaži komentare</button> </div>
                     </>
+
                   )}
                 </div>
               </td>
-              <td>
-                <button onClick={() => handleZavrsiTrku(plan.id)}
-                  style={{
-                    backgroundColor: '#ba714c',
-                    color: '#ffffff',
-                    padding: '10px 15px',
-                    border: 'none',
-                    borderRadius: '10px',
-                    width: "120px",
-                    cursor: 'pointer',
-                  }}
-                  onMouseOver={(e) => e.target.style.backgroundColor = '#302e2d'}
-                  onMouseOut={(e) => e.target.style.backgroundColor = '#ba714c'}
-                >Završi trku</button>
-              </td>
+              {userRole === "trkac" && (
+                <td>
+                  <button
+                    onClick={() => handleZavrsiTrku(plan.id)}
+                    style={{
+                      backgroundColor: '#ba714c',
+                      color: '#ffffff',
+                      padding: '10px 15px',
+                      border: 'none',
+                      borderRadius: '10px',
+                      width: "120px",
+                      cursor: 'pointer',
+                    }}
+                    onMouseOver={(e) => e.target.style.backgroundColor = '#302e2d'}
+                    onMouseOut={(e) => e.target.style.backgroundColor = '#ba714c'}
+                  >
+                    Završi trku
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

@@ -18,13 +18,9 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
               Početna
             </Link>
           </li>
-
-          <li className={`navbar-item ${location.pathname === '/logout' ? 'active' : ''}`}>
-            <Link to="/logout" className="navbar-link" onClick={() => { apiService.logout(); }}>
-              Odjavi se
-            </Link>
+          <li className={`navbar-item ${location.pathname === '/map' ? 'active' : ''}`}>
+            <Link to="/map" className="navbar-link">Trkači</Link>
           </li>
-
           <li className={`navbar-item ${location.pathname === '/planovi-trka' ? 'active' : ''}`}>
             <Link to="/planovi-trka" className="navbar-link">
               Planovi trka
@@ -35,14 +31,18 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
               Statistike
             </Link>
           </li>
-          <li className={`navbar-item ${location.pathname === '/map' ? 'active' : ''}`}>
-            <Link to="/map" className="navbar-link">Map</Link>
+          <li className={`navbar-item ${location.pathname === '/logout' ? 'active' : ''}`}>
+            <Link to="/logout" className="navbar-link" onClick={() => { apiService.logout(); }}>
+              Odjavi se
+            </Link>
           </li>
+
           <li className={`navbar-item ${location.pathname === '/moj-nalog' ? 'active' : ''}`}>
             <Link to="/moj-nalog" className="navbar-link">
               <img src={User} alt="Moj nalog" style={{ width: '100px', height: '100px' }} />
             </Link>
           </li>
+
         </>
       );
     } else if (korisnik.role === 'user') {
@@ -64,7 +64,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
             </Link>
           </li>
           <li className={`navbar-item ${location.pathname === '/map' ? 'active' : ''}`}>
-            <Link to="/map" className="navbar-link">Map</Link>
+            <Link to="/map" className="navbar-link">Trkači</Link>
           </li>
           <li className={`navbar-item ${location.pathname === '/komentari' ? 'active' : ''}`}>
             <Link to="/komentari" className="navbar-link">Komentari</Link>

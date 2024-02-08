@@ -86,7 +86,7 @@ const Profile = () => {
             margin: '20px auto 0',
             width: '100%',
           }}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#242424')}
+          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#ba714c;')}
           onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#333')}
         >
           Kreiraj plan

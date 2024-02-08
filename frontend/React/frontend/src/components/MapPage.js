@@ -12,7 +12,7 @@ const MapPage = () => {
 
   const myIcon = new L.Icon({
     iconUrl: mapaPin,
-    iconSize: [60, 60],
+    iconSize: [40, 40],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
   });

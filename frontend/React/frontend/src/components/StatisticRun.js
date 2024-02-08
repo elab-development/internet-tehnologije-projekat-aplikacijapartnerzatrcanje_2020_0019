@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { apiService } from './ApiService';
 import "./StatisticRun.css";
-import { Button } from './Button';  
+import { Button } from './Button';
 
 const StatisticRun = () => {
   const [statistike, setStatistike] = useState([]);
@@ -12,7 +12,7 @@ const StatisticRun = () => {
       try {
         const trkacInfo = await apiService.getLoggedInTrkac();
         const trkacId = trkacInfo.trkac.id;
-        
+
 
         const response = await apiService.getStatistikeByTrkacId(trkacId);
         console.log(trkacInfo)
@@ -24,7 +24,7 @@ const StatisticRun = () => {
     };
 
     fetchStatistike();
-  }, []); 
+  }, []);
 
 
   if (!Array.isArray(statistike)) {
@@ -43,37 +43,38 @@ const StatisticRun = () => {
   };
 
 
-const handleAverageSpeed = async (statistikaId) => {
-  try {
-    console.log('id', statistikaId);
-    const result = await apiService.calculateAverageSpeed(statistikaId);
-    console.log('Prosečna brzina izračunata:', result);
+  const handleAverageSpeed = async (statistikaId) => {
+    try {
+      console.log('id', statistikaId);
+      const result = await apiService.calculateAverageSpeed(statistikaId);
+      console.log('Prosečna brzina izračunata:', result);
 
-    setStatistike((prevStatistike) =>
-      prevStatistike.map((statistika) =>
-        statistika.id === statistikaId
-          ? { ...statistika, prosecna_brzina: result.prosecna_brzina.toFixed(2) }
-          : statistika
-      )
-    );
-  } catch (error) {
-    console.error('Greška pri izračunavanju prosečne brzine:', error);
-  }
-};
+      setStatistike((prevStatistike) =>
+        prevStatistike.map((statistika) =>
+          statistika.id === statistikaId
+            ? { ...statistika, prosecna_brzina: result.prosecna_brzina.toFixed(2) }
+            : statistika
+        )
+      );
+    } catch (error) {
+      console.error('Greška pri izračunavanju prosečne brzine:', error);
+    }
+  };
 
 
   return (
-    <div className="statistic-run-container"> 
+    <div className="statistic-run-container">
       <h1>Statistike trčanja</h1>
-      <table className="statistic-table"> 
-  <thead>
-    <tr>
-      <th style={{ color: 'white' }}>Ukupno vreme</th>
-      <th style={{ color: 'white' }}>Predjeni kilometri</th>
-      <th style={{ color: 'white' }}>Prosecna brzina</th>
-    </tr>
-  </thead>
-  <tbody>
+      <table className="statistic-table">
+        <thead>
+          <tr>
+            <th style={{ color: 'white' }}>Ukupno vreme</th>
+            <th style={{ color: 'white' }}>Pređeni kilometri</th>
+            <th style={{ color: 'white' }}>Prosečna brzina</th>
+            <th style={{ color: 'white' }}>Akcije</th>
+          </tr>
+        </thead>
+        <tbody>
           {statistike.map((statistika) => (
             <tr key={statistika.id}>
               <td style={{ color: 'white' }}>{statistika.ukupno_vreme}</td>
@@ -94,18 +95,18 @@ const handleAverageSpeed = async (statistikaId) => {
               </td>
             </tr>
           ))}
-        </tbody> 
-</table>
-      <div style={{ textAlign: 'center', marginBottom: '10px' }}>
-  <Button
-    type="button"
-    onClick={handleDownload}
-    buttonStyle="btn--outline"
-    buttonSize="btn--medium"
-  >
-    Preuzmi statistiku
-  </Button>
-</div>
+        </tbody>
+      </table>
+      <div style={{ textAlign: 'center', marginBottom: '40px', marginTop: "-50px" }}>
+        <Button
+          type="button"
+          onClick={handleDownload}
+          buttonStyle="btn--outline"
+          buttonSize="btn--medium"
+        >
+          Preuzmi statistiku
+        </Button>
+      </div>
       <div className="background-behind-container"></div>
     </div>
   );

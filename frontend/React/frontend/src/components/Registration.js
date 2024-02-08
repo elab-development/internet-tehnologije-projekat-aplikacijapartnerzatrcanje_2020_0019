@@ -109,7 +109,19 @@ const Registration = () => {
             className="registration-input"
           />
         </div>
-        <button className="registration-button" onClick={handleRegistration}>Register</button>
+        <button onClick={handleRegistration}
+          style={{
+            backgroundColor: 'transparent',
+            color: '#fff',
+            padding: '8px 20px',
+            border: '1px solid var(--primary)',
+            transition: 'all 0.3s ease-out',
+            borderRadius: '10px',
+            cursor: 'pointer',
+            width: "150px",
+          }}
+        >Registruj se</button>
+
       </div>
     </div>
   );

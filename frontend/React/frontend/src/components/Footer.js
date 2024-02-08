@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 
 
 function Footer({ isDarkMode }) {
- 
+
 
   return (
     <div className={`footer-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-      
+
       <section class="social-media">
         <div class="social-media-wrap">
           <div class="footer-logo">
