@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import { useState } from "react";
 import Registration from "./components/Registration";
-import {Login} from "./components/Login";
+import { Login } from "./components/Login";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -240,45 +240,45 @@ function App() {
     setPlns(newApp);
   };
 
-  
+
   return (
     <Router className={`App ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <Navbar num={plnNum} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} apiService={apiService} />
       <Routes>
-  <Route
-    path="/"
-    element={<Home isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />}
-  />
-  <Route
-    path="/pronadji-prijatelja"
-    element={
-      <RunningPlans
-        plans1={plans1}
-        plans2={plans2}
-        makeAPlan={makePln}
-        star1={star1}
-        star2={star2}
-        isDarkMode={isDarkMode} 
-      />
-    }
-  />
-  <Route path="/moji-planovi" element={<MyPlans data={plns} deleteAPlan={deletePln} isDarkMode={isDarkMode} />}/>
-  <Route path="/registracija" element={<Registration />} />
-  <Route path="/login"  element={<Login updateToken={(token) => setToken(token)} />} ></Route>
-  <Route path="/logout" element={<Navigate to="/" />}></Route>
-  <Route path="/moj-nalog" element={<Profile />} />
-  <Route path="/kreiraj-plan" element={<KreirajPlan />} />
-  <Route path="/trkaci" element={<Runners />} />
-  <Route path="/planovi-trka" element={<PlanRun />} />
-  <Route path="/statistike-trke" element={<StatisticRun />} />
-  <Route path="/map" element={<MapPage />} />
-  <Route path="/zavrsi-trku/:planId" element={<EndRun />} />
-  <Route path="/komentari" element={<Comments />} />
-  <Route path="/sve-statistike" element={<AllStatistics />} />
+        <Route
+          path="/"
+          element={<Home isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />}
+        />
+        <Route
+          path="/pronadji-prijatelja"
+          element={
+            <RunningPlans
+              plans1={plans1}
+              plans2={plans2}
+              makeAPlan={makePln}
+              star1={star1}
+              star2={star2}
+              isDarkMode={isDarkMode}
+            />
+          }
+        />
+        <Route path="/moji-planovi" element={<MyPlans data={plns} deleteAPlan={deletePln} isDarkMode={isDarkMode} />} />
+        <Route path="/registracija" element={<Registration />} />
+        <Route path="/login" element={<Login updateToken={(token) => setToken(token)} />} ></Route>
+        <Route path="/logout" element={<Navigate to="/" />}></Route>
+        <Route path="/moj-nalog" element={<Profile />} />
+        <Route path="/kreiraj-plan" element={<KreirajPlan />} />
+        <Route path="/trkaci" element={<Runners />} />
+        <Route path="/planovi-trka" element={<PlanRun />} />
+        <Route path="/statistike-trke" element={<StatisticRun />} />
+        <Route path="/map" element={<MapPage />} />
+        <Route path="/zavrsi-trku/:planId" element={<EndRun />} />
+        <Route path="/komentari" element={<Comments />} />
+        <Route path="/sve-statistike" element={<AllStatistics />} />
 
-</Routes>
+      </Routes>
       <Footer isDarkMode={isDarkMode} />
     </Router>
   );
-        }
+}
 export default App;

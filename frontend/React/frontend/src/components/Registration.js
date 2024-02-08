@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { apiService } from './ApiService';  
+import { useNavigate } from 'react-router-dom';
+import { apiService } from './ApiService';
 import './Registration.css';
-import logo from '../assets/logo.png'; 
+import logo from '../assets/logo.png';
+
 
 const Registration = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     ime: '',
     prezime: '',
     datum_rodjenja: '',
     pol: '',
-    mesto:'',
+    mesto: '',
     email: '',
     password: '',
   });
@@ -22,11 +25,12 @@ const Registration = () => {
     console.log('Register button clicked');
     try {
       const response = await apiService.register(formData);
-      
+
       apiService.setToken(response.data.access_token);
       console.log(response.data);
 
       apiService.setLoginInfo(response.data.role, formData.email);
+      navigate("/login");
     } catch (error) {
 
       console.error('Greška prilikom registracije:', error);
@@ -39,7 +43,7 @@ const Registration = () => {
         <div className="registration-logo">
           <img src={logo} alt="Logo" />
         </div>
-        
+
         <div className="form-group">
           <input
             type="text"
@@ -68,13 +72,15 @@ const Registration = () => {
           />
         </div>
         <div className="form-group">
-          <input
-            type="text"
+          <select
             name="pol"
-            placeholder="Pol"
             onChange={handleInputChange}
-            className="registration-input"
-          />
+            className="select"
+          >
+            <option value="">Izaberite pol</option>
+            <option value="musko">Muško</option>
+            <option value="zensko">Žensko</option>
+          </select>
         </div>
         <div className="form-group">
           <input
@@ -103,10 +109,10 @@ const Registration = () => {
             className="registration-input"
           />
         </div>
-        <button className="registration-button" onClick={handleRegistration}>Register</button> 
+        <button className="registration-button" onClick={handleRegistration}>Register</button>
       </div>
     </div>
   );
-  }
+}
 
 export default Registration;

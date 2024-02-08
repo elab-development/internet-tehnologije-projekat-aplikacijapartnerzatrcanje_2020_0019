@@ -6,6 +6,7 @@ use App\Http\Resources\TrkacResource;
 use App\Models\Trkac;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TrkacController extends Controller
 {
@@ -142,7 +143,14 @@ class TrkacController extends Controller
 
 
 
+    public function prikaziSliku($id)
+    {
+        $trkac = Trkac::findOrFail($id);
 
+        $putanjaSlike = $trkac->slika;
+
+        return Storage::response($putanjaSlike);
+    }
 
 
 

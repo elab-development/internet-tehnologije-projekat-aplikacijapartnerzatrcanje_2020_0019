@@ -22,6 +22,8 @@ use App\Http\Controllers\SlikaController;
 */
 // routes/web.php ili routes/api.php
 
+Route::get('/trkaci/{id}/slika', [TrkacController::class, 'prikaziSliku']);
+
 
 Route::get('/statistika-trke/{statistikaId}', [StatistikaTrkeController::class, 'prosecnaBrzina']);
 Route::get('/trkaci/{id}', [TrkacController::class, 'show']);

@@ -23,16 +23,16 @@ class ApiService {
     window.sessionStorage.setItem("token", token);
   }
 
- 
+
   getToken() {
     return window.sessionStorage.getItem("token");
   }
- 
-  setLoginInfo(role, email,id) {
+
+  setLoginInfo(role, email, id) {
     window.sessionStorage.setItem("role", role);
     window.sessionStorage.setItem("email", email);
     window.sessionStorage.setItem("id", id);
-    
+
   }
 
   getLoginInfo() {
@@ -40,18 +40,18 @@ class ApiService {
     const email = window.sessionStorage.getItem("email");
     const id = window.sessionStorage.getItem("id");
 
-    return { role, email,id };
+    return { role, email, id };
   }
 
   getLoggedInTrkac() {
     const token = this.getToken();
-    const { id } = this.getLoginInfo(); 
-  
+    const { id } = this.getLoginInfo();
+
     if (!token || !id) {
- 
+
       return Promise.reject("User is not logged in");
     }
-  
+
     return axios.get(`http://localhost:8000/api/trkaci/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -64,7 +64,7 @@ class ApiService {
         throw error;
       });
   }
-  
+
   async uploadProfileImage(file) {
     try {
       const formData = new FormData();
@@ -84,12 +84,12 @@ class ApiService {
       throw error;
     }
   }
-  
+
   async createRunningPlan(formData) {
     try {
-  
+
       const response = await axios.post(
-        "http://localhost:8000/api/planovi-trka", 
+        "http://localhost:8000/api/planovi-trka",
         formData,
         {
           headers: {
@@ -107,12 +107,12 @@ class ApiService {
   getTrkaci() {
     return axios.get("http://localhost:8000/api/trkaci");
   }
-  
+
 
   getPlanoviTrka() {
     return axios.get("http://localhost:8000/api/planovi-trka");
   }
-  
+
   async getStatistikeByTrkacId(trkacId) {
     try {
       const response = await axios.get(`http://localhost:8000/api/statistike-trke/${trkacId}`);
@@ -127,7 +127,7 @@ class ApiService {
   async downloadStatistics(trkacId) {
     try {
       const response = await axios.get(`http://localhost:8000/api/statistike-trke/export/${trkacId}`, {
-        responseType: 'blob', 
+        responseType: 'blob',
         headers: {
           Authorization: `Bearer ${this.getToken()}`,
         },
@@ -169,7 +169,7 @@ class ApiService {
           Authorization: `Bearer ${this.getToken()}`,
         },
       });
-  
+
       return response.data;
     } catch (error) {
       console.error('Error adding friend:', error);
@@ -178,7 +178,7 @@ class ApiService {
   }
 
 
-  getKomentari(planTrkeId){
+  getKomentari(planTrkeId) {
     return axios.get(`http://localhost:8000/api/komentari/${planTrkeId}`)
       .then((response) => response.data.data || [])
       .catch((error) => {
@@ -186,7 +186,7 @@ class ApiService {
       });
   }
 
-  async addKomentar(komentarData){
+  async addKomentar(komentarData) {
     try {
       const response = await axios.post(`http://localhost:8000/api/komentari`, komentarData, {
         headers: {
@@ -201,7 +201,7 @@ class ApiService {
   async createRunningStatistics(formData) {
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/statistike-trke", 
+        "http://localhost:8000/api/statistike-trke",
         formData,
         {
           headers: {
@@ -219,10 +219,10 @@ class ApiService {
 
 
 
-  async calculateAverageSpeed(statistikaId){
+  async calculateAverageSpeed(statistikaId) {
     try {
       const response = await axios.get(`http://localhost:8000/api/statistika-trke/${statistikaId}`);
-      console.log('statistiika',response.data);
+      console.log('statistiika', response.data);
       return response.data;
     } catch (error) {
       console.error("Error creating average speed:", error);
@@ -232,7 +232,7 @@ class ApiService {
 
 
 
-  async getComments(){
+  async getComments() {
     try {
       const response = await axios.get('http://localhost:8000/api/komentari');
       console.log("komentari", response.data);
@@ -242,7 +242,7 @@ class ApiService {
       throw error;
     }
   };
-  
+
   async deleteComment(commentId) {
     try {
       const response = await axios.delete(
@@ -258,8 +258,8 @@ class ApiService {
       throw error;
     }
   };
-  
-  async getAllStatistics(){
+
+  async getAllStatistics() {
     try {
       const response = await axios.get(`http://localhost:8000/api/statistike-trke`, {
         headers: {
@@ -274,7 +274,21 @@ class ApiService {
   }
 
 
+  async getTrkacImage(trkacId) {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/trkaci/${trkacId}/slika`, {
+        responseType: 'blob',
+      });
 
+      const blob = new Blob([response.data], { type: response.headers['content-type'] });
+      const imageUrl = URL.createObjectURL(blob);
+
+      return imageUrl;
+    } catch (error) {
+      console.error('Greška pri dohvatanju slike trkača:', error);
+      throw error;
+    }
+  }
 };
 
 
