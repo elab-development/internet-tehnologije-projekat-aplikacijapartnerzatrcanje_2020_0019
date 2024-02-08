@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #333;
-  padding: 1rem 2rem 1rem 1rem; 
+  padding: 1rem 2rem 1rem 1rem;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -22,20 +22,21 @@
   margin-right: 1rem;
   border-radius: 50%;
 }
+
 .theme-toggle {
   cursor: pointer;
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 .theme-toggle img {
-  width: 20px; 
-  height: 20px; 
-  margin-left: 1rem; 
+  width: 20px;
+  height: 20px;
+  margin-left: 1rem;
 }
 
 .theme-toggle:hover img {
   transform: scale(1.1);
-  transition: transform 0.3s ease-in-out; 
+  transition: transform 0.3s ease-in-out;
 }
 
 .navbar-nav {
@@ -58,7 +59,7 @@
   transition: color 0.3s ease-in-out;
   font-size: 1.1rem;
   font-weight: 500;
-  margin-right: 1.5rem; 
+  margin-right: 1.5rem;
 }
 
 .navbar-link:hover {
@@ -102,16 +103,9 @@ body {
   .navbar-link {
     margin: 0;
   }
-  
-
-
 
 }
 
-.navbar.dark-mode {
+.navbar {
   background-color: #333;
-}
-
-.navbar.light-mode {
-  background-color: #aaaaaa;
 }

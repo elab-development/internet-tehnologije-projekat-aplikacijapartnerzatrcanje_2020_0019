@@ -5,7 +5,7 @@ import logo from '../assets/logo.png';
 import { apiService } from './ApiService';
 import User from '../assets/user.png';
 
-const Navbar = ({ isDarkMode, toggleDarkMode }) => {
+const Navbar = () => {
   const location = useLocation();
   const korisnik = apiService.getLoginInfo();
 
@@ -100,7 +100,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
   }
 
   return (
-    <nav className={`navbar ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+    <nav className="navbar">
       <div className="logo">
         <Link to="/">
           <img src={logo} alt="Logo" />

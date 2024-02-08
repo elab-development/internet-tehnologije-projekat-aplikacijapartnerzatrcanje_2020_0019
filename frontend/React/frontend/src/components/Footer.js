@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 
 
-function Footer({ isDarkMode }) {
+function Footer() {
 
 
   return (
-    <div className={`footer-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+    <div className="footer-container">
 
       <section class="social-media">
         <div class="social-media-wrap">
@@ -17,7 +17,7 @@ function Footer({ isDarkMode }) {
               RUNNING PARTNER
             </Link>
           </div>
-          <small class="website-rights">RUNNING PARTNER © 2023</small>
+          <small class="website-rights">RUNNING PARTNER © 2024</small>
           <div class="social-icons">
             <a
               class="social-icon-link facebook"

@@ -35,10 +35,9 @@ const Comments = () => {
     }
   };
 
-
   return (
     <div className="comments-run-container">
-      <h2>Komentari</h2>
+      <h2 style={{ color: 'white' }}>Komentari</h2>
       <table className="comments-table">
         <thead>
           <tr>

@@ -1,16 +1,9 @@
 import React from "react";
-import { Button } from "./Button";
 
 function CardItem({
   name,
   src,
-  star,
-  checked,
   type,
-  makeAPlan,
-  star1,
-  star2,
-  id,
   text,
 }) {
   return (
@@ -32,44 +25,6 @@ function CardItem({
             <h5 className="cards__item__title">{name}</h5>
           ) : (
             <></>
-          )}
-          {type === "clients" ? (
-            <></>
-          ) : (
-            <div className="star-container">
-              <ul>
-                <li>
-                  {checked === false ? (
-                    <i
-                      className="far fa-star"
-                      onClick={() => {
-                        star1(id);
-                      }}
-                    ></i>
-                  ) : (
-                    <i
-                      className="fas fa-star"
-                      onClick={() => star2(id)}
-                    ></i>
-                  )}
-                </li>
-                <li>
-                  <p className="star-number">{star}</p>
-                </li>
-                <li>
-                  <Button
-                    className="btns"
-                    buttonStyle="btn--primary"
-                    buttonSize="btn--medium"
-                    link={"/moji-planovi"}
-                    id={id}
-                    onClick={makeAPlan}
-                  >
-                    ZAKAŽI TRKU
-                  </Button>
-                </li>
-              </ul>
-            </div>
           )}
         </div>
       </div>

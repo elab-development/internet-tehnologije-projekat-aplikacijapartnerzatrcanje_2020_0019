@@ -1,6 +1,6 @@
 import React from 'react';
 import RunForm from './RunForm';
-import './KreirajPlan.css';
+import './CreatePlan.css';
 import { apiService } from './ApiService';
 import Swal from 'sweetalert2';
 

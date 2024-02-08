@@ -22,11 +22,11 @@ const AllStatistics = () => {
 
   return (
     <div className="comments-run-container">
-      <h2>Statistike trka</h2>
+      <h2 style={{ color: 'white' }}>Statistike trka</h2>
       <table className="comments-table">
         <thead>
           <tr>
-          <th style={{ color: 'white' }}>ID</th>
+            <th style={{ color: 'white' }}>ID</th>
             <th style={{ color: 'white' }}>Trkač</th>
             <th style={{ color: 'white' }}>Mesto</th>
             <th style={{ color: 'white' }}>Ukupno vreme</th>
@@ -47,8 +47,6 @@ const AllStatistics = () => {
           ))}
         </tbody>
       </table>
-      {loading && <p className="loading-message">Učitavanje...</p>}
-      {!loading && statistics.length === 0 && <p className="error-message">Nema dostupnih statistika trka.</p>}
       <div className="background-behind-container"></div>
     </div>
   );

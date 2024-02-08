@@ -18,11 +18,11 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     width: '600px',
-    height: '200px',
+    height: '250px',
     background: '#302e2d',
     borderRadius: '8px',
     margin: '5px',
-    color: 'white', 
+    color: 'white',
   },
   iconContainer: {
     display: 'flex',
@@ -30,16 +30,17 @@ const styles = {
     alignItems: 'center',
     height: '200px',
     width: '200px',
+    marginTop: "20px"
   },
   logo: {
     height: '80px',
     width: '80px',
   },
   text: {
-    fontSize: '1.05rem',
-    marginTop: '20px',
+    fontSize: '1.04rem',
+    marginTop: '7px',
   },
-  textBroj:{
+  textBroj: {
     fontSize: '1.5rem',
     fontWeight: 'bold'
 
@@ -85,30 +86,30 @@ const PoslovanjeCounter = () => {
   return (
     <div style={styles.wrapper}>
 
-    <div style={styles.section}>
-      <div style={styles.iconContainer}>
-        <img src={kalendar} alt="Logo" style={styles.logo} />
+      <div style={styles.section}>
+        <div style={styles.iconContainer}>
+          <img src={kalendar} alt="Logo" style={styles.logo} />
+        </div>
+        <p style={styles.textBroj}>{godinePoslovanja}+ </p>
+        <p style={styles.text}>godina poslovanja</p>
       </div>
-      <p style={styles.textBroj}>{godinePoslovanja}+ </p>
-      <p style={styles.text}>godina poslovanja</p>
-    </div>
 
-    <div style={styles.section}>
-      <div style={styles.iconContainer}>
-        <img src={chart} alt="Logo" style={styles.logo} />
+      <div style={styles.section}>
+        <div style={styles.iconContainer}>
+          <img src={chart} alt="Logo" style={styles.logo} />
+        </div>
+        <p style={styles.textBroj}>{zadovoljniKorisnici}+ </p>
+        <p style={styles.text}>zadovoljnih korisnika</p>
       </div>
-      <p style={styles.textBroj}>{zadovoljniKorisnici}+ </p>
-      <p style={styles.text}>zadovoljnih korisnika</p>
-    </div>
 
-    <div style={styles.section}>
-      <div style={styles.iconContainer}>
-        <img src={mapa} alt="Logo" style={styles.logo} />
+      <div style={styles.section}>
+        <div style={styles.iconContainer}>
+          <img src={mapa} alt="Logo" style={styles.logo} />
+        </div>
+        <p style={styles.textBroj}>{brojGradova}+ </p>
+        <p style={styles.text}>prisutnih gradova</p>
       </div>
-      <p style={styles.textBroj}>{brojGradova}+ </p>
-      <p style={styles.text}>prisutnih gradova</p>
     </div>
-  </div>
   );
 };
 

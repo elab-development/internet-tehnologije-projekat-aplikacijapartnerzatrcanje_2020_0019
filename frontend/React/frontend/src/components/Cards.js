@@ -1,12 +1,10 @@
 import React from "react";
 import "./Cards.css";
 import CardItem from "./CardItem";
-import ViewMode from './ViewMode';
 
 function Cards({ data1, data2, title, type, makeAPlan, star1, star2 }) {
-  const { isDarkMode } = ViewMode(); 
   return (
-    <div className={`cards ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+    <div className="cards">
       <h1>{title}</h1>
       <div className="cards__container">
         <div className="cards__wrapper">

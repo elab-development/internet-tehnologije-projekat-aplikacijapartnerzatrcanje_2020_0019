@@ -12,9 +12,7 @@
   width: 100%;
   height: 100%;
   background-color: #333;
-  /* Promenite ovde boju */
   z-index: -1;
-  /* Postavite z-index na manje od z-indexa .container-kreiraj-plan */
 }
 
 
