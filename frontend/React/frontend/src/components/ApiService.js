@@ -110,12 +110,20 @@ class ApiService {
 
 
   getPlanoviTrka() {
-    return axios.get("http://localhost:8000/api/planovi-trka");
+    return axios.get("http://localhost:8000/api/planovi-trka", {
+      headers: {
+        Authorization: `Bearer ${apiService.getToken()}`,
+      },
+    });
   }
 
   async getStatistikeByTrkacId(trkacId) {
     try {
-      const response = await axios.get(`http://localhost:8000/api/statistike-trke/${trkacId}`);
+      const response = await axios.get(`http://localhost:8000/api/statistike-trke/${trkacId}`, {
+        headers: {
+          Authorization: `Bearer ${apiService.getToken()}`,
+        },
+      });
       return response.data;
     } catch (error) {
       console.error('Greška pri dohvatanju statistika trčanja:', error);
@@ -150,7 +158,11 @@ class ApiService {
 
 
   async getMestoInfo(trkacId) {
-    return axios.get(`http://localhost:8000/api/trkaci/${trkacId}/mesto`);
+    return axios.get(`http://localhost:8000/api/trkaci/${trkacId}/mesto`, {
+      headers: {
+        Authorization: `Bearer ${apiService.getToken()}`,
+      },
+    });
   }
 
   getTrkaciFilter(params) {
@@ -176,7 +188,11 @@ class ApiService {
 
 
   getKomentari(planTrkeId) {
-    return axios.get(`http://localhost:8000/api/komentari/${planTrkeId}`)
+    return axios.get(`http://localhost:8000/api/komentari/${planTrkeId}`, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`,
+      },
+    })
       .then((response) => response.data.data || [])
       .catch((error) => {
         throw error;
@@ -217,7 +233,15 @@ class ApiService {
 
   async calculateAverageSpeed(statistikaId) {
     try {
-      const response = await axios.get(`http://localhost:8000/api/statistika-trke/${statistikaId}`);
+      const response = await axios.get(`http://localhost:8000/api/statistika-trke/${statistikaId}`
+        ,
+        {
+          headers: {
+            Authorization: `Bearer ${this.getToken()}`,
+          },
+        }
+
+      );
       console.log('statistiika', response.data);
       return response.data;
     } catch (error) {
@@ -228,7 +252,11 @@ class ApiService {
 
   async getComments() {
     try {
-      const response = await axios.get('http://localhost:8000/api/komentari');
+      const response = await axios.get('http://localhost:8000/api/komentari', {
+        headers: {
+          Authorization: `Bearer ${apiService.getToken()}`,
+        },
+      });
       console.log("komentari", response.data);
       return response.data;
     } catch (error) {

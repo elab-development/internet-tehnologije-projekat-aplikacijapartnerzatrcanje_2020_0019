@@ -22,65 +22,51 @@ use App\Http\Controllers\SlikaController;
 */
 // routes/web.php ili routes/api.php
 
-Route::get('/trkaci/{id}/slika', [TrkacController::class, 'prikaziSliku']);
 
-
-Route::get('/statistika-trke/{statistikaId}', [StatistikaTrkeController::class, 'prosecnaBrzina']);
-Route::get('/trkaci/{id}', [TrkacController::class, 'show']);
-Route::get('/komentari/{planTrkeId}', [KomentarController::class, 'getKomentariOnPlanTrke']);
-Route::get('/trkaci', [TrkacController::class, 'index']);
-Route::get('/trkaci/{id}/mesto', [TrkacController::class, 'getMestoInfo']);
-
-Route::post('/planovi-trka', [PlanTrkeController::class, 'store']);
-Route::post('/trkaci/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
-
-
+// Rute koje ne zahtevaju autentifikaciju
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-// Rute koje ne zahtevaju autentifikaciju
-Route::prefix('planovi-trka')->group(function () {
-    Route::get('/', [PlanTrkeController::class, 'index']);
-    Route::get('/{id}', [PlanTrkeController::class, 'show']);
-});
-
-Route::prefix('komentari')->group(function () {
-    Route::get('/', [KomentarController::class, 'index']);
-    Route::get('/{id}', [KomentarController::class, 'show']);
-});
-Route::prefix('statistike-trke')->group(function () {
-    Route::get('/{trkac_id}', [StatistikaTrkeController::class, 'getStatistikeByTrkacId']);
-});
-
 
 // Rute koje zahtevaju autentifikaciju
+
 Route::middleware(['auth:sanctum'])->group(function () {
+
     // Rute koje su dostupne samo ulozi 'trkac'
     Route::middleware(['App\Http\Middleware\CheckUserRole:trkac'])->group(function () {
 
         Route::prefix('trkaci')->group(function () {
-
             Route::post('/', [TrkacController::class, 'store']);
             Route::put('/{id}', [TrkacController::class, 'update']);
             Route::delete('/{id}', [TrkacController::class, 'destroy']);
             Route::post('/{id}/add-friend', [TrkacController::class, 'addFriend']);
         });
         Route::prefix('planovi-trka')->group(function () {
-
-            Route::put('/{id}', [PlanTrkeController::class, 'update']);
-            Route::delete('/{id}', [PlanTrkeController::class, 'destroy']);
+            Route::post('/', [PlanTrkeController::class, 'store']);
         });
 
         Route::prefix('statistike-trke')->group(function () {
             Route::post('/', [StatistikaTrkeController::class, 'store']);
             Route::get('/export/{trkac_id}', [StatistikaTrkeController::class, 'exportToCSV']);
+            Route::get('/{trkac_id}', [StatistikaTrkeController::class, 'getStatistikeByTrkacId']);
         });
 
         Route::prefix('komentari')->group(function () {
             Route::post('/', [KomentarController::class, 'store']);
 
         });
+        Route::get('/statistika-trke/{statistikaId}', [StatistikaTrkeController::class, 'prosecnaBrzina']);
+
     });
+
+    Route::prefix('planovi-trka')->group(function () {
+        Route::get('/', [PlanTrkeController::class, 'index']);
+
+    });
+    Route::get('/trkaci/{id}', [TrkacController::class, 'show']);
+    Route::get('/trkaci/{id}/mesto', [TrkacController::class, 'getMestoInfo']);
+    Route::get('/komentari/{planTrkeId}', [KomentarController::class, 'getKomentariOnPlanTrke']);
+
 
     // Rute koje su dostupne samo ulozi 'user'
     Route::middleware(['App\Http\Middleware\CheckUserRole:user'])->group(function () {
@@ -88,8 +74,22 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         Route::prefix('komentari')->group(function () {
             Route::delete('/{id}', [KomentarController::class, 'destroy']);
+            Route::get('/', [KomentarController::class, 'index']);
+
         });
     });
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
+
+
+
+
+Route::post('/trkaci/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
+Route::get('/trkaci', [TrkacController::class, 'index']);
+Route::get('/trkaci/{id}/slika', [TrkacController::class, 'prikaziSliku']);
+
+
+
+
+

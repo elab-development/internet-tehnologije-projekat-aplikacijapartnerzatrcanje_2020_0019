@@ -10,6 +10,7 @@ const Runners = () => {
   const [polFilter, setPolFilter] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [allRunnersForSelect, setAllRunnersForSelect] = useState([]);
+  const userRole = apiService.getLoginInfo().role;
 
   useEffect(() => {
     const fetchTrkaci = async () => {
@@ -91,17 +92,19 @@ const Runners = () => {
                   <p style={{ color: 'black' }}>Datum rođenja: {trkac.datum_rodjenja}</p>
                 </div>
 
-                <img
-                  src={DodajPrijatelja}
-                  alt="Dodaj prijatelja"
-                  style={{
-                    width: '30px',
-                    height: '30px',
-                    cursor: 'pointer',
-                    marginLeft: '700px',
-                  }}
-                  onClick={() => addFriend(trkac.id)}
-                />
+                {userRole === 'trkac' && (
+                  <img
+                    src={DodajPrijatelja}
+                    alt="Dodaj prijatelja"
+                    style={{
+                      width: '30px',
+                      height: '30px',
+                      cursor: 'pointer',
+                      marginLeft: '700px',
+                    }}
+                    onClick={() => addFriend(trkac.id)}
+                  />
+                )}
 
               </div>
             </div>
