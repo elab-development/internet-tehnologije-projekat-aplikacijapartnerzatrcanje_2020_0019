@@ -10,7 +10,7 @@ function WeatherApi() {
   const [search, setSearch] = useState("");
   const [weather, setWeather] = useState({});
 
-  
+
   const searchPressed = () => {
     fetch(`${api.base}weather?q=${search}&units=metric&APPID=${api.key}`)
       .then((res) => res.json())
@@ -33,7 +33,7 @@ function WeatherApi() {
           style={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center", 
+            alignItems: "center",
             marginTop: "20px",
           }}
         >
@@ -43,15 +43,15 @@ function WeatherApi() {
             style={{
               fontSize: "18px",
               padding: "8px",
-              marginRight: "5px", 
+              marginRight: "5px",
               marginTop: "15px",
-              width: "250px", 
-              height: "40px", 
+              width: "250px",
+              height: "40px",
             }}
             onChange={(e) => setSearch(e.target.value)}
           />
-          
-         
+
+
           <Button
             type="button"
             onClick={searchPressed}
@@ -85,3 +85,4 @@ function WeatherApi() {
 }
 
 export default WeatherApi;
+

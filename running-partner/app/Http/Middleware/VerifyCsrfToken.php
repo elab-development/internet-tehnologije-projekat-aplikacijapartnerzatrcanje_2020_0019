@@ -12,6 +12,9 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        '/statistike-trke/export/{trkac_id}',
     ];
 }
+
+
+

@@ -44,8 +44,6 @@ Route::prefix('planovi-trka')->group(function () {
     Route::get('/{id}', [PlanTrkeController::class, 'show']);
 });
 
-
-
 Route::prefix('komentari')->group(function () {
     Route::get('/', [KomentarController::class, 'index']);
     Route::get('/{id}', [KomentarController::class, 'show']);
@@ -54,17 +52,6 @@ Route::prefix('statistike-trke')->group(function () {
     Route::get('/{trkac_id}', [StatistikaTrkeController::class, 'getStatistikeByTrkacId']);
 });
 
-/*
-Route::middleware(['auth:sanctum', 'App\Http\Middleware\CheckUserRole:trkac'])->group(function () {
-    // Rute koje su dostupne samo ulozi 'trkac'
-    Route::prefix('trkaci')->group(function () {
-        Route::post('/', [TrkacController::class, 'store']);
-        Route::put('/{id}', [TrkacController::class, 'update']);
-        Route::delete('/{id}', [TrkacController::class, 'destroy']);
-        
-    });
-   
-});*/
 
 // Rute koje zahtevaju autentifikaciju
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -76,13 +63,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/', [TrkacController::class, 'store']);
             Route::put('/{id}', [TrkacController::class, 'update']);
             Route::delete('/{id}', [TrkacController::class, 'destroy']);
-
             Route::post('/{id}/add-friend', [TrkacController::class, 'addFriend']);
-
-            // Route::post('/{id}/upload-slike', [SlikaController::class, 'uploadSlike']);
-
-
-
         });
         Route::prefix('planovi-trka')->group(function () {
 

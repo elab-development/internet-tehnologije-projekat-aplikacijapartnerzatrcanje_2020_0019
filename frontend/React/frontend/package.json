@@ -19,7 +19,6 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.21.3",
     "react-scripts": "5.0.1",
-    "spotify-web-api-js": "^1.5.2",
     "sweetalert2": "^11.10.4",
     "web-vitals": "^2.1.4"
   },
